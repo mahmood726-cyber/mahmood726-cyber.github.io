@@ -3,1186 +3,1537 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Evidence Synthesis — Live Dashboard</title>
+<title>Mahmood Ahmad — Evidence Synthesis Research</title>
+<meta name="description" content="139 open-access meta-analysis tools, methods, and micro-papers. Interactive apps, datasets, and E156 publications.">
 <style>
+:root{--bg:#0a0a0a;--card:#151515;--card2:#1a1a1a;--text:#e8e6e1;--text2:#888;--accent:#d4a843;--blue:#4a9ece;--green:#3dba6c;--purple:#9b6dcc;--border:#2a2a2a;--serif:Georgia,'Times New Roman',serif;--sans:system-ui,-apple-system,'Segoe UI',sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:system-ui,-apple-system,sans-serif;background:#f8f9fa;color:#1a1a1a;line-height:1.5}
-.page{max-width:1200px;margin:0 auto;padding:2rem 1.5rem}
-.hero{text-align:center;padding:1.5rem 0 2rem;margin-bottom:1.5rem}
-.hero h1{font-family:Georgia,serif;font-size:1.8rem;margin-bottom:.3rem}
-.hero .sub{font-size:.85rem;color:#666}
-.stats{display:flex;gap:1rem;justify-content:center;margin:1.5rem 0;flex-wrap:wrap}
-.stat-card{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:1rem 1.5rem;text-align:center;min-width:120px}
-.stat-num{font-size:1.8rem;font-weight:700}
-.stat-num.green{color:#28a745}
-.stat-num.amber{color:#d68910}
-.stat-num.blue{color:#2E86C1}
-.stat-label{font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.1em}
-.search{width:100%;max-width:500px;margin:0 auto 1.5rem;display:block;padding:10px 16px;border:1px solid #ddd;border-radius:6px;font-size:.9rem}
-.search:focus{outline:2px solid #2E86C1;border-color:transparent}
-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e0e0e0;border-radius:8px;overflow:hidden}
-th{background:#f1f3f5;padding:10px 12px;text-align:left;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:#666;border-bottom:2px solid #e0e0e0}
-td{padding:8px 12px;border-bottom:1px solid #f0f0f0;font-size:.85rem}
-td a{color:#2E6B8A;text-decoration:none}
-td a:hover{text-decoration:underline}
-tr:hover{background:#f8f9ff}
-.status{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.7rem;font-weight:600}
-.status.ready{background:#d4edda;color:#155724}
-.status.draft{background:#fff3cd;color:#856404}
-.status.wip{background:#f8d7da;color:#721c24}
-.badge{display:inline-block;padding:1px 5px;border-radius:3px;font-size:.6rem;font-weight:700;margin-right:3px}
-.badge.app{background:#2E86C1;color:#fff}
-.badge.fig{background:#28a745;color:#fff}
-.gh-link{font-size:.75rem;color:#888}
-.footer{text-align:center;margin-top:2rem;font-size:.7rem;color:#aaa}
-@media(max-width:768px){td:nth-child(4),th:nth-child(4),td:nth-child(5),th:nth-child(5){display:none}.page{padding:1rem}}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--blue);text-decoration:none}
+
+/* ── Hero ──────────────────────────────────────── */
+.hero{min-height:90vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(212,168,67,.08),transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(74,158,206,.06),transparent 50%)}
+.hero-badge{font-size:.65rem;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;position:relative}
+.hero h1{font-family:var(--serif);font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;line-height:1.05;letter-spacing:-.03em;margin-bottom:1rem;position:relative;max-width:14ch}
+.hero .sub{font-size:1.1rem;color:var(--text2);margin-bottom:3rem;position:relative}
+.hero .sub a{color:var(--accent)}
+
+/* ── Stats ribbon ──────────────────────────────── */
+.stats{display:flex;gap:0;justify-content:center;position:relative;flex-wrap:wrap}
+.stat{padding:1.5rem 2.5rem;text-align:center;border-right:1px solid var(--border)}
+.stat:last-child{border-right:none}
+.stat-num{font-family:var(--serif);font-size:2.8rem;font-weight:700;line-height:1;color:var(--text)}
+.stat-num .accent{color:var(--accent)}
+.stat-label{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text2);margin-top:.3rem}
+
+/* ── Scroll indicator ──────────────────────────── */
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);font-size:.7rem;color:var(--text2);letter-spacing:.2em;text-transform:uppercase;animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+/* ── Section ───────────────────────────────────── */
+.section{padding:5rem 2rem;max-width:1200px;margin:0 auto}
+.section-label{font-size:.6rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+.section-title{font-family:var(--serif);font-size:1.8rem;margin-bottom:1rem}
+.section-desc{color:var(--text2);font-size:.95rem;max-width:60ch;margin-bottom:2.5rem}
+
+/* ── Featured ──────────────────────────────────── */
+.featured{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem}
+.feat{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:transform .2s,border-color .2s;animation:rise .6s ease both}
+.feat:hover{transform:translateY(-4px);border-color:var(--accent)}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.feat-img{width:100%;height:200px;object-fit:cover;display:block;border-bottom:1px solid var(--border)}
+.feat-placeholder{background:linear-gradient(135deg,var(--card2),var(--border));height:200px}
+.feat-body{padding:1.2rem 1.5rem 1.5rem}
+.feat-type{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+.feat-title{font-family:var(--serif);font-size:1.1rem;line-height:1.3;margin-bottom:.6rem}
+.feat-result{font-size:.82rem;color:var(--text2);line-height:1.6;margin-bottom:1rem}
+.feat-actions{display:flex;gap:.5rem}
+.btn{padding:8px 18px;border-radius:6px;font-size:.75rem;font-weight:600;transition:background .15s}
+.btn-paper{background:var(--accent);color:#000}
+.btn-paper:hover{background:#e0b64e}
+.btn-app{background:var(--blue);color:#fff}
+.btn-app:hover{background:#5cb3e0}
+
+/* ── Overview ──────────────────────────────────── */
+.overview{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.overview-text{font-family:var(--serif);font-size:1.15rem;line-height:1.8;color:var(--text2)}
+.overview-text em{color:var(--accent);font-style:normal;font-weight:600}
+
+/* ── Search + Grid ─────────────────────────────── */
+.search-bar{position:sticky;top:0;z-index:100;background:rgba(10,10,10,.9);backdrop-filter:blur(12px);padding:1rem 0;margin-bottom:1.5rem;display:flex;gap:.8rem;align-items:center;flex-wrap:wrap}
+.search-input{flex:1;min-width:250px;padding:10px 16px;background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.85rem}
+.search-input:focus{outline:none;border-color:var(--accent)}
+.filter-btn{padding:6px 14px;background:var(--card);border:1px solid var(--border);border-radius:6px;color:var(--text2);font-size:.7rem;font-weight:600;cursor:pointer;transition:all .15s}
+.filter-btn:hover,.filter-btn.active{background:var(--accent);color:#000;border-color:var(--accent)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
+.proj{display:block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem;transition:border-color .15s,transform .15s;text-decoration:none;color:var(--text)}
+.proj:hover{border-color:var(--accent);transform:translateY(-2px)}
+.proj-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem}
+.proj-type{font-size:.55rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--text2)}
+.tag{font-size:.5rem;font-weight:700;padding:2px 6px;border-radius:3px}
+.tag-app{background:var(--blue);color:#fff}
+.tag-fig{background:var(--green);color:#fff}
+.proj-title{font-family:var(--serif);font-size:.92rem;line-height:1.3;margin-bottom:.4rem}
+.proj-s4{font-size:.75rem;color:var(--text2);line-height:1.5}
+.proj-app{font-size:.7rem;color:var(--blue);margin-top:.6rem;font-weight:600}
+
+/* ── Footer ────────────────────────────────────── */
+.footer{text-align:center;padding:3rem 2rem;border-top:1px solid var(--border);font-size:.7rem;color:var(--text2)}
+.footer a{color:var(--accent)}
+
+/* ── Responsive ────────────────────────────────── */
+@media(max-width:768px){
+  .hero h1{font-size:2rem}
+  .stats{gap:0}
+  .stat{padding:1rem 1.2rem}
+  .stat-num{font-size:2rem}
+  .overview{grid-template-columns:1fr}
+  .featured,.grid{grid-template-columns:1fr}
+  .section{padding:3rem 1rem}
+}
+@media(prefers-reduced-motion:reduce){.feat,.scroll-hint{animation:none}}
+@media print{body{background:#fff;color:#000}.hero{min-height:auto;padding:2rem}.hero::before{display:none}}
 </style>
 </head>
 <body>
-<div class="page">
-  <header class="hero">
-    <h1>Evidence Synthesis Portfolio</h1>
-    <div class="sub">Mahmood Ahmad &middot; Tahir Heart Institute &middot; Live Project Dashboard</div>
-  </header>
 
-  <div class="stats">
-    <div class="stat-card"><div class="stat-num green">139</div><div class="stat-label">Ready</div></div>
-    <div class="stat-card"><div class="stat-num amber">0</div><div class="stat-label">Draft</div></div>
-    <div class="stat-card"><div class="stat-num" style="color:#c0392b">0</div><div class="stat-label">In Progress</div></div>
-    <div class="stat-card"><div class="stat-num blue">126</div><div class="stat-label">Apps</div></div>
-    <div class="stat-card"><div class="stat-num">139</div><div class="stat-label">Total</div></div>
+<header class="hero">
+  <div class="hero-badge">Evidence Synthesis Research Portfolio</div>
+  <h1>Reproducible meta-analysis at scale</h1>
+  <div class="sub">
+    <a href="mailto:mahmood.ahmad2@nhs.net">Mahmood Ahmad</a> &middot; Tahir Heart Institute
   </div>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">139</div><div class="stat-label">Projects</div></div>
+    <div class="stat"><div class="stat-num"><span class="accent">113</span></div><div class="stat-label">Interactive Apps</div></div>
+    <div class="stat"><div class="stat-num">39</div><div class="stat-label">With Figures</div></div>
+    <div class="stat"><div class="stat-num">139</div><div class="stat-label">E156 Papers</div></div>
+  </div>
+  <div class="scroll-hint">Scroll to explore &darr;</div>
+</header>
 
-  <input type="search" class="search" placeholder="Filter projects..." id="filter" aria-label="Filter projects">
+<section class="section">
+  <div class="section-label">Featured Work</div>
+  <h2 class="section-title">Highlights</h2>
+  <p class="section-desc">Each project produces a 156-word micro-paper, an interactive HTML companion, and a versioned evidence capsule. Click any card to read the paper or try the app.</p>
+  <div class="featured">
+    <article class="feat" style="animation-delay:0.0s">
+      <img src='https://mahmood726-cyber.github.io/finrenone/e156-submission/assets/Figure 1.png' alt='Browser-Based Finerenone Meta-Analysis V' loading='lazy' class='feat-img'>
+      <div class="feat-body">
+        <div class="feat-type">pairwise</div>
+        <h3 class="feat-title">Browser-Based Finerenone Meta-Analysis Validated Against R metafor</h3>
+        <p class="feat-result">Across 14 analyses spanning five outcomes, the application matched metafor to six decimal places for all estimates including MACE HR 0.87 (9</p>
+        <div class="feat-actions">
+          <a href="https://mahmood726-cyber.github.io/finrenone/e156-submission/" class="btn btn-paper">Read Paper</a>
+          <a href='https://mahmood726-cyber.github.io/finrenone/e156-submission/assets/ABLATION_AF_REVIEW.html' class='btn btn-app'>Try App</a>
+        </div>
+      </div>
+    </article>
+<article class="feat" style="animation-delay:0.08s">
+      <img src='https://mahmood726-cyber.github.io/truthcert1-work/e156-submission/assets/figure01_overview_fullpage.png' alt='TruthCert-PairwisePro: A Browser-Based P' loading='lazy' class='feat-img'>
+      <div class="feat-body">
+        <div class="feat-type">methods</div>
+        <h3 class="feat-title">TruthCert-PairwisePro: A Browser-Based Pairwise Meta-Analysis Engine with S</h3>
+        <p class="feat-result">Across 108 validation checks against R version 4.5.2, the tool achieved a 96.4 percent concordance rate, with OR and SMD pooling matching wi</p>
+        <div class="feat-actions">
+          <a href="https://mahmood726-cyber.github.io/truthcert1-work/e156-submission/" class="btn btn-paper">Read Paper</a>
+          <a href='https://mahmood726-cyber.github.io/truthcert1-work/e156-submission/assets/Main screen.html' class='btn btn-app'>Try App</a>
+        </div>
+      </div>
+    </article>
+<article class="feat" style="animation-delay:0.16s">
+      <img src='https://mahmood726-cyber.github.io/dta-pro-review/e156-submission/assets/figure01_overview_fullpage.png' alt='DTA Meta-Analysis Pro: A Browser-Based T' loading='lazy' class='feat-img'>
+      <div class="feat-body">
+        <div class="feat-type">methods</div>
+        <h3 class="feat-title">DTA Meta-Analysis Pro: A Browser-Based Tool for Diagnostic Test Accuracy Ev</h3>
+        <p class="feat-result">Validation against the R mada package version 0.5.12 produced 27 of 27 parity tests passing at 100 percent concordance, with 45 expanded sen</p>
+        <div class="feat-actions">
+          <a href="https://mahmood726-cyber.github.io/dta-pro-review/e156-submission/" class="btn btn-paper">Read Paper</a>
+          <a href='https://mahmood726-cyber.github.io/dta-pro-review/e156-submission/assets/dta-pro-v3.7.html' class='btn btn-app'>Try App</a>
+        </div>
+      </div>
+    </article>
+<article class="feat" style="animation-delay:0.24s">
+      <img src='https://mahmood726-cyber.github.io/dosehtml/e156-submission/assets/Figure 1.png' alt='Dose Response Pro: Browser-Based Dose-Re' loading='lazy' class='feat-img'>
+      <div class="feat-body">
+        <div class="feat-type">methods</div>
+        <h3 class="feat-title">Dose Response Pro: Browser-Based Dose-Response Meta-Analysis Matching R Acc</h3>
+        <p class="feat-result">Strict benchmarking against the R dosresmeta package showed exact parity on 120 of 120 comparable datasets with a median runtime speedup of </p>
+        <div class="feat-actions">
+          <a href="https://mahmood726-cyber.github.io/dosehtml/e156-submission/" class="btn btn-paper">Read Paper</a>
+          <a href='https://mahmood726-cyber.github.io/dosehtml/e156-submission/assets/dose-response-pro-v18.1-ultimate.html' class='btn btn-app'>Try App</a>
+        </div>
+      </div>
+    </article>
+<article class="feat" style="animation-delay:0.32s">
+      <img src='https://mahmood726-cyber.github.io/ipd-meta-pro/e156-submission/assets/figure01_overview_fullpage.png' alt='IPD Meta-Analysis Pro: A Browser-Based P' loading='lazy' class='feat-img'>
+      <div class="feat-body">
+        <div class="feat-type">methods</div>
+        <h3 class="feat-title">IPD Meta-Analysis Pro: A Browser-Based Platform for Individual Participant </h3>
+        <p class="feat-result">A release pipeline comprising 56 automated regression tests achieved a 100 percent pass rate, with R parity gates confirming agreement for p</p>
+        <div class="feat-actions">
+          <a href="https://mahmood726-cyber.github.io/ipd-meta-pro/e156-submission/" class="btn btn-paper">Read Paper</a>
+          <a href='https://mahmood726-cyber.github.io/ipd-meta-pro/e156-submission/assets/ipd-meta-pro.html' class='btn btn-app'>Try App</a>
+        </div>
+      </div>
+    </article>
+<article class="feat" style="animation-delay:0.4s">
+      <img src='https://mahmood726-cyber.github.io/ipd-meta-pro-link/e156-submission/assets/figure01_overview_fullpage.png' alt='IPD Meta-Analysis Pro: A Browser-Based P' loading='lazy' class='feat-img'>
+      <div class="feat-body">
+        <div class="feat-type">methods</div>
+        <h3 class="feat-title">IPD Meta-Analysis Pro: A Browser-Based Platform for Individual Participant </h3>
+        <p class="feat-result">A release pipeline comprising 56 automated regression tests achieved a 100 percent pass rate, with R parity gates confirming agreement for p</p>
+        <div class="feat-actions">
+          <a href="https://mahmood726-cyber.github.io/ipd-meta-pro-link/e156-submission/" class="btn btn-paper">Read Paper</a>
+          <a href='https://mahmood726-cyber.github.io/ipd-meta-pro-link/e156-submission/assets/ipd-meta-pro.html' class='btn btn-app'>Try App</a>
+        </div>
+      </div>
+    </article>
 
-  <table id="table">
-    <thead>
-      <tr><th>Project</th><th>Type</th><th>Status</th><th>Words</th><th>Assets</th><th>Code</th></tr>
-    </thead>
-    <tbody>
-      <tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/private-website/e156-submission/">OpenPalp: Structured Palpitations Assessment Programme via Clinic</a></td>
-  <td>clinical</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/private-website" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/mlm501/e156-submission/">MLM501: A Multilevel Effects Table from 501 Cochrane Pairwise Met</a></td>
-  <td>data</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/mlm501" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/pairwise70/e156-submission/">Pairwise70: Standardized Dataset of 501 Cochrane Meta-Analyses</a></td>
-  <td>data</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/pairwise70" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/metaentropy/e156-submission/">Meta-Analytic Entropy: Information-Theoretic Heterogeneity Beyond</a></td>
-  <td>empirical</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/metaentropy" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/metagenome/e156-submission/">The Meta-Analysis Genome: Unsupervised Phenotyping of 307 Cochran</a></td>
-  <td>empirical</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/metagenome" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/metarepair/e156-submission/">MetaRepair: Automated Diagnosis and Correction of Meta-Analysis P</a></td>
-  <td>empirical</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/metarepair" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/meta-epidemiology-bias-correction/e156-submission/">Bias-Correction Methods Reveal Underestimation by Observational S</a></td>
-  <td>meta-epidemiology</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/meta-epidemiology-bias-correction" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/outcomereportingbias/e156-submission/">Outcome Reporting Bias Risk in 403 Cochrane Meta-Analyses: An Exc</a></td>
-  <td>meta-research</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/outcomereportingbias" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/overlapdetector/e156-submission/">Study Overlap Across 501 Cochrane Reviews: Quantifying Non-Indepe</a></td>
-  <td>meta-research</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/overlapdetector" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/501mlm/e156-submission/">MLM501: Cochrane Multilevel Meta-Analysis Effects Table from 501 </a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/501mlm" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/501mlm-submission/e156-submission/">MLM501 Software Article: Building Large-Scale Meta-Analytic Datas</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/501mlm-submission" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/adaptsim/e156-submission/">AdaptSim: A Browser-Based Simulator for Adaptive Group-Sequential</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/adaptsim" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/almizan/e156-submission/">Al-Mizan: An Evidence Equipoise Monitor for Detecting When the Ba</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/almizan" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/asa/e156-submission/">Asa: A Seven-Method Forensic Data Integrity Screener for Clinical</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/asa" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/autograde/e156-submission/">AutoGRADE: Algorithmic Certainty of Evidence Assessment for Meta-</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/autograde" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/autograde/e156-submission/">AutoGRADE: Browser-Based Automated GRADE Certainty Assessment</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/autograde" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/bayesianma/e156-submission/">BayesianMA: Browser-Based Bayesian Random-Effects Meta-Analysis w</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/bayesianma" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/benfordma/e156-submission/">Benford Screening of 1.2 Million Meta-Analytic Values Finds No Co</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/benfordma" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/biasforensics/e156-submission/">The Bias Fingerprint: Eight Methods Disagree in One of Seven Coch</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/biasforensics" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/burhan/e156-submission/">TruthCert: A Fail-Closed Certification Protocol for LLM Outputs i</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/burhan" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/cres/e156-submission/">CRES: Browser-Based Cardiorenal Evidence Synthesis with Integrate</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/cres" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/cardiooracle/e156-submission/">CardioOracle: Predicting Cardiovascular Trial Outcomes Using Baye</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/cardiooracle" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/cardiotrialaudit/e156-submission/">Structural Flaw Prevalence in 52,765 Cardiology Trials: An Automa</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/cardiotrialaudit" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/causalsynth/e156-submission/">CausalSynth: Browser-Based Causal Evidence Triangulation Engine</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/causalsynth" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/cochranedataextractor/e156-submission/">Cochrane Data Extractor: Automated Dataset Harvesting from Cochra</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/cochranedataextractor" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/componentnma/e156-submission/">Component NMA: A Browser-Based Tool for Additive Component Networ</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/componentnma" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/conformalma/e156-submission/">Conformal Prediction Intervals for Meta-Analysis: Distribution-Fr</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/conformalma" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/dta70/e156-submission/">DTA70: An R Package of 76 Diagnostic Test Accuracy Datasets for M</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/dta70" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/dta-pro-review/e156-submission/">DTA Meta-Analysis Pro: A Browser-Based Tool for Diagnostic Test A</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/dta-pro-review" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/dataextractor/e156-submission/">RCTExtractor: AI-Powered Clinical Trial Data Extraction with 100%</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/dataextractor" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/evidencehalflife/e156-submission/">The Evidence Half-Life: 52% of Meta-Analyses Never Reach Analytic</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/evidencehalflife" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/evidencehalflife/e156-submission/">The Evidence Half-Life: 52% of Meta-Analyses Never Reach Analytic</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/evidencehalflife" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/evidencequality/e156-submission/">The Cochrane Quality Concordance: Six Orthogonal Dimensions of Ev</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/evidencequality" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/evidencetribunal/e156-submission/">The Evidence Tribunal: Adversarial Specification Search Across 40</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/evidencetribunal" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/fatiha-project/e156-submission/">SYNTHESIS: A 7-Layer Verification Framework for Detecting Fragile</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/fatiha-project" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/fatiha-course-github-v2/e156-submission/">FATIHA: A Multilingual Evidence Synthesis Course Platform with 26</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/fatiha-course-github-v2" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/fragilityatlas/e156-submission/">The Fragility Atlas: Multiverse Analysis of 403 Cochrane Meta-Ana</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/fragilityatlas" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/fragilityindex/e156-submission/">Fragility Index Calculator: Browser-Based Statistical Fragility f</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/fragilityindex" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/grma-paper/e156-submission/">Grey Relational Meta-Analysis: A Robust Pooling Method with Redes</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/grma-paper" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/gwam/e156-submission/">GWAM: Ghost-Weighted Aggregate Meta-Analysis for Registry-Based P</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/gwam" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/hta/e156-submission/">HTA Artifact Standard: An Open-Source Platform with 41 Analytical</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/hta" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/hta-oman/e156-submission/">HTA-Oman: Open-Source Browser-Based Health Technology Assessment </a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/hta-oman" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/hta-evidence-integrity-suite/e156-submission/">Evidence Integrity Suite for Multi-Layered Health Technology Asse</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/hta-evidence-integrity-suite" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/hta-transportability-engine/e156-submission/">Clinical Transportability Engine for Quantifying Efficacy Leakage</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/hta-transportability-engine" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/hta-unified-intelligence-system/e156-submission/">HTA Unified Intelligence System: Self-Correcting Evidence Synthes</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/hta-unified-intelligence-system" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/ipd-meta-pro/e156-submission/">IPD Meta-Analysis Pro: A Browser-Based Platform for Individual Pa</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/ipd-meta-pro" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/ipd-qma/e156-submission/">IPD-QMA: Detecting Heterogeneous Treatment Effects via Quantile M</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/ipd-qma" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/indirectcomparison/e156-submission/">Indirect Treatment Comparison Calculator: Browser-Based Bucher Me</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/indirectcomparison" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/kmdigitizer/e156-submission/">KMDigitizer: Browser-Based IPD Reconstruction from Published Kapl</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/kmdigitizer" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/kmcurve/e156-submission/">Fully Automated Kaplan-Meier Curve Extraction via Neural OCR and </a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/kmcurve" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/lfa/e156-submission/">CBAMM: Collaborative Bayesian Adaptive Meta-Analysis with Populat</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/lfa" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/mapowercalc/e156-submission/">MA Power: A Browser-Based Power and Sample Size Calculator for Ra</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/mapowercalc" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/mapriors/e156-submission/">MAPriors: Browser-Based Meta-Analytic Predictive Priors and Dynam</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/mapriors" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/maworkbench/e156-submission/">Meta-Analysis Workbench: A Central Hub for 49 Evidence Synthesis </a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/maworkbench" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/mcidmapper/e156-submission/">MCID Mapper: Clinical Significance Assessment for Meta-Analytic E</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/mcidmapper" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/mes/e156-submission/">Multiverse Evidence Synthesis: Robustness Classification of 403 C</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/mes" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/mlmresearch/e156-submission/">MLMResearch: Empirical Stress-Testing and Adaptive Correction for</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/mlmresearch" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/metaextract/e156-submission/">MetaExtract: Browser-Based Effect Estimate Extraction from Clinic</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/metaextract" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/metafolio/e156-submission/">MetaFolio: Efficiency Frontier Subset Enumeration for Meta-Analys</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/metafolio" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/metafusion-lab/e156-submission/">MetaFusion Lab: Certainty-Weighted Random-Effects Meta-Analysis</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/metafusion-lab" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/metaguard/e156-submission/">MetaGuard: A Browser-Based Robust and Forensic Meta-Analysis Tool</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/metaguard" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/metamethods/e156-submission/">MetaMethods: Six Advanced Statistical Methods for Meta-Analysis i</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/metamethods" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/metaregression/e156-submission/">MetaRegression Workbench: Browser-Based Mixed-Effects Meta-Regres</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/metaregression" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/metarep/e156-submission/">MetaRep: Most Significant Cochrane Meta-Analyses Predict Only 32%</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/metarep" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/metareproducer/e156-submission/">Computational Reproducibility Audit of 501 Cochrane Meta-Analyses</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/metareproducer" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/metashift/e156-submission/">MetaShift: Changepoint Detection Reveals Hidden Regime Shifts in </a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/metashift" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/meta-ecosystem-model/e156-submission/">The Meta-Analysis Ecosystem Model: Evidence Velocity, Effect Deca</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/meta-ecosystem-model" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/metanew/e156-submission/">EvidenceOS PRIME: Integrated Meta-Analysis and Health Technology </a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/metanew" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/methodssuite/e156-submission/">Methods Suite: Eight Interoperable Browser-Based Meta-Analysis To</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/methodssuite" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/multilevelerror/e156-submission/">Multilevelerror: Influence Diagnostics for Three-Level Meta-Analy</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/multilevelerror" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/multipledatameta/e156-submission/">Multiple Data Source Meta-Analysis: Pooling Mixed-Format Study Re</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/multipledatameta" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/multiversema/e156-submission/">MultiverseMA: Browser-Based Multiverse Meta-Analysis Engine</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/multiversema" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/nmahtml/e156-submission/">NMA Pro: A Browser-Based Network Meta-Analysis Platform with Inte</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/nmahtml" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/nntmapper/e156-submission/">NNTMapper: Converting Meta-Analytic Effects into Population-Speci</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/nntmapper" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/new-heterogeneity-model/e156-submission/">Adaptive Shrinkage Estimator for Heterogeneity in Small-Sample Me</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/new-heterogeneity-model" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/overlapmatrix/e156-submission/">Overlap Matrix and Corrected Covered Area Calculator for Umbrella</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/overlapmatrix" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/prismachecker/e156-submission/">PRISMA 2020 Compliance Checker: An Interactive Browser Tool for S</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/prismachecker" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/prismaflow/e156-submission/">PRISMA 2020 Flow Diagram Generator for Systematic Reviews</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/prismaflow" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/pairwise70/e156-submission/">MAFI: Meta-Analytic Fragility Index Across 501 Cochrane Pairwise </a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/pairwise70" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/pairwiseai/e156-submission/">TruthCert PairwisePro: Browser-Based Pairwise Meta-Analysis with </a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/pairwiseai" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/paper1/e156-submission/">Bootstrap-Aggregated Penalized Meta-Regression for Small-Sample E</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/paper1" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/poolingsuite/e156-submission/">Pooling Suite: Browser-Based Meta-Analysis Engine with Ten Hetero</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/poolingsuite" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/predictiongap/e156-submission/">The Prediction Gap: 70% of Significant Meta-Analyses Have Null-Sp</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/predictiongap" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/pubbiassuite/e156-submission/">PubBias Suite: Comprehensive Publication Bias Assessment with 12 </a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/pubbiassuite" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/rmstmeta/e156-submission/">RMST Meta: A Browser Tool for Meta-Analysis of Restricted Mean Su</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/rmstmeta" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/robassessor/e156-submission/">RoB Assessor: A Browser-Based Risk of Bias Assessment Tool Implem</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/robassessor" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/sheafnma/e156-submission/">Sheaf-Theoretic Consistency Analysis for Network Meta-Analysis</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/sheafnma" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/softable/e156-submission/">GRADE Summary of Findings Table Generator for Systematic Reviews</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/softable" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/tda-ma/e156-submission/">Topological Data Analysis for Meta-Analytic Heterogeneity Explora</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/tda-ma" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/tgep-development/e156-submission/">Triple-Guard Ensemble Pooling for Bias-Sensitive Meta-Analysis</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/tgep-development" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/transportabilitycalc/e156-submission/">Clinical Transportability Engine: A Composite Penalty Index for M</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/transportabilitycalc" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/trialradar/e156-submission/">TrialRadar: Living Clinical Trial Surveillance Dashboard for Ghos</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/trialradar" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/truthcert1/e156-submission/">TruthCert-MA: A Cross-Platform JavaScript Meta-Analysis Engine Va</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/truthcert1" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/truthcert1-work/e156-submission/">TruthCert-PairwisePro: A Browser-Based Pairwise Meta-Analysis Eng</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/truthcert1-work" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/umbrellareview/e156-submission/">Umbrella Review Evidence Classifier with Credibility Grading</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/umbrellareview" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/voicalculator/e156-submission/">Value of Information Calculator for Meta-Analysis Decision Suppor</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/voicalculator" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/value-based-hta-engine/e156-submission/">Multi-Criteria Evidence Synthesizer for Automated Benefit-Harm Tr</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/value-based-hta-engine" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/worldipd/e156-submission/">WorldIPD: An Open Individual Participant Data Hub with Standardiz</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/worldipd" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/worldipd-private/e156-submission/">WorldIPD-Private: Secure Scaffold for Non-Redistributable Individ</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/worldipd-private" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/advanced-nma-pooling/e156-submission/">Advanced NMA Pooling Toolkit with Bias Adjustment and Survival Ex</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/advanced-nma-pooling" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/advanced-nma-pooling/e156-submission/">Advanced NMA Pooling Toolkit with Bias Adjustment and Survival Ex</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/advanced-nma-pooling" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/clinic-site/e156-submission/">London Cardiology Clinic: Privacy-First Clinical Website with Sch</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/clinic-site" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/ctgov-search-strategies/e156-submission/">CT.gov Search Strategy Tool: Systematic Review Search Validation </a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/ctgov-search-strategies" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/cv-rct-analysis/e156-submission/">CV-RCT Analysis: Cardiovascular Trial Landscape Dashboard Integra</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/cv-rct-analysis" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/dosehtml/e156-submission/">Dose Response Pro: Browser-Based Dose-Response Meta-Analysis Matc</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/dosehtml" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/evidence-board/e156-submission/">Evidence Board: A Browser-Based Structured Note System for System</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/evidence-board" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/evidence-inference/e156-submission/">Evidence Inference: Machine Learning Extraction of Treatment Effe</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/evidence-inference" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/focus-studio/e156-submission/">Focus Studio: A Browser-Based Pomodoro Timer with Task Management</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/focus-studio" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/hfpef-registry-synth/e156-submission/">Registry-First Transparency-Adjusted Synthesis for HFpEF Clinical</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/hfpef-registry-synth" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/idea12/e156-submission/">Network Meta-Regression with Forensic Bias Detection for Observat</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/idea12" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/ipd-meta-pro-link/e156-submission/">IPD Meta-Analysis Pro: A Browser-Based Platform for Individual Pa</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/ipd-meta-pro-link" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/kanban-lab/e156-submission/">Kanban Lab: A Persistent Browser-Based Drag-and-Drop Board for Re</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/kanban-lab" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/living-meta/e156-submission/">Living Meta-Analysis: A CT.gov-Native Browser Application for Con</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/living-meta" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/living-meta-engine/e156-submission/">Living Meta-Analysis Engine: Config-Driven Browser Dashboard for </a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/living-meta-engine" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/llm-meta-analysis/e156-submission/">LLM-Driven Meta-Analysis: Automated Extraction and Synthesis from</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/llm-meta-analysis" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/maxent-reconstructor/e156-submission/">MaxEnt IPD Reconstructor: Maximum Entropy Recovery of Individual </a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/maxent-reconstructor" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/metaoverfit/e156-submission/">metaoverfit: Optimism-Corrected Heterogeneity Assessment for Meta</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/metaoverfit" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/metaoverfit-paper/e156-submission/">Overfitting in Published Meta-Regressions: Simulation and Empiric</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/metaoverfit-paper" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/metasprint-autopilot/e156-submission/">MetaSprint Autopilot: Zero-Install Browser Platform for Systemati</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/metasprint-autopilot" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/metasprint-cardio-universe/e156-submission/">MetaSprint Cardio Universe: Provenance-First Discovery for Living</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/metasprint-cardio-universe" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/metasprint-dose-response/e156-submission/">MetaSprint Dose-Response: Browser-Based Nonlinear Dose-Response M</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/metasprint-dose-response" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/metasprint-dta/e156-submission/">MetaSprint DTA: Automated Open-Access Discovery for Diagnostic Te</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/metasprint-dta" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/metasprintnma/e156-submission/">MetaSprint NMA: Zero-Install Browser Network Meta-Analysis with I</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/metasprintnma" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/metaverse-robust-ma/e156-submission/">metaverse: Robust Meta-Analysis with Outlier-Resistant Estimation</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/metaverse-robust-ma" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/nma-dose-response-app/e156-submission/">NMA Dose-Response Studio: Browser-Based Network Meta-Analysis wit</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/nma-dose-response-app" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/prognostic-meta/e156-submission/">PrognosisMeta: Browser-Based Prognostic Meta-Analysis Engine</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/prognostic-meta" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/pub-bias-simulation/e156-submission/">Publication Bias Adjustment Methods: A 135-Scenario Simulation Co</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/pub-bias-simulation" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/rct-extractor-v2/e156-submission/">Deterministic Effect Estimate Extraction from RCT PDFs</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/rct-extractor-v2" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/registry-first-rct-meta/e156-submission/">Registry-First Meta-Analysis: Quantifying Missing Cardiovascular </a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/registry-first-rct-meta" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/repo100/e156-submission/">repo100: A Curated Collection of 137 Meta-Regression Benchmark Da</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/repo100" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/repo300-enma-snma/e156-submission/">Ensemble and Spectral Network Meta-Analysis: Novel Inconsistency-</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/repo300-enma-snma" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/rmstnma/e156-submission/">Bayesian RMST Network Meta-Analysis: The rmstnma R Package</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/rmstnma" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/shahzaib-icu-landscape/e156-submission/">ICU Hemodynamic Trial Landscape: A Living Evidence Map</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/shahzaib-icu-landscape" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/truthcert-denominator-phase1/e156-submission/">Denominator-First Bayesian Meta-Analysis Engine for Registry-Awar</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/truthcert-denominator-phase1" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/truthcert-meta2-prototype/e156-submission/">TruthCert Meta2: Governance Overlay for Denominator-First Meta-An</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/truthcert-meta2-prototype" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/ubcma/e156-submission/">UBCMA: Unified Bias-Calibrated Meta-Analysis via Joint Heterogene</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/ubcma" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/wasserstein/e156-submission/">Automated Kaplan-Meier Digitization for Hazard Ratio Extraction</a></td>
-  <td>methods</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/wasserstein" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/finrenone/e156-submission/">Browser-Based Finerenone Meta-Analysis Validated Against R metafo</a></td>
-  <td>pairwise</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/finrenone" class="gh-link">GitHub</a></td>
-</tr>
-<tr class="ready">
-  <td><a href="https://mahmood726-cyber.github.io/portfolio-site/e156-submission/">Meta-Analysis Methods Lab: A Single-Page Portfolio for 101 Eviden</a></td>
-  <td>showcase</td>
-  <td><span class="status ready">Ready for Review</span></td>
-  <td>156</td>
-  <td><span class="badge app">App</span></td>
-  <td><a href="https://github.com/mahmood726-cyber/portfolio-site" class="gh-link">GitHub</a></td>
-</tr>
+  </div>
+</section>
 
-    </tbody>
-  </table>
+<section class="section">
+  <div class="section-label">Portfolio Overview</div>
+  <h2 class="section-title">The body of work</h2>
+  <div class="overview">
+    <div class="overview-text">
+      This portfolio spans <em>139 projects</em> in evidence synthesis methodology,
+      from pairwise meta-analysis to network comparison, diagnostic test accuracy,
+      health technology assessment, and novel methods like multiverse analysis and
+      topological data analysis. Every project ships with an <em>E156 micro-paper</em>
+      (exactly 156 words, 7 sentences), an interactive HTML companion for reviewers,
+      and open-source code. <em>113 projects</em> include browser-based interactive apps
+      that run with zero installation.
+    </div>
+    <div style="text-align:center">
+      <svg viewBox="0 0 500 298" style="width:100%;max-width:500px"><rect x="120" y="2" width="320.0" height="24" fill="#2E86C1" rx="4" opacity="0.85"/>
+    <text x="115" y="18" text-anchor="end" font-size="12" fill="#666">methods</text>
+    <text x="445.0" y="18" font-size="12" font-weight="700" fill="#333">128</text>
+<rect x="120" y="38" width="7.5" height="24" fill="#28B463" rx="4" opacity="0.85"/>
+    <text x="115" y="54" text-anchor="end" font-size="12" fill="#666">empirical</text>
+    <text x="132.5" y="54" font-size="12" font-weight="700" fill="#333">3</text>
+<rect x="120" y="74" width="5.0" height="24" fill="#7D3C98" rx="4" opacity="0.85"/>
+    <text x="115" y="90" text-anchor="end" font-size="12" fill="#666">data</text>
+    <text x="130.0" y="90" font-size="12" font-weight="700" fill="#333">2</text>
+<rect x="120" y="110" width="5.0" height="24" fill="#CB4335" rx="4" opacity="0.85"/>
+    <text x="115" y="126" text-anchor="end" font-size="12" fill="#666">meta-research</text>
+    <text x="130.0" y="126" font-size="12" font-weight="700" fill="#333">2</text>
+<rect x="120" y="146" width="2.5" height="24" fill="#D68910" rx="4" opacity="0.85"/>
+    <text x="115" y="162" text-anchor="end" font-size="12" fill="#666">pairwise</text>
+    <text x="127.5" y="162" font-size="12" font-weight="700" fill="#333">1</text>
+<rect x="120" y="182" width="2.5" height="24" fill="#148F77" rx="4" opacity="0.85"/>
+    <text x="115" y="198" text-anchor="end" font-size="12" fill="#666">meta-epidemiology</text>
+    <text x="127.5" y="198" font-size="12" font-weight="700" fill="#333">1</text>
+<rect x="120" y="218" width="2.5" height="24" fill="#85929E" rx="4" opacity="0.85"/>
+    <text x="115" y="234" text-anchor="end" font-size="12" fill="#666">showcase</text>
+    <text x="127.5" y="234" font-size="12" font-weight="700" fill="#333">1</text>
+<rect x="120" y="254" width="2.5" height="24" fill="#E74C3C" rx="4" opacity="0.85"/>
+    <text x="115" y="270" text-anchor="end" font-size="12" fill="#666">clinical</text>
+    <text x="127.5" y="270" font-size="12" font-weight="700" fill="#333">1</text>
+</svg>
+    </div>
+  </div>
+</section>
 
-  <div class="footer">Updated 2026 &middot; E156 Micro-Paper Format &middot; All work in progress</div>
-</div>
+<section class="section" id="projects">
+  <div class="section-label">All Projects</div>
+  <h2 class="section-title">139 projects</h2>
+  <div class="search-bar">
+    <input type="search" class="search-input" id="search" placeholder="Search projects..." aria-label="Search projects">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="app">Apps Only</button>
+    <button class="filter-btn" data-filter="figs">With Figures</button>
+  </div>
+  <div class="grid" id="grid">
+    <a href="https://mahmood726-cyber.github.io/pairwise70/e156-submission/" class="proj" data-type="data" data-title="pairwise70: standardized dataset of 501 cochrane meta-analyses">
+      <div class="proj-head">
+        <span class="proj-type">data</span>
+        <span class="tag tag-app">App</span><span class="tag tag-fig">4 figs</span>
+      </div>
+      <h4 class="proj-title">Pairwise70: Standardized Dataset of 501 Cochrane Meta-Analyses</h4>
+      <p class="proj-s4">The fragility index validation across 4,424 meta-analyses yielded a median fragility score of 0.31 (</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/adaptsim/e156-submission/" class="proj" data-type="methods" data-title="adaptsim: a browser-based simulator for adaptive group-sequential trial design matching rpact to four decimal places">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span><span class="tag tag-fig">3 figs</span>
+      </div>
+      <h4 class="proj-title">AdaptSim: A Browser-Based Simulator for Adaptive Group-Sequential Tria</h4>
+      <p class="proj-s4">Boundary calculations matched rpact to four decimal places, with mean sensitivity to true effect of </p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/cardiooracle/e156-submission/" class="proj" data-type="methods" data-title="cardiooracle: predicting cardiovascular trial outcomes using bayesian historical borrowing and design feature analysis (auc 0.787)">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span><span class="tag tag-fig">5 figs</span>
+      </div>
+      <h4 class="proj-title">CardioOracle: Predicting Cardiovascular Trial Outcomes Using Bayesian </h4>
+      <p class="proj-s4">The model achieved AUC of 0.787 (95% CI 0.75 to 0.82, Brier score 0.169) in-sample and 0.745 (Brier </p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/dta-pro-review/e156-submission/" class="proj" data-type="methods" data-title="dta meta-analysis pro: a browser-based tool for diagnostic test accuracy evidence synthesis">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span><span class="tag tag-fig">15 figs</span>
+      </div>
+      <h4 class="proj-title">DTA Meta-Analysis Pro: A Browser-Based Tool for Diagnostic Test Accura</h4>
+      <p class="proj-s4">Validation against the R mada package version 0.5.12 produced 27 of 27 parity tests passing at 100 p</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/dosehtml/e156-submission/" class="proj" data-type="methods" data-title="dose response pro: browser-based dose-response meta-analysis matching r accuracy">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span><span class="tag tag-fig">14 figs</span>
+      </div>
+      <h4 class="proj-title">Dose Response Pro: Browser-Based Dose-Response Meta-Analysis Matching </h4>
+      <p class="proj-s4">Strict benchmarking against the R dosresmeta package showed exact parity on 120 of 120 comparable da</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/hta-evidence-integrity-suite/e156-submission/" class="proj" data-type="methods" data-title="evidence integrity suite for multi-layered health technology assessment of cochrane reviews">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span><span class="tag tag-fig">4 figs</span>
+      </div>
+      <h4 class="proj-title">Evidence Integrity Suite for Multi-Layered Health Technology Assessmen</h4>
+      <p class="proj-s4">Only 36.4 percent of 492 meta-analyses met adequate information thresholds, while 26.1 percent exhib</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/hta-unified-intelligence-system/e156-submission/" class="proj" data-type="methods" data-title="hta unified intelligence system: self-correcting evidence synthesis with triple-guard ensemble pooling">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span><span class="tag tag-fig">7 figs</span>
+      </div>
+      <h4 class="proj-title">HTA Unified Intelligence System: Self-Correcting Evidence Synthesis wi</h4>
+      <p class="proj-s4">The mean OR-scale divergence across technologies was 39.9 percent with 95% CI 28 to 52, and the guar</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/ipd-meta-pro/e156-submission/" class="proj" data-type="methods" data-title="ipd meta-analysis pro: a browser-based platform for individual participant data evidence synthesis">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span><span class="tag tag-fig">14 figs</span>
+      </div>
+      <h4 class="proj-title">IPD Meta-Analysis Pro: A Browser-Based Platform for Individual Partici</h4>
+      <p class="proj-s4">A release pipeline comprising 56 automated regression tests achieved a 100 percent pass rate, with R</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/ipd-meta-pro-link/e156-submission/" class="proj" data-type="methods" data-title="ipd meta-analysis pro: a browser-based platform for individual participant data evidence synthesis">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span><span class="tag tag-fig">14 figs</span>
+      </div>
+      <h4 class="proj-title">IPD Meta-Analysis Pro: A Browser-Based Platform for Individual Partici</h4>
+      <p class="proj-s4">A release pipeline comprising 56 automated regression tests achieved a 100 percent pass rate, with R</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/living-meta/e156-submission/" class="proj" data-type="methods" data-title="living meta-analysis: a ct.gov-native browser application for continuously updated evidence synthesis">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span><span class="tag tag-fig">11 figs</span>
+      </div>
+      <h4 class="proj-title">Living Meta-Analysis: A CT.gov-Native Browser Application for Continuo</h4>
+      <p class="proj-s4">All core statistical methods passed validation with tau-squared matching within 0.0001 and predictio</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/pairwise70/e156-submission/" class="proj" data-type="methods" data-title="mafi: meta-analytic fragility index across 501 cochrane pairwise reviews">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span><span class="tag tag-fig">4 figs</span>
+      </div>
+      <h4 class="proj-title">MAFI: Meta-Analytic Fragility Index Across 501 Cochrane Pairwise Revie</h4>
+      <p class="proj-s4">The median MAFI score was 0.31 (IQR 0.18 to 0.52), classifying the typical Cochrane comparison as mo</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/metarep/e156-submission/" class="proj" data-type="methods" data-title="metarep: most significant cochrane meta-analyses predict only 32% replication probability when heterogeneity is accounted for">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span><span class="tag tag-fig">4 figs</span>
+      </div>
+      <h4 class="proj-title">MetaRep: Most Significant Cochrane Meta-Analyses Predict Only 32% Repl</h4>
+      <p class="proj-s4">Among significant meta-analyses, the median replication probability was 31.8 percent (IQR 16.0 to 63</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/metasprint-dta/e156-submission/" class="proj" data-type="methods" data-title="metasprint dta: automated open-access discovery for diagnostic test accuracy meta-analysis">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span><span class="tag tag-fig">5 figs</span>
+      </div>
+      <h4 class="proj-title">MetaSprint DTA: Automated Open-Access Discovery for Diagnostic Test Ac</h4>
+      <p class="proj-s4">Across 70 published DTA meta-analyses spanning 13 specialties, all pooled estimates fell within 15 p</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/metasprintnma/e156-submission/" class="proj" data-type="methods" data-title="metasprint nma: zero-install browser network meta-analysis with in-browser r cross-validation">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span><span class="tag tag-fig">5 figs</span>
+      </div>
+      <h4 class="proj-title">MetaSprint NMA: Zero-Install Browser Network Meta-Analysis with In-Bro</h4>
+      <p class="proj-s4">Feature comparison showed 23 of 23 assessed capabilities versus 11 of 23 for netmeta and MetaInsight</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/nma-dose-response-app/e156-submission/" class="proj" data-type="methods" data-title="nma dose-response studio: browser-based network meta-analysis with dose-response modeling">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span><span class="tag tag-fig">13 figs</span>
+      </div>
+      <h4 class="proj-title">NMA Dose-Response Studio: Browser-Based Network Meta-Analysis with Dos</h4>
+      <p class="proj-s4">All heterogeneity estimates, pooled effects, and ranking probabilities matched reference R packages </p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/nmahtml/e156-submission/" class="proj" data-type="methods" data-title="nma pro: a browser-based network meta-analysis platform with integrated rapid review">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span><span class="tag tag-fig">13 figs</span>
+      </div>
+      <h4 class="proj-title">NMA Pro: A Browser-Based Network Meta-Analysis Platform with Integrate</h4>
+      <p class="proj-s4">All six validation scenarios passed within pre-specified tolerances, with maximum observed differenc</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/sheafnma/e156-submission/" class="proj" data-type="methods" data-title="sheaf-theoretic consistency analysis for network meta-analysis">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span><span class="tag tag-fig">3 figs</span>
+      </div>
+      <h4 class="proj-title">Sheaf-Theoretic Consistency Analysis for Network Meta-Analysis</h4>
+      <p class="proj-s4">On a smoking cessation network with 24 contrasts across 4 treatments, the global inconsistency index</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/tda-ma/e156-submission/" class="proj" data-type="methods" data-title="topological data analysis for meta-analytic heterogeneity exploration">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span><span class="tag tag-fig">4 figs</span>
+      </div>
+      <h4 class="proj-title">Topological Data Analysis for Meta-Analytic Heterogeneity Exploration</h4>
+      <p class="proj-s4">In a simulated dataset of 30 studies with 5 features and 3 planted subgroups, persistent homology id</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/truthcert1/e156-submission/" class="proj" data-type="methods" data-title="truthcert-ma: a cross-platform javascript meta-analysis engine validated against r">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span><span class="tag tag-fig">11 figs</span>
+      </div>
+      <h4 class="proj-title">TruthCert-MA: A Cross-Platform JavaScript Meta-Analysis Engine Validat</h4>
+      <p class="proj-s4">All pooled estimates matched R metafor within 0.001 for point estimates and 0.01 for confidence inte</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/truthcert1-work/e156-submission/" class="proj" data-type="methods" data-title="truthcert-pairwisepro: a browser-based pairwise meta-analysis engine with seven heterogeneity estimators">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span><span class="tag tag-fig">16 figs</span>
+      </div>
+      <h4 class="proj-title">TruthCert-PairwisePro: A Browser-Based Pairwise Meta-Analysis Engine w</h4>
+      <p class="proj-s4">Across 108 validation checks against R version 4.5.2, the tool achieved a 96.4 percent concordance r</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/finrenone/e156-submission/" class="proj" data-type="pairwise" data-title="browser-based finerenone meta-analysis validated against r metafor">
+      <div class="proj-head">
+        <span class="proj-type">pairwise</span>
+        <span class="tag tag-app">App</span><span class="tag tag-fig">29 figs</span>
+      </div>
+      <h4 class="proj-title">Browser-Based Finerenone Meta-Analysis Validated Against R metafor</h4>
+      <p class="proj-s4">Across 14 analyses spanning five outcomes, the application matched metafor to six decimal places for</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/private-website/e156-submission/" class="proj" data-type="clinical" data-title="openpalp: structured palpitations assessment programme via clinical website">
+      <div class="proj-head">
+        <span class="proj-type">clinical</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">OpenPalp: Structured Palpitations Assessment Programme via Clinical We</h4>
+      <p class="proj-s4">Across four clinic sessions the median time to first diagnostic ECG recording was 2.5 days (95% CI 1</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/mlm501/e156-submission/" class="proj" data-type="data" data-title="mlm501: a multilevel effects table from 501 cochrane pairwise meta-analysis reviews">
+      <div class="proj-head">
+        <span class="proj-type">data</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">MLM501: A Multilevel Effects Table from 501 Cochrane Pairwise Meta-Ana</h4>
+      <p class="proj-s4">The median number of effect sizes per analysis was 3 (IQR 2 to 6), confirming substantial within-ana</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/metaentropy/e156-submission/" class="proj" data-type="empirical" data-title="meta-analytic entropy: information-theoretic heterogeneity beyond i-squared">
+      <div class="proj-head">
+        <span class="proj-type">empirical</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Meta-Analytic Entropy: Information-Theoretic Heterogeneity Beyond I-Sq</h4>
+      <p class="proj-s4">Across 403 reviews, the median normalized entropy was 0.41 with IQR 0.28 to 0.58, and 23 percent sho</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/metarepair/e156-submission/" class="proj" data-type="empirical" data-title="metarepair: automated diagnosis and correction of meta-analysis pathologies">
+      <div class="proj-head">
+        <span class="proj-type">empirical</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">MetaRepair: Automated Diagnosis and Correction of Meta-Analysis Pathol</h4>
+      <p class="proj-s4">Across 403 reviews, the median OR shift after correction was 1.12 with 95% CI 1.05 to 1.21, and 68 p</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/metagenome/e156-submission/" class="proj" data-type="empirical" data-title="the meta-analysis genome: unsupervised phenotyping of 307 cochrane reviews">
+      <div class="proj-head">
+        <span class="proj-type">empirical</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">The Meta-Analysis Genome: Unsupervised Phenotyping of 307 Cochrane Rev</h4>
+      <p class="proj-s4">Four clusters emerged with median prevalence of pathological reviews at 24 percent with 95% CI 19 to</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/meta-epidemiology-bias-correction/e156-submission/" class="proj" data-type="meta-epidemiology" data-title="bias-correction methods reveal underestimation by observational studies">
+      <div class="proj-head">
+        <span class="proj-type">meta-epidemiology</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Bias-Correction Methods Reveal Underestimation by Observational Studie</h4>
+      <p class="proj-s4">The standard estimate showed no significant bias, but after correction all convergent methods indica</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/almizan/e156-submission/" class="proj" data-type="methods" data-title="al-mizan: an evidence equipoise monitor for detecting when the balance of evidence has tipped">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Al-Mizan: An Evidence Equipoise Monitor for Detecting When the Balance</h4>
+      <p class="proj-s4">In corticosteroids for traumatic brain injury, the boundary was not crossed before CRASH, which rand</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/asa/e156-submission/" class="proj" data-type="methods" data-title="asa: a seven-method forensic data integrity screener for clinical trial datasets">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Asa: A Seven-Method Forensic Data Integrity Screener for Clinical Tria</h4>
+      <p class="proj-s4">The composite integrity score achieved sensitivity and specificity of 100 percent (95% CI 95.7 to 10</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/autograde/e156-submission/" class="proj" data-type="methods" data-title="autograde: algorithmic certainty of evidence assessment for meta-analytic outputs">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">AutoGRADE: Algorithmic Certainty of Evidence Assessment for Meta-Analy</h4>
+      <p class="proj-s4">Applied to three scenarios covering SGLT2 inhibitors, SSRIs, and vitamin D, AutoGRADE correctly assi</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/autograde/e156-submission/" class="proj" data-type="methods" data-title="autograde: browser-based automated grade certainty assessment">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">AutoGRADE: Browser-Based Automated GRADE Certainty Assessment</h4>
+      <p class="proj-s4">Across 15 published meta-analyses the tool produced risk ratio assessments matching expert GRADE rat</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/wasserstein/e156-submission/" class="proj" data-type="methods" data-title="automated kaplan-meier digitization for hazard ratio extraction">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Automated Kaplan-Meier Digitization for Hazard Ratio Extraction</h4>
+      <p class="proj-s4">Across 40 trials, 36 produced HR estimates within the published 95% CI, yielding 90 percent concorda</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/rmstnma/e156-submission/" class="proj" data-type="methods" data-title="bayesian rmst network meta-analysis: the rmstnma r package">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Bayesian RMST Network Meta-Analysis: The rmstnma R Package</h4>
+      <p class="proj-s4">In an illustrative three-study network, the mean difference in RMST between best and worst treatment</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/bayesianma/e156-submission/" class="proj" data-type="methods" data-title="bayesianma: browser-based bayesian random-effects meta-analysis with prior sensitivity analysis">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">BayesianMA: Browser-Based Bayesian Random-Effects Meta-Analysis with P</h4>
+      <p class="proj-s4">For the magnesium dataset the posterior OR mean was -0.53 (95% credible interval -1.27 to 0.13) unde</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/benfordma/e156-submission/" class="proj" data-type="methods" data-title="benford screening of 1.2 million meta-analytic values finds no corpus-level digit anomaly">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Benford Screening of 1.2 Million Meta-Analytic Values Finds No Corpus-</h4>
+      <p class="proj-s4">The corpus-level first-digit mean absolute deviation was 0.013 (95% CI 0.011 to 0.015), remaining wi</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/paper1/e156-submission/" class="proj" data-type="methods" data-title="bootstrap-aggregated penalized meta-regression for small-sample evidence synthesis">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Bootstrap-Aggregated Penalized Meta-Regression for Small-Sample Eviden</h4>
+      <p class="proj-s4">In null simulations with ten studies and two moderators, standard LASSO produced 30.6 percent mean o</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/lfa/e156-submission/" class="proj" data-type="methods" data-title="cbamm: collaborative bayesian adaptive meta-analysis with population transportability and sequential monitoring">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">CBAMM: Collaborative Bayesian Adaptive Meta-Analysis with Population T</h4>
+      <p class="proj-s4">Transported weights shifted the pooled risk ratio from 0.61 (95% CI 0.52 to 0.72) to 0.66, a 14 perc</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/cres/e156-submission/" class="proj" data-type="methods" data-title="cres: browser-based cardiorenal evidence synthesis with integrated meta-analysis and health-economic modelling">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">CRES: Browser-Based Cardiorenal Evidence Synthesis with Integrated Met</h4>
+      <p class="proj-s4">Pooled HR was 0.79 for SGLT2 inhibitors (95% CI 0.71 to 0.87), 0.87 for finerenone, and 0.75 for ste</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/ctgov-search-strategies/e156-submission/" class="proj" data-type="methods" data-title="ct.gov search strategy tool: systematic review search validation with 99 percent api recall">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">CT.gov Search Strategy Tool: Systematic Review Search Validation with </h4>
+      <p class="proj-s4">Validation against the reference set demonstrated 99 percent API recall with Wilson score confidence</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/cv-rct-analysis/e156-submission/" class="proj" data-type="methods" data-title="cv-rct analysis: cardiovascular trial landscape dashboard integrating registry and publication data">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">CV-RCT Analysis: Cardiovascular Trial Landscape Dashboard Integrating </h4>
+      <p class="proj-s4">Across 87 automated tests covering extraction, reconciliation, mapping, and visualization, all passe</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/causalsynth/e156-submission/" class="proj" data-type="methods" data-title="causalsynth: browser-based causal evidence triangulation engine">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">CausalSynth: Browser-Based Causal Evidence Triangulation Engine</h4>
+      <p class="proj-s4">The statin example produced a pooled RR of 0.74 (95% CI 0.62-0.88) with a Causal Evidence Score of 0</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/hta-transportability-engine/e156-submission/" class="proj" data-type="methods" data-title="clinical transportability engine for quantifying efficacy leakage in health technology assessment">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Clinical Transportability Engine for Quantifying Efficacy Leakage in H</h4>
+      <p class="proj-s4">Domain-level cross-validation across clinical specialties showed that the transportability penalty d</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/transportabilitycalc/e156-submission/" class="proj" data-type="methods" data-title="clinical transportability engine: a composite penalty index for meta-analysis generalizability">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Clinical Transportability Engine: A Composite Penalty Index for Meta-A</h4>
+      <p class="proj-s4">The median CTE penalty index was 0.82 with an IQR of 0.68 to 0.93, classifying 65.7 percent of compa</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/cochranedataextractor/e156-submission/" class="proj" data-type="methods" data-title="cochrane data extractor: automated dataset harvesting from cochrane systematic reviews">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Cochrane Data Extractor: Automated Dataset Harvesting from Cochrane Sy</h4>
+      <p class="proj-s4">Processing the initial test set yielded 11 pairwise datasets totaling 1,295 rows, with risk ratio an</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/componentnma/e156-submission/" class="proj" data-type="methods" data-title="component nma: a browser-based tool for additive component network meta-analysis">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Component NMA: A Browser-Based Tool for Additive Component Network Met</h4>
+      <p class="proj-s4">Validation across 25 Selenium tests confirmed correct component decomposition, interaction estimatio</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/conformalma/e156-submission/" class="proj" data-type="methods" data-title="conformal prediction intervals for meta-analysis: distribution-free coverage across 307 cochrane reviews">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Conformal Prediction Intervals for Meta-Analysis: Distribution-Free Co</h4>
+      <p class="proj-s4">Conformal prediction intervals achieved 92.1% mean empirical coverage compared with 70.5% for standa</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/dta70/e156-submission/" class="proj" data-type="methods" data-title="dta70: an r package of 76 diagnostic test accuracy datasets for methods research">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">DTA70: An R Package of 76 Diagnostic Test Accuracy Datasets for Method</h4>
+      <p class="proj-s4">Across all 76 datasets the median pooled sensitivity was 0.82 (95% CI 0.74-0.89) and median specific</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/truthcert-denominator-phase1/e156-submission/" class="proj" data-type="methods" data-title="denominator-first bayesian meta-analysis engine for registry-aware evidence synthesis">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Denominator-First Bayesian Meta-Analysis Engine for Registry-Aware Evi</h4>
+      <p class="proj-s4">Across 12 topics with 50 replications each, the engine reduced false reassurance from 34 percent und</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/rct-extractor-v2/e156-submission/" class="proj" data-type="methods" data-title="deterministic effect estimate extraction from rct pdfs">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Deterministic Effect Estimate Extraction from RCT PDFs</h4>
+      <p class="proj-s4">Against ClinicalTrials.gov registry data for 33 validated trials, the pipeline achieved 97.7 percent</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/repo300-enma-snma/e156-submission/" class="proj" data-type="methods" data-title="ensemble and spectral network meta-analysis: novel inconsistency-robust methods">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Ensemble and Spectral Network Meta-Analysis: Novel Inconsistency-Robus</h4>
+      <p class="proj-s4">The median coverage improvement for Ensemble NMA was 1.8 percentage points (95% CI 1.5-2.2) across s</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/evidence-inference/e156-submission/" class="proj" data-type="methods" data-title="evidence inference: machine learning extraction of treatment effects from clinical trial reports">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Evidence Inference: Machine Learning Extraction of Treatment Effects f</h4>
+      <p class="proj-s4">The expanded 2.0 dataset increased annotations by 25 percent over the original NAACL 2019 release pr</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/metanew/e156-submission/" class="proj" data-type="methods" data-title="evidenceos prime: integrated meta-analysis and health technology assessment platform">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">EvidenceOS PRIME: Integrated Meta-Analysis and Health Technology Asses</h4>
+      <p class="proj-s4">Benchmarking on a 12-study OR dataset produced a pooled OR of 0.74 (95% CI 0.61 to 0.89) in 8 second</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/fatiha-course-github-v2/e156-submission/" class="proj" data-type="methods" data-title="fatiha: a multilingual evidence synthesis course platform with 26 interactive modules">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">FATIHA: A Multilingual Evidence Synthesis Course Platform with 26 Inte</h4>
+      <p class="proj-s4">The platform delivers 324 course files across 12 languages, with mean difference in quiz completion </p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/fragilityindex/e156-submission/" class="proj" data-type="methods" data-title="fragility index calculator: browser-based statistical fragility for rcts">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Fragility Index Calculator: Browser-Based Statistical Fragility for RC</h4>
+      <p class="proj-s4">For DAPA-HF, the Fragility Index is 29 with a 95% CI p-value trajectory from 0.04 to 0.07 and Fragil</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/kmcurve/e156-submission/" class="proj" data-type="methods" data-title="fully automated kaplan-meier curve extraction via neural ocr and mathematical survival constraints">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Fully Automated Kaplan-Meier Curve Extraction via Neural OCR and Mathe</h4>
+      <p class="proj-s4">Across 8 panels from the AUGUSTUS trial PDF, mean sensitivity was 0.99 (95% CI 0.98 to 1.00) with ro</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/softable/e156-submission/" class="proj" data-type="methods" data-title="grade summary of findings table generator for systematic reviews">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">GRADE Summary of Findings Table Generator for Systematic Reviews</h4>
+      <p class="proj-s4">Across 6 demonstration outcomes spanning dichotomous and continuous measures, the tool assigned cert</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/hta-oman/e156-submission/" class="proj" data-type="methods" data-title="hta-oman: open-source browser-based health technology assessment economic modeling">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">HTA-Oman: Open-Source Browser-Based Health Technology Assessment Econo</h4>
+      <p class="proj-s4">Across three reference models the mean difference between HTA-Oman and TreeAge Pro incremental cost-</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/shahzaib-icu-landscape/e156-submission/" class="proj" data-type="methods" data-title="icu hemodynamic trial landscape: a living evidence map">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">ICU Hemodynamic Trial Landscape: A Living Evidence Map</h4>
+      <p class="proj-s4">Against a 21-trial reference standard for hemodynamic ICU interventions, the pipeline achieved sensi</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/indirectcomparison/e156-submission/" class="proj" data-type="methods" data-title="indirect treatment comparison calculator: browser-based bucher method with coherence testing">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Indirect Treatment Comparison Calculator: Browser-Based Bucher Method </h4>
+      <p class="proj-s4">For the antihypertensive example comparing three agents via placebo, the indirect OR on the log scal</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/kmdigitizer/e156-submission/" class="proj" data-type="methods" data-title="kmdigitizer: browser-based ipd reconstruction from published kaplan-meier curves">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">KMDigitizer: Browser-Based IPD Reconstruction from Published Kaplan-Me</h4>
+      <p class="proj-s4">For DAPA-HF with 4744 patients, reconstructed HR is 0.83 with 95% CI 0.73 to 0.95, matching the publ</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/llm-meta-analysis/e156-submission/" class="proj" data-type="methods" data-title="llm-driven meta-analysis: automated extraction and synthesis from clinical trials">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">LLM-Driven Meta-Analysis: Automated Extraction and Synthesis from Clin</h4>
+      <p class="proj-s4">Validation on the BCG dataset confirmed 7 of 7 tests passed, with the pooled RR and 95% CI matching </p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/living-meta-engine/e156-submission/" class="proj" data-type="methods" data-title="living meta-analysis engine: config-driven browser dashboard for cardiology evidence synthesis">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Living Meta-Analysis Engine: Config-Driven Browser Dashboard for Cardi</h4>
+      <p class="proj-s4">Across 13 studies the pooled OR agreed with R metafor within 0.001 on the log scale, 95% CI coverage</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/clinic-site/e156-submission/" class="proj" data-type="methods" data-title="london cardiology clinic: privacy-first clinical website with schema.org structured data">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">London Cardiology Clinic: Privacy-First Clinical Website with Schema.o</h4>
+      <p class="proj-s4">Lighthouse testing confirmed a 98 accessibility score with structured data validation passing Google</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/mapowercalc/e156-submission/" class="proj" data-type="methods" data-title="ma power: a browser-based power and sample size calculator for random-effects meta-analysis">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">MA Power: A Browser-Based Power and Sample Size Calculator for Random-</h4>
+      <p class="proj-s4">A worked example shows that 10 studies of 100 participants expecting an SMD of 0.3 with I-squared 50</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/mapriors/e156-submission/" class="proj" data-type="methods" data-title="mapriors: browser-based meta-analytic predictive priors and dynamic borrowing engine">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">MAPriors: Browser-Based Meta-Analytic Predictive Priors and Dynamic Bo</h4>
+      <p class="proj-s4">The Crohn dataset produced a prevalence MAP prior mean of 17.7% (95% credible interval 11.2-25.8%) w</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/mcidmapper/e156-submission/" class="proj" data-type="methods" data-title="mcid mapper: clinical significance assessment for meta-analytic effect estimates">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">MCID Mapper: Clinical Significance Assessment for Meta-Analytic Effect</h4>
+      <p class="proj-s4">For a pooled SMD of negative 0.35 with 95 percent CI negative 0.52 to negative 0.18 against a 0.5 MC</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/501mlm/e156-submission/" class="proj" data-type="methods" data-title="mlm501: cochrane multilevel meta-analysis effects table from 501 reviews">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">MLM501: Cochrane Multilevel Meta-Analysis Effects Table from 501 Revie</h4>
+      <p class="proj-s4">Across the 501-review corpus the pooled SMD was 0.24 (95% CI 0.18-0.31) with substantial review-leve</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/mlmresearch/e156-submission/" class="proj" data-type="methods" data-title="mlmresearch: empirical stress-testing and adaptive correction for multilevel meta-analysis methods">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">MLMResearch: Empirical Stress-Testing and Adaptive Correction for Mult</h4>
+      <p class="proj-s4">Diagnostics revealed variance collapse in 42 percent of three-level REML models with median degrees </p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/metaextract/e156-submission/" class="proj" data-type="methods" data-title="metaextract: browser-based effect estimate extraction from clinical trial abstracts via deterministic pattern matching">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">MetaExtract: Browser-Based Effect Estimate Extraction from Clinical Tr</h4>
+      <p class="proj-s4">Across 50 cardiology and oncology abstracts, MetaExtract sensitivity was 94 percent (95% CI 89 to 99</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/metafolio/e156-submission/" class="proj" data-type="methods" data-title="metafolio: efficiency frontier subset enumeration for meta-analysis heterogeneity decomposition">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">MetaFolio: Efficiency Frontier Subset Enumeration for Meta-Analysis He</h4>
+      <p class="proj-s4">Across ten reviews, subset enumeration identified a median of two dominated studies per review whose</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/metafusion-lab/e156-submission/" class="proj" data-type="methods" data-title="metafusion lab: certainty-weighted random-effects meta-analysis">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">MetaFusion Lab: Certainty-Weighted Random-Effects Meta-Analysis</h4>
+      <p class="proj-s4">In a six-trial demonstration, certainty-weighted pooling shifted the pooled risk ratio from 0.82 (95</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/metaguard/e156-submission/" class="proj" data-type="methods" data-title="metaguard: a browser-based robust and forensic meta-analysis toolkit">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">MetaGuard: A Browser-Based Robust and Forensic Meta-Analysis Toolkit</h4>
+      <p class="proj-s4">DPD robust pooling at alpha 0.5 reduced pooled MD bias by 52% versus standard inverse-variance estim</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/metamethods/e156-submission/" class="proj" data-type="methods" data-title="metamethods: six advanced statistical methods for meta-analysis in a dependency-free python module">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">MetaMethods: Six Advanced Statistical Methods for Meta-Analysis in a D</h4>
+      <p class="proj-s4">For an OR of 4.0 the E-value was 3.41 (95% CI limit E-value 2.33), indicating substantial unmeasured</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/metaregression/e156-submission/" class="proj" data-type="methods" data-title="metaregression workbench: browser-based mixed-effects meta-regression with permutation tests">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">MetaRegression Workbench: Browser-Based Mixed-Effects Meta-Regression </h4>
+      <p class="proj-s4">The BCG analysis showed latitude as a significant moderator of log-RR (slope -0.031, 95% CI -0.052 t</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/metashift/e156-submission/" class="proj" data-type="methods" data-title="metashift: changepoint detection reveals hidden regime shifts in cumulative meta-analysis">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">MetaShift: Changepoint Detection Reveals Hidden Regime Shifts in Cumul</h4>
+      <p class="proj-s4">Of ten fully traced reviews, the median number of changepoints was two (95% CI 1-4), seven exhibited</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/metasprint-autopilot/e156-submission/" class="proj" data-type="methods" data-title="metasprint autopilot: zero-install browser platform for systematic review and meta-analysis">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">MetaSprint Autopilot: Zero-Install Browser Platform for Systematic Rev</h4>
+      <p class="proj-s4">Across all 291 reviews the engine achieved 100.0 percent accuracy with median effect difference of 1</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/metasprint-cardio-universe/e156-submission/" class="proj" data-type="methods" data-title="metasprint cardio universe: provenance-first discovery for living evidence synthesis">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">MetaSprint Cardio Universe: Provenance-First Discovery for Living Evid</h4>
+      <p class="proj-s4">Across six connectors, ingestion sensitivity exceeded 95 percent for expected NCT identifiers, with </p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/metasprint-dose-response/e156-submission/" class="proj" data-type="methods" data-title="metasprint dose-response: browser-based nonlinear dose-response meta-analysis with r cross-validation">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">MetaSprint Dose-Response: Browser-Based Nonlinear Dose-Response Meta-A</h4>
+      <p class="proj-s4">Cross-validation against R dosresmeta2 v2.2.0 confirmed agreement within tolerance of 1e-4 for coeff</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/methodssuite/e156-submission/" class="proj" data-type="methods" data-title="methods suite: eight interoperable browser-based meta-analysis tools with maif">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Methods Suite: Eight Interoperable Browser-Based Meta-Analysis Tools w</h4>
+      <p class="proj-s4">All 200 tests pass with median OR deviation from R below 0.001 and 95% CI coverage matching nominal </p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/value-based-hta-engine/e156-submission/" class="proj" data-type="methods" data-title="multi-criteria evidence synthesizer for automated benefit-harm trade-off in health technology assessment">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Multi-Criteria Evidence Synthesizer for Automated Benefit-Harm Trade-O</h4>
+      <p class="proj-s4">Among reviews with paired benefit-harm data, net clinical benefit was positive in 62 percent of link</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/multilevelerror/e156-submission/" class="proj" data-type="methods" data-title="multilevelerror: influence diagnostics for three-level meta-analysis">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Multilevelerror: Influence Diagnostics for Three-Level Meta-Analysis</h4>
+      <p class="proj-s4">Applied to the Assink 2016 dataset with 100 effect sizes nested within 18 studies, median Cook dista</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/multipledatameta/e156-submission/" class="proj" data-type="methods" data-title="multiple data source meta-analysis: pooling mixed-format study results">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Multiple Data Source Meta-Analysis: Pooling Mixed-Format Study Results</h4>
+      <p class="proj-s4">Across 8 conversion pathways, internal validation confirmed that round-trip effect size conversions </p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/mes/e156-submission/" class="proj" data-type="methods" data-title="multiverse evidence synthesis: robustness classification of 403 cochrane meta-analyses across 648 analytical specifications">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Multiverse Evidence Synthesis: Robustness Classification of 403 Cochra</h4>
+      <p class="proj-s4">The mean concordance score was 0.763 (SD 0.183, IQR 0.647 to 1.000), with 161 reviews (40.0%) classi</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/multiversema/e156-submission/" class="proj" data-type="methods" data-title="multiversema: browser-based multiverse meta-analysis engine">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">MultiverseMA: Browser-Based Multiverse Meta-Analysis Engine</h4>
+      <p class="proj-s4">The BCG dataset yielded a median log-RR of -0.633 (95% CI -0.97 to -0.30) with 100% significance con</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/nntmapper/e156-submission/" class="proj" data-type="methods" data-title="nntmapper: converting meta-analytic effects into population-specific number needed to treat with heterogeneity propagation">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">NNTMapper: Converting Meta-Analytic Effects into Population-Specific N</h4>
+      <p class="proj-s4">For SGLT2 inhibitors with pooled OR 0.74 (95% CI 0.66 to 0.83) at 20 percent baseline risk, NNTMappe</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/idea12/e156-submission/" class="proj" data-type="methods" data-title="network meta-regression with forensic bias detection for observational-rct discordance">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Network Meta-Regression with Forensic Bias Detection for Observational</h4>
+      <p class="proj-s4">ROC analysis of the Discordance Index across fifteen reversal and control cases yielded an area unde</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/metaoverfit-paper/e156-submission/" class="proj" data-type="methods" data-title="overfitting in published meta-regressions: simulation and empirical survey">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Overfitting in Published Meta-Regressions: Simulation and Empirical Su</h4>
+      <p class="proj-s4">Mean optimism was 0.31 (95% CI 0.13 to 0.49) for two predictors and exceeded 0.30 for five predictor</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/overlapmatrix/e156-submission/" class="proj" data-type="methods" data-title="overlap matrix and corrected covered area calculator for umbrella reviews">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Overlap Matrix and Corrected Covered Area Calculator for Umbrella Revi</h4>
+      <p class="proj-s4">In a demonstration dataset of 8 meta-analyses sharing 47 primary studies, the corrected covered area</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/prismachecker/e156-submission/" class="proj" data-type="methods" data-title="prisma 2020 compliance checker: an interactive browser tool for systematic review reporting assessment">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">PRISMA 2020 Compliance Checker: An Interactive Browser Tool for System</h4>
+      <p class="proj-s4">The median compliance score was 74% (IQR 59 to 89%), with a real-time dashboard showing section-leve</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/prismaflow/e156-submission/" class="proj" data-type="methods" data-title="prisma 2020 flow diagram generator for systematic reviews">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">PRISMA 2020 Flow Diagram Generator for Systematic Reviews</h4>
+      <p class="proj-s4">Using demonstration values of 3,245 records identified and 18 studies included, the tool produced a </p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/poolingsuite/e156-submission/" class="proj" data-type="methods" data-title="pooling suite: browser-based meta-analysis engine with ten heterogeneity estimators">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Pooling Suite: Browser-Based Meta-Analysis Engine with Ten Heterogenei</h4>
+      <p class="proj-s4">The BCG dataset showed pooled log-RR ranging from -0.71 (95% CI -1.06 to -0.37) under ML to -0.74 un</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/pubbiassuite/e156-submission/" class="proj" data-type="methods" data-title="pubbias suite: comprehensive publication bias assessment with 12 methods and 3 funnel plot variants">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">PubBias Suite: Comprehensive Publication Bias Assessment with 12 Metho</h4>
+      <p class="proj-s4">Validation across 25 Selenium tests confirmed correct execution for all 12 methods and 3 funnel type</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/pub-bias-simulation/e156-submission/" class="proj" data-type="methods" data-title="publication bias adjustment methods: a 135-scenario simulation comparison">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Publication Bias Adjustment Methods: A 135-Scenario Simulation Compari</h4>
+      <p class="proj-s4">The Copas model achieved the lowest median RMSE across scenarios with twenty or more studies and mai</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/dataextractor/e156-submission/" class="proj" data-type="methods" data-title="rctextractor: ai-powered clinical trial data extraction with 100% accuracy">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">RCTExtractor: AI-Powered Clinical Trial Data Extraction with 100% Accu</h4>
+      <p class="proj-s4">Across 65 trials the tool achieved 100 percent accuracy for primary HR, OR, and confidence intervals</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/rmstmeta/e156-submission/" class="proj" data-type="methods" data-title="rmst meta: a browser tool for meta-analysis of restricted mean survival time beyond the hazard ratio">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">RMST Meta: A Browser Tool for Meta-Analysis of Restricted Mean Surviva</h4>
+      <p class="proj-s4">The pooled RMST mean difference was 2.59 months favoring immunotherapy (95% CI 1.94 to 3.23), direct</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/registry-first-rct-meta/e156-submission/" class="proj" data-type="methods" data-title="registry-first meta-analysis: quantifying missing cardiovascular trial evidence">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Registry-First Meta-Analysis: Quantifying Missing Cardiovascular Trial</h4>
+      <p class="proj-s4">The median trial-level coverage was 68% (IQR 52-81%) and participant-weighted coverage was 78%, mean</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/hfpef-registry-synth/e156-submission/" class="proj" data-type="methods" data-title="registry-first transparency-adjusted synthesis for hfpef clinical trials">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Registry-First Transparency-Adjusted Synthesis for HFpEF Clinical Tria</h4>
+      <p class="proj-s4">Across registered HFpEF trials, approximately 45 percent lacked posted results beyond the twenty-fou</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/robassessor/e156-submission/" class="proj" data-type="methods" data-title="rob assessor: a browser-based risk of bias assessment tool implementing rob 2 and robins-i">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">RoB Assessor: A Browser-Based Risk of Bias Assessment Tool Implementin</h4>
+      <p class="proj-s4">Across 25 automated Selenium tests, the application achieved 100 percent pass rates for sensitivity </p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/evidencequality/e156-submission/" class="proj" data-type="methods" data-title="the cochrane quality concordance: six orthogonal dimensions of evidence reliability">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">The Cochrane Quality Concordance: Six Orthogonal Dimensions of Evidenc</h4>
+      <p class="proj-s4">The median composite score was 69.2 (95% CI 67.5-70.9), with the strongest pairwise correlation bein</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/evidencehalflife/e156-submission/" class="proj" data-type="methods" data-title="the evidence half-life: 52% of meta-analyses never reach analytical stability">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">The Evidence Half-Life: 52% of Meta-Analyses Never Reach Analytical St</h4>
+      <p class="proj-s4">Only 147 of 307 reviews achieved sustained stabilization, yielding a 95% CI for the never-stabilized</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/evidencetribunal/e156-submission/" class="proj" data-type="methods" data-title="the evidence tribunal: adversarial specification search across 403 cochrane meta-analyses">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">The Evidence Tribunal: Adversarial Specification Search Across 403 Coc</h4>
+      <p class="proj-s4">Of 403 reviews, 266 received split verdicts where prosecution achieved significance but defence did </p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/trialradar/e156-submission/" class="proj" data-type="methods" data-title="trialradar: living clinical trial surveillance dashboard for ghost protocol detection">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">TrialRadar: Living Clinical Trial Surveillance Dashboard for Ghost Pro</h4>
+      <p class="proj-s4">Across initial scans of fifteen areas, approximately 40 percent of completed cardiovascular trials e</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/tgep-development/e156-submission/" class="proj" data-type="methods" data-title="triple-guard ensemble pooling for bias-sensitive meta-analysis">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Triple-Guard Ensemble Pooling for Bias-Sensitive Meta-Analysis</h4>
+      <p class="proj-s4">Across 12 simulation scenarios with varying contamination, the ensemble achieved mean absolute error</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/pairwiseai/e156-submission/" class="proj" data-type="methods" data-title="truthcert pairwisepro: browser-based pairwise meta-analysis with regional health-economic overlays">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">TruthCert PairwisePro: Browser-Based Pairwise Meta-Analysis with Regio</h4>
+      <p class="proj-s4">Pooled estimates matched R metafor within 0.0001 for tau-squared across all validation benchmarks, w</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/burhan/e156-submission/" class="proj" data-type="methods" data-title="truthcert: a fail-closed certification protocol for llm outputs in evidence synthesis">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">TruthCert: A Fail-Closed Certification Protocol for LLM Outputs in Evi</h4>
+      <p class="proj-s4">Against 50 simulated RCT extraction tasks, TruthCert rejected all 18 corrupted bundles while certify</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/ubcma/e156-submission/" class="proj" data-type="methods" data-title="ubcma: unified bias-calibrated meta-analysis via joint heterogeneity-selection modeling">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">UBCMA: Unified Bias-Calibrated Meta-Analysis via Joint Heterogeneity-S</h4>
+      <p class="proj-s4">The unified model reduced mean difference in absolute error by 38% (95% CI 31-45%) over DerSimonian-</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/umbrellareview/e156-submission/" class="proj" data-type="methods" data-title="umbrella review evidence classifier with credibility grading">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Umbrella Review Evidence Classifier with Credibility Grading</h4>
+      <p class="proj-s4">Across a demonstration dataset of 12 meta-analyses encompassing 847 participants, 2 associations ach</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/voicalculator/e156-submission/" class="proj" data-type="methods" data-title="value of information calculator for meta-analysis decision support">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">Value of Information Calculator for Meta-Analysis Decision Support</h4>
+      <p class="proj-s4">For a meta-analysis of 6 trials with pooled effect 0.32 and between-study variance 0.04, EVPI was 2.</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/worldipd-private/e156-submission/" class="proj" data-type="methods" data-title="worldipd-private: secure scaffold for non-redistributable individual participant data">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">WorldIPD-Private: Secure Scaffold for Non-Redistributable Individual P</h4>
+      <p class="proj-s4">Schema compliance testing confirmed all private datasets pass the same validation rules applied to t</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/worldipd/e156-submission/" class="proj" data-type="methods" data-title="worldipd: an open individual participant data hub with standardized schema and provenance">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">WorldIPD: An Open Individual Participant Data Hub with Standardized Sc</h4>
+      <p class="proj-s4">The current registry catalogues 37 datasets spanning public health, clinical trials, and survey data</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/metaoverfit/e156-submission/" class="proj" data-type="methods" data-title="metaoverfit: optimism-corrected heterogeneity assessment for meta-regression">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">metaoverfit: Optimism-Corrected Heterogeneity Assessment for Meta-Regr</h4>
+      <p class="proj-s4">Across 12,000 simulations the median optimism was 0.18 (95% CI 0.12 to 0.25) and apparent R-squared </p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/metaverse-robust-ma/e156-submission/" class="proj" data-type="methods" data-title="metaverse: robust meta-analysis with outlier-resistant estimation and variable selection">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">metaverse: Robust Meta-Analysis with Outlier-Resistant Estimation and </h4>
+      <p class="proj-s4">Under 10 percent contamination across 60 studies the pooled SMD bias was 0.02 (95% CI 0.00 to 0.04) </p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/repo100/e156-submission/" class="proj" data-type="methods" data-title="repo100: a curated collection of 137 meta-regression benchmark datasets">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-app">App</span>
+      </div>
+      <h4 class="proj-title">repo100: A Curated Collection of 137 Meta-Regression Benchmark Dataset</h4>
+      <p class="proj-s4">The collection spans 4-2439 studies per dataset with a median of 50 (IQR 20-120), covering odds rati</p>
+      <div class='proj-app'>Try interactive app &rarr;</div>
+    </a>
+<a href="https://mahmood726-cyber.github.io/outcomereportingbias/e156-submission/" class="proj" data-type="meta-research" data-title="outcome reporting bias risk in 403 cochrane meta-analyses: an excess significance approach">
+      <div class="proj-head">
+        <span class="proj-type">meta-research</span>
+        <span class="tag tag-fig">3 figs</span>
+      </div>
+      <h4 class="proj-title">Outcome Reporting Bias Risk in 403 Cochrane Meta-Analyses: An Excess S</h4>
+      <p class="proj-s4">The prevalence of High risk was 16.1% (65 of 403, 95% CI 12.6-20.1%), with mean excess significance </p>
+      
+    </a>
+<a href="https://mahmood726-cyber.github.io/overlapdetector/e156-submission/" class="proj" data-type="meta-research" data-title="study overlap across 501 cochrane reviews: quantifying non-independence for meta-research">
+      <div class="proj-head">
+        <span class="proj-type">meta-research</span>
+        <span class="tag tag-fig">3 figs</span>
+      </div>
+      <h4 class="proj-title">Study Overlap Across 501 Cochrane Reviews: Quantifying Non-Independenc</h4>
+      <p class="proj-s4">The prevalence of overlap was minimal: CCA was 0.0001 (95% CI 0.00005-0.00018), with only 444 of 10,</p>
+      
+    </a>
+<a href="https://mahmood726-cyber.github.io/new-heterogeneity-model/e156-submission/" class="proj" data-type="methods" data-title="adaptive shrinkage estimator for heterogeneity in small-sample meta-analysis">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-fig">3 figs</span>
+      </div>
+      <h4 class="proj-title">Adaptive Shrinkage Estimator for Heterogeneity in Small-Sample Meta-An</h4>
+      <p class="proj-s4">Simulation across 24 scenarios showed ASE reduced median tau-squared MSE by 14 to 65 percent at k eq</p>
+      
+    </a>
+<a href="https://mahmood726-cyber.github.io/advanced-nma-pooling/e156-submission/" class="proj" data-type="methods" data-title="advanced nma pooling toolkit with bias adjustment and survival extensions">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-fig">1 fig</span>
+      </div>
+      <h4 class="proj-title">Advanced NMA Pooling Toolkit with Bias Adjustment and Survival Extensi</h4>
+      <p class="proj-s4">In 18 network comparisons across 4 treatments, the bias-adjusted model reduced mean absolute deviati</p>
+      
+    </a>
+<a href="https://mahmood726-cyber.github.io/advanced-nma-pooling/e156-submission/" class="proj" data-type="methods" data-title="advanced nma pooling toolkit with bias adjustment and survival extensions">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-fig">1 fig</span>
+      </div>
+      <h4 class="proj-title">Advanced NMA Pooling Toolkit with Bias Adjustment and Survival Extensi</h4>
+      <p class="proj-s4">In 18 network comparisons across 4 treatments, the bias-adjusted model reduced mean absolute deviati</p>
+      
+    </a>
+<a href="https://mahmood726-cyber.github.io/metareproducer/e156-submission/" class="proj" data-type="methods" data-title="computational reproducibility audit of 501 cochrane meta-analyses">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-fig">4 figs</span>
+      </div>
+      <h4 class="proj-title">Computational Reproducibility Audit of 501 Cochrane Meta-Analyses</h4>
+      <p class="proj-s4">Only 1,688 of 14,340 studies had accessible PDFs, yielding an open-access prevalence of 11.8 percent</p>
+      
+    </a>
+<a href="https://mahmood726-cyber.github.io/gwam/e156-submission/" class="proj" data-type="methods" data-title="gwam: ghost-weighted aggregate meta-analysis for registry-based publication bias sensitivity">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-fig">8 figs</span>
+      </div>
+      <h4 class="proj-title">GWAM: Ghost-Weighted Aggregate Meta-Analysis for Registry-Based Public</h4>
+      <p class="proj-s4">For escitalopram in depression, the adjusted OR on the log scale fell to 0.025 (95% CI negative 0.04</p>
+      
+    </a>
+<a href="https://mahmood726-cyber.github.io/grma-paper/e156-submission/" class="proj" data-type="methods" data-title="grey relational meta-analysis: a robust pooling method with redescending effect guard">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-fig">5 figs</span>
+      </div>
+      <h4 class="proj-title">Grey Relational Meta-Analysis: A Robust Pooling Method with Redescendi</h4>
+      <p class="proj-s4">GRMA reduced median absolute bias of the pooled RR by up to 66 percent in four of five outlier scena</p>
+      
+    </a>
+<a href="https://mahmood726-cyber.github.io/hta/e156-submission/" class="proj" data-type="methods" data-title="hta artifact standard: an open-source platform with 41 analytical engines for health technology assessment">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-fig">15 figs</span>
+      </div>
+      <h4 class="proj-title">HTA Artifact Standard: An Open-Source Platform with 41 Analytical Engi</h4>
+      <p class="proj-s4">The validation suite comprises 3,337 automated tests across unit, integration, property-based, stres</p>
+      
+    </a>
+<a href="https://mahmood726-cyber.github.io/ipd-qma/e156-submission/" class="proj" data-type="methods" data-title="ipd-qma: detecting heterogeneous treatment effects via quantile meta-analysis of individual participant data">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-fig">8 figs</span>
+      </div>
+      <h4 class="proj-title">IPD-QMA: Detecting Heterogeneous Treatment Effects via Quantile Meta-A</h4>
+      <p class="proj-s4">Under pure scale shift with variance ratio at least 2.0, IPD-QMA detected the mean difference with 1</p>
+      
+    </a>
+<a href="https://mahmood726-cyber.github.io/501mlm-submission/e156-submission/" class="proj" data-type="methods" data-title="mlm501 software article: building large-scale meta-analytic datasets from cochrane reviews">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-fig">7 figs</span>
+      </div>
+      <h4 class="proj-title">MLM501 Software Article: Building Large-Scale Meta-Analytic Datasets f</h4>
+      <p class="proj-s4">From 501 reviews the package assembled 12,847 study-level records with a pooled OR of 0.78 (95% CI 0</p>
+      
+    </a>
+<a href="https://mahmood726-cyber.github.io/maxent-reconstructor/e156-submission/" class="proj" data-type="methods" data-title="maxent ipd reconstructor: maximum entropy recovery of individual patient data">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-fig">4 figs</span>
+      </div>
+      <h4 class="proj-title">MaxEnt IPD Reconstructor: Maximum Entropy Recovery of Individual Patie</h4>
+      <p class="proj-s4">In 333 simulations of lognormal data the median error was reduced by 76.6 percent at distribution ta</p>
+      
+    </a>
+<a href="https://mahmood726-cyber.github.io/fatiha-project/e156-submission/" class="proj" data-type="methods" data-title="synthesis: a 7-layer verification framework for detecting fragile meta-analyses">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-fig">5 figs</span>
+      </div>
+      <h4 class="proj-title">SYNTHESIS: A 7-Layer Verification Framework for Detecting Fragile Meta</h4>
+      <p class="proj-s4">Under publication bias, the median OR bias was 0.051 versus 0.463 for REML, with 95% CI coverage of </p>
+      
+    </a>
+<a href="https://mahmood726-cyber.github.io/biasforensics/e156-submission/" class="proj" data-type="methods" data-title="the bias fingerprint: eight methods disagree in one of seven cochrane meta-analyses">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-fig">3 figs</span>
+      </div>
+      <h4 class="proj-title">The Bias Fingerprint: Eight Methods Disagree in One of Seven Cochrane </h4>
+      <p class="proj-s4">Only 54 reviews (17.6%) were Clean while 42 were Discordant, giving a discordance rate of 13.7% and </p>
+      
+    </a>
+<a href="https://mahmood726-cyber.github.io/fragilityatlas/e156-submission/" class="proj" data-type="methods" data-title="the fragility atlas: multiverse analysis of 403 cochrane meta-analyses reveals 58% are sensitive to analyst choices">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-fig">4 figs</span>
+      </div>
+      <h4 class="proj-title">The Fragility Atlas: Multiverse Analysis of 403 Cochrane Meta-Analyses</h4>
+      <p class="proj-s4">The mean robustness score was 66.4 percent (median 66.7 percent, IQR 56.5 to 87.2 percent), with 58 </p>
+      
+    </a>
+<a href="https://mahmood726-cyber.github.io/meta-ecosystem-model/e156-submission/" class="proj" data-type="methods" data-title="the meta-analysis ecosystem model: evidence velocity, effect decay, and a future-proof index across 501 cochrane reviews">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-fig">6 figs</span>
+      </div>
+      <h4 class="proj-title">The Meta-Analysis Ecosystem Model: Evidence Velocity, Effect Decay, an</h4>
+      <p class="proj-s4">Among 2,817 analyses, the median decay ratio was 0.66 (IQR 0.32 to 1.23), with 67.3 percent showing </p>
+      
+    </a>
+<a href="https://mahmood726-cyber.github.io/predictiongap/e156-submission/" class="proj" data-type="methods" data-title="the prediction gap: 70% of significant meta-analyses have null-spanning prediction intervals">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-fig">4 figs</span>
+      </div>
+      <h4 class="proj-title">The Prediction Gap: 70% of Significant Meta-Analyses Have Null-Spannin</h4>
+      <p class="proj-s4">Of the 189 reviews with a 95% CI excluding the null, 132 had a prediction interval including the nul</p>
+      
+    </a>
+<a href="https://mahmood726-cyber.github.io/truthcert-meta2-prototype/e156-submission/" class="proj" data-type="methods" data-title="truthcert meta2: governance overlay for denominator-first meta-analysis">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        <span class="tag tag-fig">3 figs</span>
+      </div>
+      <h4 class="proj-title">TruthCert Meta2: Governance Overlay for Denominator-First Meta-Analysi</h4>
+      <p class="proj-s4">Across 12 simulated topics with 50 replications, the mean difference between arbitrated and oracle e</p>
+      
+    </a>
+<a href="https://mahmood726-cyber.github.io/evidence-board/e156-submission/" class="proj" data-type="methods" data-title="evidence board: a browser-based structured note system for systematic review screening">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        
+      </div>
+      <h4 class="proj-title">Evidence Board: A Browser-Based Structured Note System for Systematic </h4>
+      <p class="proj-s4">In pilot use across twelve screening sessions the proportion of high-confidence notes was 38.4 perce</p>
+      
+    </a>
+<a href="https://mahmood726-cyber.github.io/focus-studio/e156-submission/" class="proj" data-type="methods" data-title="focus studio: a browser-based pomodoro timer with task management and session logging">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        
+      </div>
+      <h4 class="proj-title">Focus Studio: A Browser-Based Pomodoro Timer with Task Management and </h4>
+      <p class="proj-s4">During four weeks of daily use the median session length was 25.0 minutes with a 95% CI of 23.2 to 2</p>
+      
+    </a>
+<a href="https://mahmood726-cyber.github.io/kanban-lab/e156-submission/" class="proj" data-type="methods" data-title="kanban lab: a persistent browser-based drag-and-drop board for research task management">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        
+      </div>
+      <h4 class="proj-title">Kanban Lab: A Persistent Browser-Based Drag-and-Drop Board for Researc</h4>
+      <p class="proj-s4">Across eight weeks managing 143 research tasks the median card transition time was 1.4 seconds with </p>
+      
+    </a>
+<a href="https://mahmood726-cyber.github.io/maworkbench/e156-submission/" class="proj" data-type="methods" data-title="meta-analysis workbench: a central hub for 49 evidence synthesis tools">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        
+      </div>
+      <h4 class="proj-title">Meta-Analysis Workbench: A Central Hub for 49 Evidence Synthesis Tools</h4>
+      <p class="proj-s4">Across the portfolio, median sensitivity of individual tools against R reference packages is 99.1 pe</p>
+      
+    </a>
+<a href="https://mahmood726-cyber.github.io/prognostic-meta/e156-submission/" class="proj" data-type="methods" data-title="prognosismeta: browser-based prognostic meta-analysis engine">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        
+      </div>
+      <h4 class="proj-title">PrognosisMeta: Browser-Based Prognostic Meta-Analysis Engine</h4>
+      <p class="proj-s4">Validation against R metafor across three datasets showed 93.3 percent exact match for pooled HR est</p>
+      
+    </a>
+<a href="https://mahmood726-cyber.github.io/cardiotrialaudit/e156-submission/" class="proj" data-type="methods" data-title="structural flaw prevalence in 52,765 cardiology trials: an automated registry audit">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        
+      </div>
+      <h4 class="proj-title">Structural Flaw Prevalence in 52,765 Cardiology Trials: An Automated R</h4>
+      <p class="proj-s4">The overall prevalence of any structural flaw was 67.3 percent with a 95% CI of 66.1 to 68.5, ghost </p>
+      
+    </a>
+<a href="https://mahmood726-cyber.github.io/evidencehalflife/e156-submission/" class="proj" data-type="methods" data-title="the evidence half-life: 52% of meta-analyses never reach analytical stability">
+      <div class="proj-head">
+        <span class="proj-type">methods</span>
+        
+      </div>
+      <h4 class="proj-title">The Evidence Half-Life: 52% of Meta-Analyses Never Reach Analytical St</h4>
+      <p class="proj-s4">Only 147 of 307 reviews achieved sustained stabilization, yielding a 95% CI for the never-stabilized</p>
+      
+    </a>
+<a href="https://mahmood726-cyber.github.io/portfolio-site/e156-submission/" class="proj" data-type="showcase" data-title="meta-analysis methods lab: a single-page portfolio for 101 evidence synthesis projects">
+      <div class="proj-head">
+        <span class="proj-type">showcase</span>
+        
+      </div>
+      <h4 class="proj-title">Meta-Analysis Methods Lab: A Single-Page Portfolio for 101 Evidence Sy</h4>
+      <p class="proj-s4">The catalog includes 101 projects with a median of 25 tests each (95% CI 15 to 42) and 35 browser to</p>
+      
+    </a>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <a href="https://github.com/mahmood726-cyber">GitHub</a> &middot;
+  E156 Micro-Paper Format &middot; Updated 28 March 2026 &middot; All work is open access
+</footer>
+
 <script>
-document.getElementById("filter").addEventListener("input",function(){
-  const q=this.value.toLowerCase();
-  document.querySelectorAll("#table tbody tr").forEach(r=>{
-    r.style.display=r.textContent.toLowerCase().includes(q)?"":"none";
+const search=document.getElementById("search");
+const grid=document.getElementById("grid");
+const projs=Array.from(grid.querySelectorAll(".proj"));
+const filters=document.querySelectorAll(".filter-btn");
+let activeFilter="all";
+
+function applyFilters(){
+  const q=search.value.toLowerCase();
+  projs.forEach(p=>{
+    const matchesSearch=p.dataset.title.includes(q)||p.dataset.type.includes(q);
+    let matchesFilter=true;
+    if(activeFilter==="app") matchesFilter=p.querySelector(".tag-app")!==null;
+    if(activeFilter==="figs") matchesFilter=p.querySelector(".tag-fig")!==null;
+    p.style.display=(matchesSearch&&matchesFilter)?"":"none";
+  });
+}
+
+search.addEventListener("input",applyFilters);
+filters.forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    filters.forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    activeFilter=btn.dataset.filter;
+    applyFilters();
   });
 });
 </script>
