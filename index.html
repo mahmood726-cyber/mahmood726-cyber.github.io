@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mahmood Ahmad — Evidence Synthesis Portfolio</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Georgia,serif;background:#FDFCFA;color:#1a1a1a;line-height:1.7}
+.page{max-width:900px;margin:0 auto;padding:3rem 1.5rem}
+.hero{text-align:center;padding:2rem 0 2.5rem;border-bottom:3px double #E5E0D6;margin-bottom:2rem}
+.hero-badge{font-family:system-ui,sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#7A5A10;margin-bottom:.8rem}
+.hero h1{font-size:2.2rem;margin-bottom:.5rem}
+.hero .sub{font-family:system-ui,sans-serif;font-size:.95rem;color:#777}
+.hero .sub a{color:#2E6B8A;text-decoration:none}
+.stats{display:flex;gap:1.5rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-num{font-size:2rem;font-weight:700;color:#7A5A10;font-family:system-ui,sans-serif}
+.stat-label{font-family:system-ui,sans-serif;font-size:.7rem;color:#888;letter-spacing:.1em;text-transform:uppercase}
+.type-label{font-family:system-ui,sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#7A5A10;margin:2rem 0 .8rem;padding-bottom:.4rem;border-bottom:1px solid #E5E0D6}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.8rem}
+.proj-card{display:block;padding:1rem 1.2rem;background:#fff;border:1px solid #E5E0D6;border-radius:8px;text-decoration:none;color:#1a1a1a;transition:border-color .2s,box-shadow .2s}
+.proj-card:hover{border-color:#7A5A10;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.proj-title{font-size:.9rem;font-weight:600;margin-bottom:.3rem;line-height:1.3}
+.proj-meta{font-family:system-ui,sans-serif;font-size:.75rem;color:#888}
+.badge-app{display:inline-block;padding:2px 6px;background:#2E86C1;color:#fff;border-radius:3px;font-size:.6rem;font-weight:700;letter-spacing:.04em;margin-left:.3rem}
+.footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid #E5E0D6;font-family:system-ui,sans-serif;font-size:.75rem;color:#aaa;text-align:center}
+.footer a{color:#2E6B8A;text-decoration:none}
+@media(max-width:600px){.page{padding:1.5rem 1rem}.hero h1{font-size:1.5rem}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="hero">
+    <div class="hero-badge">Evidence Synthesis Research</div>
+    <h1>Mahmood Ahmad</h1>
+    <div class="sub">Tahir Heart Institute &middot; <a href="mailto:mahmood.ahmad2@nhs.net">mahmood.ahmad2@nhs.net</a></div>
+    <div class="stats">
+      <div class="stat"><div class="stat-num">139</div><div class="stat-label">Projects</div></div>
+      <div class="stat"><div class="stat-num">126</div><div class="stat-label">Interactive Apps</div></div>
+      <div class="stat"><div class="stat-num">8</div><div class="stat-label">Categories</div></div>
+    </div>
+  </header>
+
+  <div class="grid">
+    <h2 class="type-label">Clinical</h2>
+<a href="https://mahmood726-cyber.github.io/private-website/e156-submission/" class="proj-card">
+  <div class="proj-title">OpenPalp: Structured Palpitations Assessment Programme via Clinical Website</div>
+  <div class="proj-meta">Pathway completion rate <span class="badge-app">Interactive App</span></div>
+</a>
+<h2 class="type-label">Data</h2>
+<a href="https://mahmood726-cyber.github.io/mlm501/e156-submission/" class="proj-card">
+  <div class="proj-title">MLM501: A Multilevel Effects Table from 501 Cochrane Pairwise Meta-Analysis Revi</div>
+  <div class="proj-meta">Median effects per analysis (IQR) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/pairwise70/e156-submission/" class="proj-card">
+  <div class="proj-title">Pairwise70: Standardized Dataset of 501 Cochrane Meta-Analyses</div>
+  <div class="proj-meta">Fragility index <span class="badge-app">Interactive App</span></div>
+</a>
+<h2 class="type-label">Empirical</h2>
+<a href="https://mahmood726-cyber.github.io/metaentropy/e156-submission/" class="proj-card">
+  <div class="proj-title">Meta-Analytic Entropy: Information-Theoretic Heterogeneity Beyond I-Squared</div>
+  <div class="proj-meta">Normalized Entropy Index (NEI, 0-1) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/metagenome/e156-submission/" class="proj-card">
+  <div class="proj-title">The Meta-Analysis Genome: Unsupervised Phenotyping of 307 Cochrane Reviews</div>
+  <div class="proj-meta">Cluster archetype (4 types) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/metarepair/e156-submission/" class="proj-card">
+  <div class="proj-title">MetaRepair: Automated Diagnosis and Correction of Meta-Analysis Pathologies</div>
+  <div class="proj-meta">Corrected pooled effect with uncertainty decomposition <span class="badge-app">Interactive App</span></div>
+</a>
+<h2 class="type-label">Meta-Epidemiology</h2>
+<a href="https://mahmood726-cyber.github.io/meta-epidemiology-bias-correction/e156-submission/" class="proj-card">
+  <div class="proj-title">Bias-Correction Methods Reveal Underestimation by Observational Studies</div>
+  <div class="proj-meta">Ratio of ratios <span class="badge-app">Interactive App</span></div>
+</a>
+<h2 class="type-label">Meta-Research</h2>
+<a href="https://mahmood726-cyber.github.io/outcomereportingbias/e156-submission/" class="proj-card">
+  <div class="proj-title">Outcome Reporting Bias Risk in 403 Cochrane Meta-Analyses: An Excess Significanc</div>
+  <div class="proj-meta">ORB risk prevalence </div>
+</a>
+<a href="https://mahmood726-cyber.github.io/overlapdetector/e156-submission/" class="proj-card">
+  <div class="proj-title">Study Overlap Across 501 Cochrane Reviews: Quantifying Non-Independence for Meta</div>
+  <div class="proj-meta">Corrected Covered Area (CCA) </div>
+</a>
+<h2 class="type-label">Methods</h2>
+<a href="https://mahmood726-cyber.github.io/501mlm/e156-submission/" class="proj-card">
+  <div class="proj-title">MLM501: Cochrane Multilevel Meta-Analysis Effects Table from 501 Reviews</div>
+  <div class="proj-meta">SMD <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/501mlm-submission/e156-submission/" class="proj-card">
+  <div class="proj-title">MLM501 Software Article: Building Large-Scale Meta-Analytic Datasets from Cochra</div>
+  <div class="proj-meta">OR </div>
+</a>
+<a href="https://mahmood726-cyber.github.io/adaptsim/e156-submission/" class="proj-card">
+  <div class="proj-title">AdaptSim: A Browser-Based Simulator for Adaptive Group-Sequential Trial Design M</div>
+  <div class="proj-meta">Boundary computation accuracy vs rpact (decimal places of ag <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/almizan/e156-submission/" class="proj-card">
+  <div class="proj-title">Al-Mizan: An Evidence Equipoise Monitor for Detecting When the Balance of Eviden</div>
+  <div class="proj-meta">Cumulative Z-statistic crossing Trial Sequential Analysis bo <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/asa/e156-submission/" class="proj-card">
+  <div class="proj-title">Asa: A Seven-Method Forensic Data Integrity Screener for Clinical Trial Datasets</div>
+  <div class="proj-meta">Composite forensic integrity score (0-100) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/autograde/e156-submission/" class="proj-card">
+  <div class="proj-title">AutoGRADE: Algorithmic Certainty of Evidence Assessment for Meta-Analytic Output</div>
+  <div class="proj-meta">GRADE certainty rating (High/Moderate/Low/Very Low) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/autograde/e156-submission/" class="proj-card">
+  <div class="proj-title">AutoGRADE: Browser-Based Automated GRADE Certainty Assessment</div>
+  <div class="proj-meta">Risk ratio <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/bayesianma/e156-submission/" class="proj-card">
+  <div class="proj-title">BayesianMA: Browser-Based Bayesian Random-Effects Meta-Analysis with Prior Sensi</div>
+  <div class="proj-meta">Posterior mean and 95% credible interval <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/benfordma/e156-submission/" class="proj-card">
+  <div class="proj-title">Benford Screening of 1.2 Million Meta-Analytic Values Finds No Corpus-Level Digi</div>
+  <div class="proj-meta">Mean absolute deviation (MAD) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/biasforensics/e156-submission/" class="proj-card">
+  <div class="proj-title">The Bias Fingerprint: Eight Methods Disagree in One of Seven Cochrane Meta-Analy</div>
+  <div class="proj-meta">Discordance rate <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/burhan/e156-submission/" class="proj-card">
+  <div class="proj-title">TruthCert: A Fail-Closed Certification Protocol for LLM Outputs in Evidence Synt</div>
+  <div class="proj-meta">AUC <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/cres/e156-submission/" class="proj-card">
+  <div class="proj-title">CRES: Browser-Based Cardiorenal Evidence Synthesis with Integrated Meta-Analysis</div>
+  <div class="proj-meta">Hazard ratio <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/cardiooracle/e156-submission/" class="proj-card">
+  <div class="proj-title">CardioOracle: Predicting Cardiovascular Trial Outcomes Using Bayesian Historical</div>
+  <div class="proj-meta">AUC for trial outcome prediction <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/cardiotrialaudit/e156-submission/" class="proj-card">
+  <div class="proj-title">Structural Flaw Prevalence in 52,765 Cardiology Trials: An Automated Registry Au</div>
+  <div class="proj-meta">Structural flaw prevalence <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/causalsynth/e156-submission/" class="proj-card">
+  <div class="proj-title">CausalSynth: Browser-Based Causal Evidence Triangulation Engine</div>
+  <div class="proj-meta">Causal Evidence Score <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/cochranedataextractor/e156-submission/" class="proj-card">
+  <div class="proj-title">Cochrane Data Extractor: Automated Dataset Harvesting from Cochrane Systematic R</div>
+  <div class="proj-meta">Risk ratio <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/componentnma/e156-submission/" class="proj-card">
+  <div class="proj-title">Component NMA: A Browser-Based Tool for Additive Component Network Meta-Analysis</div>
+  <div class="proj-meta">Component effect estimates (log-OR/SMD) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/conformalma/e156-submission/" class="proj-card">
+  <div class="proj-title">Conformal Prediction Intervals for Meta-Analysis: Distribution-Free Coverage Acr</div>
+  <div class="proj-meta">Prediction interval coverage probability <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/dta70/e156-submission/" class="proj-card">
+  <div class="proj-title">DTA70: An R Package of 76 Diagnostic Test Accuracy Datasets for Methods Research</div>
+  <div class="proj-meta">Sensitivity <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/dta-pro-review/e156-submission/" class="proj-card">
+  <div class="proj-title">DTA Meta-Analysis Pro: A Browser-Based Tool for Diagnostic Test Accuracy Evidenc</div>
+  <div class="proj-meta">Pooled sensitivity and specificity <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/dataextractor/e156-submission/" class="proj-card">
+  <div class="proj-title">RCTExtractor: AI-Powered Clinical Trial Data Extraction with 100% Accuracy</div>
+  <div class="proj-meta">HR <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/evidencehalflife/e156-submission/" class="proj-card">
+  <div class="proj-title">The Evidence Half-Life: 52% of Meta-Analyses Never Reach Analytical Stability</div>
+  <div class="proj-meta">Never-stabilized rate <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/evidencehalflife/e156-submission/" class="proj-card">
+  <div class="proj-title">The Evidence Half-Life: 52% of Meta-Analyses Never Reach Analytical Stability</div>
+  <div class="proj-meta">Never-stabilized rate <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/evidencequality/e156-submission/" class="proj-card">
+  <div class="proj-title">The Cochrane Quality Concordance: Six Orthogonal Dimensions of Evidence Reliabil</div>
+  <div class="proj-meta">Mean absolute pairwise correlation <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/evidencetribunal/e156-submission/" class="proj-card">
+  <div class="proj-title">The Evidence Tribunal: Adversarial Specification Search Across 403 Cochrane Meta</div>
+  <div class="proj-meta">Adversarial verdict (Unanimous/Split) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/fatiha-project/e156-submission/" class="proj-card">
+  <div class="proj-title">SYNTHESIS: A 7-Layer Verification Framework for Detecting Fragile Meta-Analyses</div>
+  <div class="proj-meta">Coverage probability </div>
+</a>
+<a href="https://mahmood726-cyber.github.io/fatiha-course-github-v2/e156-submission/" class="proj-card">
+  <div class="proj-title">FATIHA: A Multilingual Evidence Synthesis Course Platform with 26 Interactive Mo</div>
+  <div class="proj-meta">Mean difference <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/fragilityatlas/e156-submission/" class="proj-card">
+  <div class="proj-title">The Fragility Atlas: Multiverse Analysis of 403 Cochrane Meta-Analyses Reveals 5</div>
+  <div class="proj-meta">Robustness score (percent agreement across specifications) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/fragilityindex/e156-submission/" class="proj-card">
+  <div class="proj-title">Fragility Index Calculator: Browser-Based Statistical Fragility for RCTs</div>
+  <div class="proj-meta">Fragility Index (FI) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/grma-paper/e156-submission/" class="proj-card">
+  <div class="proj-title">Grey Relational Meta-Analysis: A Robust Pooling Method with Redescending Effect </div>
+  <div class="proj-meta">Bias reduction (percent) </div>
+</a>
+<a href="https://mahmood726-cyber.github.io/gwam/e156-submission/" class="proj-card">
+  <div class="proj-title">GWAM: Ghost-Weighted Aggregate Meta-Analysis for Registry-Based Publication Bias</div>
+  <div class="proj-meta">Integrity ratio (lambda) </div>
+</a>
+<a href="https://mahmood726-cyber.github.io/hta/e156-submission/" class="proj-card">
+  <div class="proj-title">HTA Artifact Standard: An Open-Source Platform with 41 Analytical Engines for He</div>
+  <div class="proj-meta">ICER, NMB, and pooled treatment effects <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/hta-oman/e156-submission/" class="proj-card">
+  <div class="proj-title">HTA-Oman: Open-Source Browser-Based Health Technology Assessment Economic Modeli</div>
+  <div class="proj-meta">Mean difference <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/hta-evidence-integrity-suite/e156-submission/" class="proj-card">
+  <div class="proj-title">Evidence Integrity Suite for Multi-Layered Health Technology Assessment of Cochr</div>
+  <div class="proj-meta">Information Adequacy Index <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/hta-transportability-engine/e156-submission/" class="proj-card">
+  <div class="proj-title">Clinical Transportability Engine for Quantifying Efficacy Leakage in Health Tech</div>
+  <div class="proj-meta">Transportability penalty <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/hta-unified-intelligence-system/e156-submission/" class="proj-card">
+  <div class="proj-title">HTA Unified Intelligence System: Self-Correcting Evidence Synthesis with Triple-</div>
+  <div class="proj-meta">Unified Decision Score (UDS, 0-100) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/ipd-meta-pro/e156-submission/" class="proj-card">
+  <div class="proj-title">IPD Meta-Analysis Pro: A Browser-Based Platform for Individual Participant Data </div>
+  <div class="proj-meta">Pooled IPD treatment effect <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/ipd-qma/e156-submission/" class="proj-card">
+  <div class="proj-title">IPD-QMA: Detecting Heterogeneous Treatment Effects via Quantile Meta-Analysis of</div>
+  <div class="proj-meta">Quantile treatment effect </div>
+</a>
+<a href="https://mahmood726-cyber.github.io/indirectcomparison/e156-submission/" class="proj-card">
+  <div class="proj-title">Indirect Treatment Comparison Calculator: Browser-Based Bucher Method with Coher</div>
+  <div class="proj-meta">Indirect log odds ratio (OR) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/kmdigitizer/e156-submission/" class="proj-card">
+  <div class="proj-title">KMDigitizer: Browser-Based IPD Reconstruction from Published Kaplan-Meier Curves</div>
+  <div class="proj-meta">Hazard ratio (HR) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/kmcurve/e156-submission/" class="proj-card">
+  <div class="proj-title">Fully Automated Kaplan-Meier Curve Extraction via Neural OCR and Mathematical Su</div>
+  <div class="proj-meta">Sensitivity of automated curve extraction (95% CI) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/lfa/e156-submission/" class="proj-card">
+  <div class="proj-title">CBAMM: Collaborative Bayesian Adaptive Meta-Analysis with Population Transportab</div>
+  <div class="proj-meta">Transported risk ratio (95% CI) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/mapowercalc/e156-submission/" class="proj-card">
+  <div class="proj-title">MA Power: A Browser-Based Power and Sample Size Calculator for Random-Effects Me</div>
+  <div class="proj-meta">Statistical power for planned meta-analysis <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/mapriors/e156-submission/" class="proj-card">
+  <div class="proj-title">MAPriors: Browser-Based Meta-Analytic Predictive Priors and Dynamic Borrowing En</div>
+  <div class="proj-meta">Effective sample size <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/maworkbench/e156-submission/" class="proj-card">
+  <div class="proj-title">Meta-Analysis Workbench: A Central Hub for 49 Evidence Synthesis Tools</div>
+  <div class="proj-meta">Tool count and coverage <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/mcidmapper/e156-submission/" class="proj-card">
+  <div class="proj-title">MCID Mapper: Clinical Significance Assessment for Meta-Analytic Effect Estimates</div>
+  <div class="proj-meta">MCID classification zone <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/mes/e156-submission/" class="proj-card">
+  <div class="proj-title">Multiverse Evidence Synthesis: Robustness Classification of 403 Cochrane Meta-An</div>
+  <div class="proj-meta">Concordance score (C_sig) across specification multiverse <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/mlmresearch/e156-submission/" class="proj-card">
+  <div class="proj-title">MLMResearch: Empirical Stress-Testing and Adaptive Correction for Multilevel Met</div>
+  <div class="proj-meta">Variance collapse rate with median degrees of freedom (IQR) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/metaextract/e156-submission/" class="proj-card">
+  <div class="proj-title">MetaExtract: Browser-Based Effect Estimate Extraction from Clinical Trial Abstra</div>
+  <div class="proj-meta">Extraction sensitivity for HR, OR, RR (95% CI) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/metafolio/e156-submission/" class="proj-card">
+  <div class="proj-title">MetaFolio: Efficiency Frontier Subset Enumeration for Meta-Analysis Heterogeneit</div>
+  <div class="proj-meta">I-squared reduction from dominated study exclusion <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/metafusion-lab/e156-submission/" class="proj-card">
+  <div class="proj-title">MetaFusion Lab: Certainty-Weighted Random-Effects Meta-Analysis</div>
+  <div class="proj-meta">Risk ratio (certainty-weighted, 95% CI) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/metaguard/e156-submission/" class="proj-card">
+  <div class="proj-title">MetaGuard: A Browser-Based Robust and Forensic Meta-Analysis Toolkit</div>
+  <div class="proj-meta">Outlier-adjusted pooled effect via DPD <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/metamethods/e156-submission/" class="proj-card">
+  <div class="proj-title">MetaMethods: Six Advanced Statistical Methods for Meta-Analysis in a Dependency-</div>
+  <div class="proj-meta">E-value for unmeasured confounding <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/metaregression/e156-submission/" class="proj-card">
+  <div class="proj-title">MetaRegression Workbench: Browser-Based Mixed-Effects Meta-Regression with Permu</div>
+  <div class="proj-meta">Regression slope (R-squared) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/metarep/e156-submission/" class="proj-card">
+  <div class="proj-title">MetaRep: Most Significant Cochrane Meta-Analyses Predict Only 32% Replication Pr</div>
+  <div class="proj-meta">Replication probability (heterogeneity-aware predictive powe <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/metareproducer/e156-submission/" class="proj-card">
+  <div class="proj-title">Computational Reproducibility Audit of 501 Cochrane Meta-Analyses</div>
+  <div class="proj-meta">Prevalence <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/metashift/e156-submission/" class="proj-card">
+  <div class="proj-title">MetaShift: Changepoint Detection Reveals Hidden Regime Shifts in Cumulative Meta</div>
+  <div class="proj-meta">Changepoint detection rate <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/meta-ecosystem-model/e156-submission/" class="proj-card">
+  <div class="proj-title">The Meta-Analysis Ecosystem Model: Evidence Velocity, Effect Decay, and a Future</div>
+  <div class="proj-meta">Decay ratio </div>
+</a>
+<a href="https://mahmood726-cyber.github.io/metanew/e156-submission/" class="proj-card">
+  <div class="proj-title">EvidenceOS PRIME: Integrated Meta-Analysis and Health Technology Assessment Plat</div>
+  <div class="proj-meta">Pooled OR (95% CI) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/methodssuite/e156-submission/" class="proj-card">
+  <div class="proj-title">Methods Suite: Eight Interoperable Browser-Based Meta-Analysis Tools with MAIF</div>
+  <div class="proj-meta">Cross-tool MAIF round-trip fidelity <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/multilevelerror/e156-submission/" class="proj-card">
+  <div class="proj-title">Multilevelerror: Influence Diagnostics for Three-Level Meta-Analysis</div>
+  <div class="proj-meta">Median Cook distance (IQR) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/multipledatameta/e156-submission/" class="proj-card">
+  <div class="proj-title">Multiple Data Source Meta-Analysis: Pooling Mixed-Format Study Results</div>
+  <div class="proj-meta">Standardized mean difference <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/multiversema/e156-submission/" class="proj-card">
+  <div class="proj-title">MultiverseMA: Browser-Based Multiverse Meta-Analysis Engine</div>
+  <div class="proj-meta">Specification concordance <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/nmahtml/e156-submission/" class="proj-card">
+  <div class="proj-title">NMA Pro: A Browser-Based Network Meta-Analysis Platform with Integrated Rapid Re</div>
+  <div class="proj-meta">Pooled treatment effect (SMD/OR/RR) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/nntmapper/e156-submission/" class="proj-card">
+  <div class="proj-title">NNTMapper: Converting Meta-Analytic Effects into Population-Specific Number Need</div>
+  <div class="proj-meta">Number Needed to Treat across baseline risk range <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/new-heterogeneity-model/e156-submission/" class="proj-card">
+  <div class="proj-title">Adaptive Shrinkage Estimator for Heterogeneity in Small-Sample Meta-Analysis</div>
+  <div class="proj-meta">Tau-squared MSE reduction </div>
+</a>
+<a href="https://mahmood726-cyber.github.io/overlapmatrix/e156-submission/" class="proj-card">
+  <div class="proj-title">Overlap Matrix and Corrected Covered Area Calculator for Umbrella Reviews</div>
+  <div class="proj-meta">Corrected Covered Area (CCA) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/prismachecker/e156-submission/" class="proj-card">
+  <div class="proj-title">PRISMA 2020 Compliance Checker: An Interactive Browser Tool for Systematic Revie</div>
+  <div class="proj-meta">PRISMA 2020 compliance percentage <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/prismaflow/e156-submission/" class="proj-card">
+  <div class="proj-title">PRISMA 2020 Flow Diagram Generator for Systematic Reviews</div>
+  <div class="proj-meta">PRISMA flow diagram compliance <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/pairwise70/e156-submission/" class="proj-card">
+  <div class="proj-title">MAFI: Meta-Analytic Fragility Index Across 501 Cochrane Pairwise Reviews</div>
+  <div class="proj-meta">Median MAFI fragility index (IQR) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/pairwiseai/e156-submission/" class="proj-card">
+  <div class="proj-title">TruthCert PairwisePro: Browser-Based Pairwise Meta-Analysis with Regional Health</div>
+  <div class="proj-meta">Pooled effect size (OR/RR/MD/SMD) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/paper1/e156-submission/" class="proj-card">
+  <div class="proj-title">Bootstrap-Aggregated Penalized Meta-Regression for Small-Sample Evidence Synthes</div>
+  <div class="proj-meta">R-squared heterogeneity <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/poolingsuite/e156-submission/" class="proj-card">
+  <div class="proj-title">Pooling Suite: Browser-Based Meta-Analysis Engine with Ten Heterogeneity Estimat</div>
+  <div class="proj-meta">Pooled effect (tau-squared comparison) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/predictiongap/e156-submission/" class="proj-card">
+  <div class="proj-title">The Prediction Gap: 70% of Significant Meta-Analyses Have Null-Spanning Predicti</div>
+  <div class="proj-meta">False reassurance rate <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/pubbiassuite/e156-submission/" class="proj-card">
+  <div class="proj-title">PubBias Suite: Comprehensive Publication Bias Assessment with 12 Methods and 3 F</div>
+  <div class="proj-meta">Bias-adjusted pooled effect estimates <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/rmstmeta/e156-submission/" class="proj-card">
+  <div class="proj-title">RMST Meta: A Browser Tool for Meta-Analysis of Restricted Mean Survival Time Bey</div>
+  <div class="proj-meta">Pooled RMST difference (months) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/robassessor/e156-submission/" class="proj-card">
+  <div class="proj-title">RoB Assessor: A Browser-Based Risk of Bias Assessment Tool Implementing RoB 2 an</div>
+  <div class="proj-meta">Domain-level and overall risk of bias judgments <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/sheafnma/e156-submission/" class="proj-card">
+  <div class="proj-title">Sheaf-Theoretic Consistency Analysis for Network Meta-Analysis</div>
+  <div class="proj-meta">Global Inconsistency Index (GII) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/softable/e156-submission/" class="proj-card">
+  <div class="proj-title">GRADE Summary of Findings Table Generator for Systematic Reviews</div>
+  <div class="proj-meta">GRADE certainty rating <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/tda-ma/e156-submission/" class="proj-card">
+  <div class="proj-title">Topological Data Analysis for Meta-Analytic Heterogeneity Exploration</div>
+  <div class="proj-meta">Persistent homology (Betti numbers) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/tgep-development/e156-submission/" class="proj-card">
+  <div class="proj-title">Triple-Guard Ensemble Pooling for Bias-Sensitive Meta-Analysis</div>
+  <div class="proj-meta">Ensemble pooled effect estimate (MAE) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/transportabilitycalc/e156-submission/" class="proj-card">
+  <div class="proj-title">Clinical Transportability Engine: A Composite Penalty Index for Meta-Analysis Ge</div>
+  <div class="proj-meta">Median CTE penalty index <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/trialradar/e156-submission/" class="proj-card">
+  <div class="proj-title">TrialRadar: Living Clinical Trial Surveillance Dashboard for Ghost Protocol Dete</div>
+  <div class="proj-meta">Ghost protocol detection rate <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/truthcert1/e156-submission/" class="proj-card">
+  <div class="proj-title">TruthCert-MA: A Cross-Platform JavaScript Meta-Analysis Engine Validated Against</div>
+  <div class="proj-meta">Pooled effect size (OR/RR/MD/SMD) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/truthcert1-work/e156-submission/" class="proj-card">
+  <div class="proj-title">TruthCert-PairwisePro: A Browser-Based Pairwise Meta-Analysis Engine with Seven </div>
+  <div class="proj-meta">Pooled effect size (OR/RR/MD/SMD) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/umbrellareview/e156-submission/" class="proj-card">
+  <div class="proj-title">Umbrella Review Evidence Classifier with Credibility Grading</div>
+  <div class="proj-meta">Evidence conviction class <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/voicalculator/e156-submission/" class="proj-card">
+  <div class="proj-title">Value of Information Calculator for Meta-Analysis Decision Support</div>
+  <div class="proj-meta">EVPI and EVSI (dollars) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/value-based-hta-engine/e156-submission/" class="proj-card">
+  <div class="proj-title">Multi-Criteria Evidence Synthesizer for Automated Benefit-Harm Trade-Off in Heal</div>
+  <div class="proj-meta">Net clinical benefit <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/worldipd/e156-submission/" class="proj-card">
+  <div class="proj-title">WorldIPD: An Open Individual Participant Data Hub with Standardized Schema and P</div>
+  <div class="proj-meta">Dataset count <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/worldipd-private/e156-submission/" class="proj-card">
+  <div class="proj-title">WorldIPD-Private: Secure Scaffold for Non-Redistributable Individual Participant</div>
+  <div class="proj-meta">Schema compliance rate <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/advanced-nma-pooling/e156-submission/" class="proj-card">
+  <div class="proj-title">Advanced NMA Pooling Toolkit with Bias Adjustment and Survival Extensions</div>
+  <div class="proj-meta">Bias-adjusted treatment effect (log-odds) </div>
+</a>
+<a href="https://mahmood726-cyber.github.io/advanced-nma-pooling/e156-submission/" class="proj-card">
+  <div class="proj-title">Advanced NMA Pooling Toolkit with Bias Adjustment and Survival Extensions</div>
+  <div class="proj-meta">Bias-adjusted treatment effect (log-odds) </div>
+</a>
+<a href="https://mahmood726-cyber.github.io/clinic-site/e156-submission/" class="proj-card">
+  <div class="proj-title">London Cardiology Clinic: Privacy-First Clinical Website with Schema.org Structu</div>
+  <div class="proj-meta">Lighthouse accessibility score <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/ctgov-search-strategies/e156-submission/" class="proj-card">
+  <div class="proj-title">CT.gov Search Strategy Tool: Systematic Review Search Validation with 99 Percent</div>
+  <div class="proj-meta">API recall <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/cv-rct-analysis/e156-submission/" class="proj-card">
+  <div class="proj-title">CV-RCT Analysis: Cardiovascular Trial Landscape Dashboard Integrating Registry a</div>
+  <div class="proj-meta">Publication rate <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/dosehtml/e156-submission/" class="proj-card">
+  <div class="proj-title">Dose Response Pro: Browser-Based Dose-Response Meta-Analysis Matching R Accuracy</div>
+  <div class="proj-meta">Dose-response trend coefficient <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/evidence-board/e156-submission/" class="proj-card">
+  <div class="proj-title">Evidence Board: A Browser-Based Structured Note System for Systematic Review Scr</div>
+  <div class="proj-meta">Proportion of high-confidence notes <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/evidence-inference/e156-submission/" class="proj-card">
+  <div class="proj-title">Evidence Inference: Machine Learning Extraction of Treatment Effects from Clinic</div>
+  <div class="proj-meta">Classification accuracy <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/focus-studio/e156-submission/" class="proj-card">
+  <div class="proj-title">Focus Studio: A Browser-Based Pomodoro Timer with Task Management and Session Lo</div>
+  <div class="proj-meta">Median session length <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/hfpef-registry-synth/e156-submission/" class="proj-card">
+  <div class="proj-title">Registry-First Transparency-Adjusted Synthesis for HFpEF Clinical Trials</div>
+  <div class="proj-meta">Reporting debt proportion <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/idea12/e156-submission/" class="proj-card">
+  <div class="proj-title">Network Meta-Regression with Forensic Bias Detection for Observational-RCT Disco</div>
+  <div class="proj-meta">Discordance Index ROC AUC <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/ipd-meta-pro-link/e156-submission/" class="proj-card">
+  <div class="proj-title">IPD Meta-Analysis Pro: A Browser-Based Platform for Individual Participant Data </div>
+  <div class="proj-meta">Pooled IPD treatment effect <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/kanban-lab/e156-submission/" class="proj-card">
+  <div class="proj-title">Kanban Lab: A Persistent Browser-Based Drag-and-Drop Board for Research Task Man</div>
+  <div class="proj-meta">Median card transition time <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/living-meta/e156-submission/" class="proj-card">
+  <div class="proj-title">Living Meta-Analysis: A CT.gov-Native Browser Application for Continuously Updat</div>
+  <div class="proj-meta">Pooled treatment effect with sequential monitoring <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/living-meta-engine/e156-submission/" class="proj-card">
+  <div class="proj-title">Living Meta-Analysis Engine: Config-Driven Browser Dashboard for Cardiology Evid</div>
+  <div class="proj-meta">Odds ratio <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/llm-meta-analysis/e156-submission/" class="proj-card">
+  <div class="proj-title">LLM-Driven Meta-Analysis: Automated Extraction and Synthesis from Clinical Trial</div>
+  <div class="proj-meta">Pooled effect size <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/maxent-reconstructor/e156-submission/" class="proj-card">
+  <div class="proj-title">MaxEnt IPD Reconstructor: Maximum Entropy Recovery of Individual Patient Data</div>
+  <div class="proj-meta">Win rate vs normal </div>
+</a>
+<a href="https://mahmood726-cyber.github.io/metaoverfit/e156-submission/" class="proj-card">
+  <div class="proj-title">metaoverfit: Optimism-Corrected Heterogeneity Assessment for Meta-Regression</div>
+  <div class="proj-meta">Optimism-corrected R-squared <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/metaoverfit-paper/e156-submission/" class="proj-card">
+  <div class="proj-title">Overfitting in Published Meta-Regressions: Simulation and Empirical Survey</div>
+  <div class="proj-meta">R-squared optimism <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/metasprint-autopilot/e156-submission/" class="proj-card">
+  <div class="proj-title">MetaSprint Autopilot: Zero-Install Browser Platform for Systematic Review and Me</div>
+  <div class="proj-meta">Engine accuracy vs Cochrane reviews <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/metasprint-cardio-universe/e156-submission/" class="proj-card">
+  <div class="proj-title">MetaSprint Cardio Universe: Provenance-First Discovery for Living Evidence Synth</div>
+  <div class="proj-meta">Ingestion recall <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/metasprint-dose-response/e156-submission/" class="proj-card">
+  <div class="proj-title">MetaSprint Dose-Response: Browser-Based Nonlinear Dose-Response Meta-Analysis wi</div>
+  <div class="proj-meta">Dose-response coefficients <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/metasprint-dta/e156-submission/" class="proj-card">
+  <div class="proj-title">MetaSprint DTA: Automated Open-Access Discovery for Diagnostic Test Accuracy Met</div>
+  <div class="proj-meta">Pooled sensitivity and specificity <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/metasprintnma/e156-submission/" class="proj-card">
+  <div class="proj-title">MetaSprint NMA: Zero-Install Browser Network Meta-Analysis with In-Browser R Cro</div>
+  <div class="proj-meta">Treatment effect concordance <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/metaverse-robust-ma/e156-submission/" class="proj-card">
+  <div class="proj-title">metaverse: Robust Meta-Analysis with Outlier-Resistant Estimation and Variable S</div>
+  <div class="proj-meta">Pooled SMD bias <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/nma-dose-response-app/e156-submission/" class="proj-card">
+  <div class="proj-title">NMA Dose-Response Studio: Browser-Based Network Meta-Analysis with Dose-Response</div>
+  <div class="proj-meta">Pooled treatment effect with dose-response curve <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/prognostic-meta/e156-submission/" class="proj-card">
+  <div class="proj-title">PrognosisMeta: Browser-Based Prognostic Meta-Analysis Engine</div>
+  <div class="proj-meta">HR <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/pub-bias-simulation/e156-submission/" class="proj-card">
+  <div class="proj-title">Publication Bias Adjustment Methods: A 135-Scenario Simulation Comparison</div>
+  <div class="proj-meta">RMSE of bias-corrected pooled estimate <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/rct-extractor-v2/e156-submission/" class="proj-card">
+  <div class="proj-title">Deterministic Effect Estimate Extraction from RCT PDFs</div>
+  <div class="proj-meta">Sensitivity <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/registry-first-rct-meta/e156-submission/" class="proj-card">
+  <div class="proj-title">Registry-First Meta-Analysis: Quantifying Missing Cardiovascular Trial Evidence</div>
+  <div class="proj-meta">Evidence Coverage Ratio (trial-level) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/repo100/e156-submission/" class="proj-card">
+  <div class="proj-title">repo100: A Curated Collection of 137 Meta-Regression Benchmark Datasets</div>
+  <div class="proj-meta">Dataset count and median study size <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/repo300-enma-snma/e156-submission/" class="proj-card">
+  <div class="proj-title">Ensemble and Spectral Network Meta-Analysis: Novel Inconsistency-Robust Methods</div>
+  <div class="proj-meta">Coverage improvement (percentage points) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/rmstnma/e156-submission/" class="proj-card">
+  <div class="proj-title">Bayesian RMST Network Meta-Analysis: The rmstnma R Package</div>
+  <div class="proj-meta">RMST difference (months) <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/shahzaib-icu-landscape/e156-submission/" class="proj-card">
+  <div class="proj-title">ICU Hemodynamic Trial Landscape: A Living Evidence Map</div>
+  <div class="proj-meta">Sensitivity <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/truthcert-denominator-phase1/e156-submission/" class="proj-card">
+  <div class="proj-title">Denominator-First Bayesian Meta-Analysis Engine for Registry-Aware Evidence Synt</div>
+  <div class="proj-meta">False reassurance rate reduction <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/truthcert-meta2-prototype/e156-submission/" class="proj-card">
+  <div class="proj-title">TruthCert Meta2: Governance Overlay for Denominator-First Meta-Analysis</div>
+  <div class="proj-meta">Mean difference </div>
+</a>
+<a href="https://mahmood726-cyber.github.io/ubcma/e156-submission/" class="proj-card">
+  <div class="proj-title">UBCMA: Unified Bias-Calibrated Meta-Analysis via Joint Heterogeneity-Selection M</div>
+  <div class="proj-meta">Mean absolute error reduction <span class="badge-app">Interactive App</span></div>
+</a>
+<a href="https://mahmood726-cyber.github.io/wasserstein/e156-submission/" class="proj-card">
+  <div class="proj-title">Automated Kaplan-Meier Digitization for Hazard Ratio Extraction</div>
+  <div class="proj-meta">HR <span class="badge-app">Interactive App</span></div>
+</a>
+<h2 class="type-label">Pairwise</h2>
+<a href="https://mahmood726-cyber.github.io/finrenone/e156-submission/" class="proj-card">
+  <div class="proj-title">Browser-Based Finerenone Meta-Analysis Validated Against R metafor</div>
+  <div class="proj-meta">HR <span class="badge-app">Interactive App</span></div>
+</a>
+<h2 class="type-label">Showcase</h2>
+<a href="https://mahmood726-cyber.github.io/portfolio-site/e156-submission/" class="proj-card">
+  <div class="proj-title">Meta-Analysis Methods Lab: A Single-Page Portfolio for 101 Evidence Synthesis Pr</div>
+  <div class="proj-meta">Project catalog completeness <span class="badge-app">Interactive App</span></div>
+</a>
+
+  </div>
+
+  <footer class="footer">
+    <a href="https://github.com/mahmood726-cyber">GitHub</a> &middot;
+    E156 Micro-Paper Format &middot; All work in progress
+  </footer>
+</div>
+</body>
+</html>
