@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Evidence Synthesis — Live Dashboard</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#f8f9fa;color:#1a1a1a;line-height:1.5}
+.page{max-width:1200px;margin:0 auto;padding:2rem 1.5rem}
+.hero{text-align:center;padding:1.5rem 0 2rem;margin-bottom:1.5rem}
+.hero h1{font-family:Georgia,serif;font-size:1.8rem;margin-bottom:.3rem}
+.hero .sub{font-size:.85rem;color:#666}
+.stats{display:flex;gap:1rem;justify-content:center;margin:1.5rem 0;flex-wrap:wrap}
+.stat-card{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:1rem 1.5rem;text-align:center;min-width:120px}
+.stat-num{font-size:1.8rem;font-weight:700}
+.stat-num.green{color:#28a745}
+.stat-num.amber{color:#d68910}
+.stat-num.blue{color:#2E86C1}
+.stat-label{font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.1em}
+.search{width:100%;max-width:500px;margin:0 auto 1.5rem;display:block;padding:10px 16px;border:1px solid #ddd;border-radius:6px;font-size:.9rem}
+.search:focus{outline:2px solid #2E86C1;border-color:transparent}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e0e0e0;border-radius:8px;overflow:hidden}
+th{background:#f1f3f5;padding:10px 12px;text-align:left;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:#666;border-bottom:2px solid #e0e0e0}
+td{padding:8px 12px;border-bottom:1px solid #f0f0f0;font-size:.85rem}
+td a{color:#2E6B8A;text-decoration:none}
+td a:hover{text-decoration:underline}
+tr:hover{background:#f8f9ff}
+.status{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.7rem;font-weight:600}
+.status.ready{background:#d4edda;color:#155724}
+.status.draft{background:#fff3cd;color:#856404}
+.status.wip{background:#f8d7da;color:#721c24}
+.badge{display:inline-block;padding:1px 5px;border-radius:3px;font-size:.6rem;font-weight:700;margin-right:3px}
+.badge.app{background:#2E86C1;color:#fff}
+.badge.fig{background:#28a745;color:#fff}
+.gh-link{font-size:.75rem;color:#888}
+.footer{text-align:center;margin-top:2rem;font-size:.7rem;color:#aaa}
+@media(max-width:768px){td:nth-child(4),th:nth-child(4),td:nth-child(5),th:nth-child(5){display:none}.page{padding:1rem}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="hero">
+    <h1>Evidence Synthesis Portfolio</h1>
+    <div class="sub">Mahmood Ahmad &middot; Tahir Heart Institute &middot; Live Project Dashboard</div>
+  </header>
+
+  <div class="stats">
+    <div class="stat-card"><div class="stat-num green">139</div><div class="stat-label">Ready</div></div>
+    <div class="stat-card"><div class="stat-num amber">0</div><div class="stat-label">Draft</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:#c0392b">0</div><div class="stat-label">In Progress</div></div>
+    <div class="stat-card"><div class="stat-num blue">126</div><div class="stat-label">Apps</div></div>
+    <div class="stat-card"><div class="stat-num">139</div><div class="stat-label">Total</div></div>
+  </div>
+
+  <input type="search" class="search" placeholder="Filter projects..." id="filter" aria-label="Filter projects">
+
+  <table id="table">
+    <thead>
+      <tr><th>Project</th><th>Type</th><th>Status</th><th>Words</th><th>Assets</th><th>Code</th></tr>
+    </thead>
+    <tbody>
+      <tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/private-website/e156-submission/">OpenPalp: Structured Palpitations Assessment Programme via Clinic</a></td>
+  <td>clinical</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/private-website" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/mlm501/e156-submission/">MLM501: A Multilevel Effects Table from 501 Cochrane Pairwise Met</a></td>
+  <td>data</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/mlm501" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/pairwise70/e156-submission/">Pairwise70: Standardized Dataset of 501 Cochrane Meta-Analyses</a></td>
+  <td>data</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/pairwise70" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/metaentropy/e156-submission/">Meta-Analytic Entropy: Information-Theoretic Heterogeneity Beyond</a></td>
+  <td>empirical</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/metaentropy" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/metagenome/e156-submission/">The Meta-Analysis Genome: Unsupervised Phenotyping of 307 Cochran</a></td>
+  <td>empirical</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/metagenome" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/metarepair/e156-submission/">MetaRepair: Automated Diagnosis and Correction of Meta-Analysis P</a></td>
+  <td>empirical</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/metarepair" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/meta-epidemiology-bias-correction/e156-submission/">Bias-Correction Methods Reveal Underestimation by Observational S</a></td>
+  <td>meta-epidemiology</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/meta-epidemiology-bias-correction" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/outcomereportingbias/e156-submission/">Outcome Reporting Bias Risk in 403 Cochrane Meta-Analyses: An Exc</a></td>
+  <td>meta-research</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/outcomereportingbias" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/overlapdetector/e156-submission/">Study Overlap Across 501 Cochrane Reviews: Quantifying Non-Indepe</a></td>
+  <td>meta-research</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/overlapdetector" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/501mlm/e156-submission/">MLM501: Cochrane Multilevel Meta-Analysis Effects Table from 501 </a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/501mlm" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/501mlm-submission/e156-submission/">MLM501 Software Article: Building Large-Scale Meta-Analytic Datas</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/501mlm-submission" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/adaptsim/e156-submission/">AdaptSim: A Browser-Based Simulator for Adaptive Group-Sequential</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/adaptsim" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/almizan/e156-submission/">Al-Mizan: An Evidence Equipoise Monitor for Detecting When the Ba</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/almizan" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/asa/e156-submission/">Asa: A Seven-Method Forensic Data Integrity Screener for Clinical</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/asa" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/autograde/e156-submission/">AutoGRADE: Algorithmic Certainty of Evidence Assessment for Meta-</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/autograde" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/autograde/e156-submission/">AutoGRADE: Browser-Based Automated GRADE Certainty Assessment</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/autograde" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/bayesianma/e156-submission/">BayesianMA: Browser-Based Bayesian Random-Effects Meta-Analysis w</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/bayesianma" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/benfordma/e156-submission/">Benford Screening of 1.2 Million Meta-Analytic Values Finds No Co</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/benfordma" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/biasforensics/e156-submission/">The Bias Fingerprint: Eight Methods Disagree in One of Seven Coch</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/biasforensics" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/burhan/e156-submission/">TruthCert: A Fail-Closed Certification Protocol for LLM Outputs i</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/burhan" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/cres/e156-submission/">CRES: Browser-Based Cardiorenal Evidence Synthesis with Integrate</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/cres" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/cardiooracle/e156-submission/">CardioOracle: Predicting Cardiovascular Trial Outcomes Using Baye</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/cardiooracle" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/cardiotrialaudit/e156-submission/">Structural Flaw Prevalence in 52,765 Cardiology Trials: An Automa</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/cardiotrialaudit" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/causalsynth/e156-submission/">CausalSynth: Browser-Based Causal Evidence Triangulation Engine</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/causalsynth" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/cochranedataextractor/e156-submission/">Cochrane Data Extractor: Automated Dataset Harvesting from Cochra</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/cochranedataextractor" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/componentnma/e156-submission/">Component NMA: A Browser-Based Tool for Additive Component Networ</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/componentnma" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/conformalma/e156-submission/">Conformal Prediction Intervals for Meta-Analysis: Distribution-Fr</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/conformalma" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/dta70/e156-submission/">DTA70: An R Package of 76 Diagnostic Test Accuracy Datasets for M</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/dta70" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/dta-pro-review/e156-submission/">DTA Meta-Analysis Pro: A Browser-Based Tool for Diagnostic Test A</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/dta-pro-review" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/dataextractor/e156-submission/">RCTExtractor: AI-Powered Clinical Trial Data Extraction with 100%</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/dataextractor" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/evidencehalflife/e156-submission/">The Evidence Half-Life: 52% of Meta-Analyses Never Reach Analytic</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/evidencehalflife" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/evidencehalflife/e156-submission/">The Evidence Half-Life: 52% of Meta-Analyses Never Reach Analytic</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/evidencehalflife" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/evidencequality/e156-submission/">The Cochrane Quality Concordance: Six Orthogonal Dimensions of Ev</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/evidencequality" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/evidencetribunal/e156-submission/">The Evidence Tribunal: Adversarial Specification Search Across 40</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/evidencetribunal" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/fatiha-project/e156-submission/">SYNTHESIS: A 7-Layer Verification Framework for Detecting Fragile</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/fatiha-project" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/fatiha-course-github-v2/e156-submission/">FATIHA: A Multilingual Evidence Synthesis Course Platform with 26</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/fatiha-course-github-v2" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/fragilityatlas/e156-submission/">The Fragility Atlas: Multiverse Analysis of 403 Cochrane Meta-Ana</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/fragilityatlas" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/fragilityindex/e156-submission/">Fragility Index Calculator: Browser-Based Statistical Fragility f</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/fragilityindex" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/grma-paper/e156-submission/">Grey Relational Meta-Analysis: A Robust Pooling Method with Redes</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/grma-paper" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/gwam/e156-submission/">GWAM: Ghost-Weighted Aggregate Meta-Analysis for Registry-Based P</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/gwam" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/hta/e156-submission/">HTA Artifact Standard: An Open-Source Platform with 41 Analytical</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/hta" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/hta-oman/e156-submission/">HTA-Oman: Open-Source Browser-Based Health Technology Assessment </a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/hta-oman" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/hta-evidence-integrity-suite/e156-submission/">Evidence Integrity Suite for Multi-Layered Health Technology Asse</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/hta-evidence-integrity-suite" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/hta-transportability-engine/e156-submission/">Clinical Transportability Engine for Quantifying Efficacy Leakage</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/hta-transportability-engine" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/hta-unified-intelligence-system/e156-submission/">HTA Unified Intelligence System: Self-Correcting Evidence Synthes</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/hta-unified-intelligence-system" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/ipd-meta-pro/e156-submission/">IPD Meta-Analysis Pro: A Browser-Based Platform for Individual Pa</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/ipd-meta-pro" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/ipd-qma/e156-submission/">IPD-QMA: Detecting Heterogeneous Treatment Effects via Quantile M</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/ipd-qma" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/indirectcomparison/e156-submission/">Indirect Treatment Comparison Calculator: Browser-Based Bucher Me</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/indirectcomparison" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/kmdigitizer/e156-submission/">KMDigitizer: Browser-Based IPD Reconstruction from Published Kapl</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/kmdigitizer" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/kmcurve/e156-submission/">Fully Automated Kaplan-Meier Curve Extraction via Neural OCR and </a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/kmcurve" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/lfa/e156-submission/">CBAMM: Collaborative Bayesian Adaptive Meta-Analysis with Populat</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/lfa" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/mapowercalc/e156-submission/">MA Power: A Browser-Based Power and Sample Size Calculator for Ra</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/mapowercalc" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/mapriors/e156-submission/">MAPriors: Browser-Based Meta-Analytic Predictive Priors and Dynam</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/mapriors" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/maworkbench/e156-submission/">Meta-Analysis Workbench: A Central Hub for 49 Evidence Synthesis </a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/maworkbench" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/mcidmapper/e156-submission/">MCID Mapper: Clinical Significance Assessment for Meta-Analytic E</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/mcidmapper" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/mes/e156-submission/">Multiverse Evidence Synthesis: Robustness Classification of 403 C</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/mes" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/mlmresearch/e156-submission/">MLMResearch: Empirical Stress-Testing and Adaptive Correction for</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/mlmresearch" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/metaextract/e156-submission/">MetaExtract: Browser-Based Effect Estimate Extraction from Clinic</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/metaextract" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/metafolio/e156-submission/">MetaFolio: Efficiency Frontier Subset Enumeration for Meta-Analys</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/metafolio" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/metafusion-lab/e156-submission/">MetaFusion Lab: Certainty-Weighted Random-Effects Meta-Analysis</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/metafusion-lab" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/metaguard/e156-submission/">MetaGuard: A Browser-Based Robust and Forensic Meta-Analysis Tool</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/metaguard" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/metamethods/e156-submission/">MetaMethods: Six Advanced Statistical Methods for Meta-Analysis i</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/metamethods" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/metaregression/e156-submission/">MetaRegression Workbench: Browser-Based Mixed-Effects Meta-Regres</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/metaregression" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/metarep/e156-submission/">MetaRep: Most Significant Cochrane Meta-Analyses Predict Only 32%</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/metarep" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/metareproducer/e156-submission/">Computational Reproducibility Audit of 501 Cochrane Meta-Analyses</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/metareproducer" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/metashift/e156-submission/">MetaShift: Changepoint Detection Reveals Hidden Regime Shifts in </a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/metashift" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/meta-ecosystem-model/e156-submission/">The Meta-Analysis Ecosystem Model: Evidence Velocity, Effect Deca</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/meta-ecosystem-model" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/metanew/e156-submission/">EvidenceOS PRIME: Integrated Meta-Analysis and Health Technology </a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/metanew" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/methodssuite/e156-submission/">Methods Suite: Eight Interoperable Browser-Based Meta-Analysis To</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/methodssuite" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/multilevelerror/e156-submission/">Multilevelerror: Influence Diagnostics for Three-Level Meta-Analy</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/multilevelerror" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/multipledatameta/e156-submission/">Multiple Data Source Meta-Analysis: Pooling Mixed-Format Study Re</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/multipledatameta" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/multiversema/e156-submission/">MultiverseMA: Browser-Based Multiverse Meta-Analysis Engine</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/multiversema" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/nmahtml/e156-submission/">NMA Pro: A Browser-Based Network Meta-Analysis Platform with Inte</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/nmahtml" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/nntmapper/e156-submission/">NNTMapper: Converting Meta-Analytic Effects into Population-Speci</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/nntmapper" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/new-heterogeneity-model/e156-submission/">Adaptive Shrinkage Estimator for Heterogeneity in Small-Sample Me</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/new-heterogeneity-model" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/overlapmatrix/e156-submission/">Overlap Matrix and Corrected Covered Area Calculator for Umbrella</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/overlapmatrix" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/prismachecker/e156-submission/">PRISMA 2020 Compliance Checker: An Interactive Browser Tool for S</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/prismachecker" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/prismaflow/e156-submission/">PRISMA 2020 Flow Diagram Generator for Systematic Reviews</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/prismaflow" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/pairwise70/e156-submission/">MAFI: Meta-Analytic Fragility Index Across 501 Cochrane Pairwise </a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/pairwise70" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/pairwiseai/e156-submission/">TruthCert PairwisePro: Browser-Based Pairwise Meta-Analysis with </a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/pairwiseai" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/paper1/e156-submission/">Bootstrap-Aggregated Penalized Meta-Regression for Small-Sample E</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/paper1" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/poolingsuite/e156-submission/">Pooling Suite: Browser-Based Meta-Analysis Engine with Ten Hetero</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/poolingsuite" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/predictiongap/e156-submission/">The Prediction Gap: 70% of Significant Meta-Analyses Have Null-Sp</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/predictiongap" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/pubbiassuite/e156-submission/">PubBias Suite: Comprehensive Publication Bias Assessment with 12 </a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/pubbiassuite" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/rmstmeta/e156-submission/">RMST Meta: A Browser Tool for Meta-Analysis of Restricted Mean Su</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/rmstmeta" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/robassessor/e156-submission/">RoB Assessor: A Browser-Based Risk of Bias Assessment Tool Implem</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/robassessor" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/sheafnma/e156-submission/">Sheaf-Theoretic Consistency Analysis for Network Meta-Analysis</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/sheafnma" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/softable/e156-submission/">GRADE Summary of Findings Table Generator for Systematic Reviews</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/softable" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/tda-ma/e156-submission/">Topological Data Analysis for Meta-Analytic Heterogeneity Explora</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/tda-ma" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/tgep-development/e156-submission/">Triple-Guard Ensemble Pooling for Bias-Sensitive Meta-Analysis</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/tgep-development" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/transportabilitycalc/e156-submission/">Clinical Transportability Engine: A Composite Penalty Index for M</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/transportabilitycalc" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/trialradar/e156-submission/">TrialRadar: Living Clinical Trial Surveillance Dashboard for Ghos</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/trialradar" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/truthcert1/e156-submission/">TruthCert-MA: A Cross-Platform JavaScript Meta-Analysis Engine Va</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/truthcert1" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/truthcert1-work/e156-submission/">TruthCert-PairwisePro: A Browser-Based Pairwise Meta-Analysis Eng</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/truthcert1-work" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/umbrellareview/e156-submission/">Umbrella Review Evidence Classifier with Credibility Grading</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/umbrellareview" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/voicalculator/e156-submission/">Value of Information Calculator for Meta-Analysis Decision Suppor</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/voicalculator" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/value-based-hta-engine/e156-submission/">Multi-Criteria Evidence Synthesizer for Automated Benefit-Harm Tr</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/value-based-hta-engine" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/worldipd/e156-submission/">WorldIPD: An Open Individual Participant Data Hub with Standardiz</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/worldipd" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/worldipd-private/e156-submission/">WorldIPD-Private: Secure Scaffold for Non-Redistributable Individ</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/worldipd-private" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/advanced-nma-pooling/e156-submission/">Advanced NMA Pooling Toolkit with Bias Adjustment and Survival Ex</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/advanced-nma-pooling" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/advanced-nma-pooling/e156-submission/">Advanced NMA Pooling Toolkit with Bias Adjustment and Survival Ex</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/advanced-nma-pooling" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/clinic-site/e156-submission/">London Cardiology Clinic: Privacy-First Clinical Website with Sch</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/clinic-site" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/ctgov-search-strategies/e156-submission/">CT.gov Search Strategy Tool: Systematic Review Search Validation </a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/ctgov-search-strategies" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/cv-rct-analysis/e156-submission/">CV-RCT Analysis: Cardiovascular Trial Landscape Dashboard Integra</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/cv-rct-analysis" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/dosehtml/e156-submission/">Dose Response Pro: Browser-Based Dose-Response Meta-Analysis Matc</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/dosehtml" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/evidence-board/e156-submission/">Evidence Board: A Browser-Based Structured Note System for System</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/evidence-board" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/evidence-inference/e156-submission/">Evidence Inference: Machine Learning Extraction of Treatment Effe</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/evidence-inference" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/focus-studio/e156-submission/">Focus Studio: A Browser-Based Pomodoro Timer with Task Management</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/focus-studio" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/hfpef-registry-synth/e156-submission/">Registry-First Transparency-Adjusted Synthesis for HFpEF Clinical</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/hfpef-registry-synth" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/idea12/e156-submission/">Network Meta-Regression with Forensic Bias Detection for Observat</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/idea12" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/ipd-meta-pro-link/e156-submission/">IPD Meta-Analysis Pro: A Browser-Based Platform for Individual Pa</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/ipd-meta-pro-link" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/kanban-lab/e156-submission/">Kanban Lab: A Persistent Browser-Based Drag-and-Drop Board for Re</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/kanban-lab" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/living-meta/e156-submission/">Living Meta-Analysis: A CT.gov-Native Browser Application for Con</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/living-meta" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/living-meta-engine/e156-submission/">Living Meta-Analysis Engine: Config-Driven Browser Dashboard for </a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/living-meta-engine" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/llm-meta-analysis/e156-submission/">LLM-Driven Meta-Analysis: Automated Extraction and Synthesis from</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/llm-meta-analysis" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/maxent-reconstructor/e156-submission/">MaxEnt IPD Reconstructor: Maximum Entropy Recovery of Individual </a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/maxent-reconstructor" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/metaoverfit/e156-submission/">metaoverfit: Optimism-Corrected Heterogeneity Assessment for Meta</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/metaoverfit" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/metaoverfit-paper/e156-submission/">Overfitting in Published Meta-Regressions: Simulation and Empiric</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/metaoverfit-paper" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/metasprint-autopilot/e156-submission/">MetaSprint Autopilot: Zero-Install Browser Platform for Systemati</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/metasprint-autopilot" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/metasprint-cardio-universe/e156-submission/">MetaSprint Cardio Universe: Provenance-First Discovery for Living</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/metasprint-cardio-universe" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/metasprint-dose-response/e156-submission/">MetaSprint Dose-Response: Browser-Based Nonlinear Dose-Response M</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/metasprint-dose-response" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/metasprint-dta/e156-submission/">MetaSprint DTA: Automated Open-Access Discovery for Diagnostic Te</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/metasprint-dta" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/metasprintnma/e156-submission/">MetaSprint NMA: Zero-Install Browser Network Meta-Analysis with I</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/metasprintnma" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/metaverse-robust-ma/e156-submission/">metaverse: Robust Meta-Analysis with Outlier-Resistant Estimation</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/metaverse-robust-ma" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/nma-dose-response-app/e156-submission/">NMA Dose-Response Studio: Browser-Based Network Meta-Analysis wit</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/nma-dose-response-app" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/prognostic-meta/e156-submission/">PrognosisMeta: Browser-Based Prognostic Meta-Analysis Engine</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/prognostic-meta" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/pub-bias-simulation/e156-submission/">Publication Bias Adjustment Methods: A 135-Scenario Simulation Co</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/pub-bias-simulation" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/rct-extractor-v2/e156-submission/">Deterministic Effect Estimate Extraction from RCT PDFs</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/rct-extractor-v2" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/registry-first-rct-meta/e156-submission/">Registry-First Meta-Analysis: Quantifying Missing Cardiovascular </a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/registry-first-rct-meta" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/repo100/e156-submission/">repo100: A Curated Collection of 137 Meta-Regression Benchmark Da</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/repo100" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/repo300-enma-snma/e156-submission/">Ensemble and Spectral Network Meta-Analysis: Novel Inconsistency-</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/repo300-enma-snma" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/rmstnma/e156-submission/">Bayesian RMST Network Meta-Analysis: The rmstnma R Package</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/rmstnma" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/shahzaib-icu-landscape/e156-submission/">ICU Hemodynamic Trial Landscape: A Living Evidence Map</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/shahzaib-icu-landscape" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/truthcert-denominator-phase1/e156-submission/">Denominator-First Bayesian Meta-Analysis Engine for Registry-Awar</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/truthcert-denominator-phase1" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/truthcert-meta2-prototype/e156-submission/">TruthCert Meta2: Governance Overlay for Denominator-First Meta-An</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/truthcert-meta2-prototype" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/ubcma/e156-submission/">UBCMA: Unified Bias-Calibrated Meta-Analysis via Joint Heterogene</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/ubcma" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/wasserstein/e156-submission/">Automated Kaplan-Meier Digitization for Hazard Ratio Extraction</a></td>
+  <td>methods</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/wasserstein" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/finrenone/e156-submission/">Browser-Based Finerenone Meta-Analysis Validated Against R metafo</a></td>
+  <td>pairwise</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span><span class="badge fig">Figs</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/finrenone" class="gh-link">GitHub</a></td>
+</tr>
+<tr class="ready">
+  <td><a href="https://mahmood726-cyber.github.io/portfolio-site/e156-submission/">Meta-Analysis Methods Lab: A Single-Page Portfolio for 101 Eviden</a></td>
+  <td>showcase</td>
+  <td><span class="status ready">Ready for Review</span></td>
+  <td>156</td>
+  <td><span class="badge app">App</span></td>
+  <td><a href="https://github.com/mahmood726-cyber/portfolio-site" class="gh-link">GitHub</a></td>
+</tr>
+
+    </tbody>
+  </table>
+
+  <div class="footer">Updated 2026 &middot; E156 Micro-Paper Format &middot; All work in progress</div>
+</div>
+<script>
+document.getElementById("filter").addEventListener("input",function(){
+  const q=this.value.toLowerCase();
+  document.querySelectorAll("#table tbody tr").forEach(r=>{
+    r.style.display=r.textContent.toLowerCase().includes(q)?"":"none";
+  });
+});
+</script>
+</body>
+</html>
