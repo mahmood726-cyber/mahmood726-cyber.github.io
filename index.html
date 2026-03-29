@@ -79,12 +79,14 @@ body{font-family:var(--sn);background:var(--bg);color:var(--tx);line-height:1.6}
 .course-card h4{font-family:var(--sf);font-size:.88rem;margin-bottom:.2rem}
 .course-card p{font-size:.75rem;color:var(--t2);line-height:1.5;margin-bottom:.3rem}
 .course-langs{font-size:.6rem;color:var(--t3);font-weight:600;letter-spacing:.05em}
-.course-tier{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ac);margin:1.2rem 0 .6rem;padding-bottom:.3rem;border-bottom:1px solid var(--bd)}
-.course-tier:first-child{margin-top:0}
-.course-tier .tier-arrow{color:var(--gn);margin-right:.3rem}
+h3.course-tier{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ac);margin:1.2rem 0 .6rem;padding-bottom:.3rem;border-bottom:1px solid var(--bd)}
+h3.course-tier:first-child{margin-top:0}
+h3.course-tier .tier-arrow{color:var(--gn);margin-right:.3rem}
 
 /* Draft label */
 .draft-tag{display:inline-block;padding:1px 6px;background:#fff3cd;color:#856404;border-radius:3px;font-size:.55rem;font-weight:700;letter-spacing:.06em;margin-left:.4rem;vertical-align:middle}
+.verified-tag{display:inline-block;padding:1px 6px;background:#d4edda;color:#155724;border-radius:3px;font-size:.55rem;font-weight:700;letter-spacing:.06em;margin-left:.4rem;vertical-align:middle}
+.card-flag.verified{border-top-color:var(--gn)}
 
 /* Timeline note */
 .timeline{font-family:var(--sf);font-size:.78rem;color:var(--t3);font-style:italic;text-align:center;padding:.8rem 2rem;max-width:700px;margin:0 auto}
@@ -107,7 +109,7 @@ body{font-family:var(--sn);background:var(--bg);color:var(--tx);line-height:1.6}
 <a href="#all" class="skip">Skip to all projects</a>
 
 <nav class="mast" role="navigation" aria-label="Main">
-  <div><span class="mast-brand">Mahmood Ahmad</span><span class="mast-tag">refuses to wait for permission</span></div>
+  <div><span class="mast-brand">Mahmood Ahmad</span><span class="mast-tag">by the grace given, we seek to understand</span></div>
   <div class="mast-nav">
     <a href="#research" class="active">Research</a>
     <a href="#course">Course</a>
@@ -359,7 +361,7 @@ body{font-family:var(--sn);background:var(--bg);color:var(--tx);line-height:1.6}
 <section class="course-banner" id="course" role="region" aria-labelledby="course-heading">
   <h2 id="course-heading">Learn evidence synthesis</h2>
   <p class="cb-sub">21 modules in 12 languages — structured from first principles to advanced methods. Free. Open access. Interactive.</p>
-  <div class="course-grid"><div class="course-tier"><span class="tier-arrow">&#9654;</span> Start here (7 modules)</div>
+  <div class="course-grid"><h3 class="course-tier"><span class="tier-arrow">&#9654;</span> Start here (7 modules)</h3>
 <div class="course-grid">
 <a href="https://mahmood726-cyber.github.io/fatiha-course-github-v2/meta-analysis-topic-selection-course.html" class="course-card" aria-label="1. Choosing Your Topic — opens course module">
   <h4>1. Choosing Your Topic</h4><p>Gap analysis, feasibility, registration, scope</p>
@@ -383,7 +385,7 @@ body{font-family:var(--sn);background:var(--bg);color:var(--tx);line-height:1.6}
   <h4>7. Writing the Paper</h4><p>From PRISMA to submission — methods, results, discussion</p>
   <span class="course-langs">EN FR AR ES DE +7 more</span></a>
 </div>
-<div class="course-tier"><span class="tier-arrow">&#9650;</span> Intermediate (6 modules)</div>
+<h3 class="course-tier"><span class="tier-arrow">&#9650;</span> Intermediate (6 modules)</h3>
 <div class="course-grid">
 <a href="https://mahmood726-cyber.github.io/fatiha-course-github-v2/dta-course-when-the-test-lies-v4.html" class="course-card" aria-label="Diagnostic Test Accuracy — opens course module">
   <h4>Diagnostic Test Accuracy</h4><p>Bivariate models, HSROC, QUADAS</p>
@@ -404,7 +406,7 @@ body{font-family:var(--sn);background:var(--bg);color:var(--tx);line-height:1.6}
   <h4>Observational Evidence</h4><p>ROBINS-E, target trials, confounding, transportability</p>
   <span class="course-langs">EN FR AR ES DE +7 more</span></a>
 </div>
-<div class="course-tier"><span class="tier-arrow">&#9733;</span> Advanced (8 modules)</div>
+<h3 class="course-tier"><span class="tier-arrow">&#9733;</span> Advanced (8 modules)</h3>
 <div class="course-grid">
 <a href="https://mahmood726-cyber.github.io/fatiha-course-github-v2/prognostic-reviews-course.html" class="course-card" aria-label="Prognostic Reviews — opens course module">
   <h4>Prognostic Reviews</h4><p>Prediction models, calibration, PROBAST, validation</p>
@@ -439,7 +441,7 @@ body{font-family:var(--sn);background:var(--bg);color:var(--tx);line-height:1.6}
   <h2 id="about-heading">Why 156 words?</h2>
   <p>Because a paragraph is the smallest unit that can carry a complete argument. Seven sentences. One question, one dataset, one method, one result, one robustness check, one interpretation, one limitation. Nothing hidden. Nothing inflated.</p>
   <p>I am a cardiologist. I read meta-analyses that change how we treat patients. Most are buried in papers so long that the finding — the actual number that matters — is lost on page twelve. I wanted something different: a format where every word is load-bearing, the limitation is mandatory, and a reader can evaluate the claim in ninety seconds.</p>
-  <p>159 projects. Each distilled to its essential truth. The apps work. The code is open. The numbers are verifiable. This is not a finished body of work — it is a body of work that refuses to wait for permission to be visible.</p>
+  <p>159 projects. Each distilled to its essential truth. The apps work. The code is open. The numbers are verifiable. Whatever understanding is reached here is not ours alone — it is given. This work exists because the capacity to reason, to measure, and to question was granted before any of us chose to use it.</p>
 </section>
 
 <hr class="rule">
@@ -799,7 +801,7 @@ body{font-family:var(--sn);background:var(--bg);color:var(--tx);line-height:1.6}
 
 <footer class="ft">
   <div>&copy; 2026 Mahmood Ahmad &middot; Tahir Heart Institute &middot; <a href="mailto:mahmood.ahmad2@nhs.net">Contact</a></div>
-  <div class="ft-close">Every conclusion in medicine can be verified in ninety seconds. &middot; March 2026</div>
+  <div class="ft-close">By the grace given, we seek to understand. &middot; March 2026</div>
 </footer>
 
 <script>
