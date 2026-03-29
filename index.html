@@ -17,6 +17,10 @@
 html{scroll-behavior:smooth}
 body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6}
 
+/* ── Skip link ─────────────────────────────── */
+.skip-link{position:absolute;top:-50px;left:0;background:var(--card);padding:8px 16px;font-size:.8rem;z-index:999;border:1px solid var(--border);border-radius:4px}
+.skip-link:focus{top:8px;left:8px}
+
 /* ── Masthead ──────────────────────────────── */
 .masthead{max-width:1100px;margin:0 auto;padding:12px 2rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--text2)}
 .masthead-brand{font-family:var(--serif);font-weight:700;color:var(--text);font-size:1rem;letter-spacing:-.02em}
@@ -40,6 +44,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:
 .section-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1.5rem;flex-wrap:wrap;gap:.5rem}
 .section-label{font-family:var(--serif);font-size:1.4rem;font-weight:700}
 .section-count{font-size:.75rem;color:var(--text3)}
+.section-intro{font-family:var(--serif);color:var(--text2);max-width:60ch;margin-bottom:2rem;font-size:.95rem;line-height:1.7;padding:1rem 0;border-bottom:1px solid var(--border)}
 
 /* ── Category nav ──────────────────────────── */
 .cat-nav{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem;align-items:center}
@@ -66,7 +71,10 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:
 
 .card{border:1px solid var(--border);border-radius:8px;padding:1.2rem 1.4rem;background:var(--card);transition:border-color .15s,box-shadow .15s}
 .card:hover{border-color:var(--accent);box-shadow:0 2px 12px rgba(0,0,0,.04)}
-.card-flag{border-top:3px solid var(--accent)}
+.card-flag{border-top:3px solid var(--accent);overflow:hidden}
+.card-fig{width:100%;height:160px;object-fit:cover;display:block;border-bottom:1px solid var(--border);margin:-1.2rem -1.4rem 1rem;width:calc(100% + 2.8rem)}
+.card-body{}
+.card-question{font-family:var(--serif);font-size:.8rem;color:var(--text3);font-style:italic;margin-bottom:.4rem;line-height:1.5}
 .card-sm{display:block;text-decoration:none;color:var(--text);padding:1rem 1.2rem}
 .card-eyebrow{font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem;display:flex;align-items:center;gap:5px}
 .card h3{font-family:var(--serif);font-size:1.05rem;line-height:1.3;margin-bottom:.4rem}
@@ -90,6 +98,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:
 /* ── Footer ────────────────────────────────── */
 .footer{max-width:1100px;margin:0 auto;padding:2rem;border-top:1px solid var(--border);font-size:.7rem;color:var(--text3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
 .footer a{color:var(--accent);text-decoration:none}
+.footer-closing{font-family:var(--serif);font-style:italic;color:var(--text2)}
 
 /* ── Toggle ────────────────────────────────── */
 .toggle-btn{padding:6px 12px;border:1px solid var(--border);border-radius:4px;background:var(--card);font-size:.72rem;cursor:pointer;color:var(--text2)}
@@ -112,9 +121,10 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:
 </head>
 <body>
 
-<nav class="masthead">
+<a href="#all" class="skip-link">Skip to all projects</a>
+<nav class="masthead" role="navigation" aria-label="Main navigation">
   <div class="masthead-brand">Mahmood Ahmad</div>
-  <div>Tahir Heart Institute &middot; <a href="mailto:mahmood.ahmad2@nhs.net">Contact</a> &middot; <a href="https://github.com/mahmood726-cyber">GitHub</a></div>
+  <div>Tahir Heart Institute &middot; <a href="mailto:mahmood.ahmad2@nhs.net">Contact</a> &middot; <a href="https://github.com/mahmood726-cyber" rel="noopener">GitHub</a></div>
 </nav>
 
 <header class="hero">
@@ -124,7 +134,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:
   <div class="stats-row">
     <div class="stat"><div class="stat-num">158</div><div class="stat-label">Projects</div></div>
     <div class="stat"><div class="stat-num">86</div><div class="stat-label">Interactive Apps</div></div>
-    <div class="stat"><div class="stat-num">41</div><div class="stat-label">Visualizations</div></div>
+    <div class="stat"><div class="stat-num">100</div><div class="stat-label">Visualizations</div></div>
   </div>
 </header>
 
@@ -135,85 +145,117 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:
     <div class="section-label">The evidence speaks first</div>
     <div class="section-count">14 flagship projects</div>
   </div>
-  <p style="font-family:var(--serif);color:var(--text2);max-width:60ch;margin-bottom:1.5rem;font-size:.95rem">Before the method. Before the software. Before the publication — there is a finding. These projects led with a number, then built everything around proving it right.</p>
+  <p class="section-intro">Before the method. Before the software. Before the publication — there is a finding. These projects led with a number, then built everything around proving it right.</p>
   <div class="grid-flag"><article class="card card-flag" data-cat="Browser App">
-      <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
-      <h3><a href="https://mahmood726-cyber.github.io/adaptsim/e156-submission/">AdaptSim: A Browser-Based Simulator for Adaptive Group-Sequential Trial Design M</a></h3>
-      <p class="card-result">Boundary calculations matched rpact to four decimal places, with mean sensitivity to true effect of 0.98 (95% CI 0.96 to 0.99) and</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/adaptsim/e156-submission/">Paper</a>
-        <a href='https://mahmood726-cyber.github.io/adaptsim/e156-submission/assets/adaptsim.html' class='app-link'>App</a>
-        <a href="https://github.com/mahmood726-cyber/adaptsim" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/adaptsim/e156-submission/assets/figure1_alpha_spending.png" alt="AdaptSim: A Browser-Based Simulator for " class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
+        <h3><a href="https://mahmood726-cyber.github.io/adaptsim/e156-submission/">AdaptSim: A Browser-Based Simulator for Adaptive Group-Sequential Trial Design M</a></h3>
+        <p class="card-question">Can a browser-based tool reproduce adaptive group-sequential trial designs with the accuracy of esta</p>
+        <p class="card-result">Boundary calculations matched rpact to four decimal places, with mean sensitivity to true effect of 0.98 (95% CI 0.96 to 0.99) and</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/adaptsim/e156-submission/">Paper</a>
+          <a href='https://mahmood726-cyber.github.io/adaptsim/e156-submission/assets/adaptsim.html' class='app-link' rel='noopener'>App</a>
+          <a href="https://github.com/mahmood726-cyber/adaptsim" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="Browser App">
-      <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
-      <h3><a href="https://mahmood726-cyber.github.io/al-mizan/e156-submission/">Al-Mizan: An Evidence Equipoise Monitor for Detecting When the Balance of Eviden</a></h3>
-      <p class="card-result">In corticosteroids for traumatic brain injury, the boundary was not crossed before CRASH, which randomised 10,008 patients and shi</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/al-mizan/e156-submission/">Paper</a>
-        <a href='https://mahmood726-cyber.github.io/al-mizan/e156-submission/assets/al-mizan.html' class='app-link'>App</a>
-        <a href="https://github.com/mahmood726-cyber/al-mizan" class="gh">Code</a>
+      
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
+        <h3><a href="https://mahmood726-cyber.github.io/al-mizan/e156-submission/">Al-Mizan: An Evidence Equipoise Monitor for Detecting When the Balance of Eviden</a></h3>
+        <p class="card-question">When has accumulating trial evidence already answered a clinical question, and how many participants</p>
+        <p class="card-result">In corticosteroids for traumatic brain injury, the boundary was not crossed before CRASH, which randomised 10,008 patients and shi</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/al-mizan/e156-submission/">Paper</a>
+          <a href='https://mahmood726-cyber.github.io/al-mizan/e156-submission/assets/al-mizan.html' class='app-link' rel='noopener'>App</a>
+          <a href="https://github.com/mahmood726-cyber/al-mizan" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="Browser App">
-      <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
-      <h3><a href="https://mahmood726-cyber.github.io/bias-forensics/e156-submission/">The Bias Fingerprint: Eight Methods Disagree in One of Seven Cochrane Meta-Analy</a></h3>
-      <p class="card-result">Only 54 reviews (17.6%) were Clean while 42 were Discordant, giving a discordance rate of 13.7% and a median risk-ratio shift belo</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/bias-forensics/e156-submission/">Paper</a>
-        <a href='https://mahmood726-cyber.github.io/bias-forensics/e156-submission/assets/dashboard_index.html' class='app-link'>App</a>
-        <a href="https://github.com/mahmood726-cyber/bias-forensics" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/bias-forensics/e156-submission/assets/figure1_bias_fingerprint.png" alt="The Bias Fingerprint: Eight Methods Disa" class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
+        <h3><a href="https://mahmood726-cyber.github.io/bias-forensics/e156-submission/">The Bias Fingerprint: Eight Methods Disagree in One of Seven Cochrane Meta-Analy</a></h3>
+        <p class="card-question">When eight publication-bias methods are applied to the same meta-analysis, how often do they reach t</p>
+        <p class="card-result">Only 54 reviews (17.6%) were Clean while 42 were Discordant, giving a discordance rate of 13.7% and a median risk-ratio shift belo</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/bias-forensics/e156-submission/">Paper</a>
+          <a href='https://mahmood726-cyber.github.io/bias-forensics/e156-submission/assets/dashboard_index.html' class='app-link' rel='noopener'>App</a>
+          <a href="https://github.com/mahmood726-cyber/bias-forensics" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="Browser App">
-      <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
-      <h3><a href="https://mahmood726-cyber.github.io/fragility-atlas/e156-submission/">The Fragility Atlas: Multiverse Analysis of 403 Cochrane Meta-Analyses Reveals 5</a></h3>
-      <p class="card-result">The mean robustness score was 66.4 percent (median 66.7 percent, IQR 56.5 to 87.2 percent), with 58 percent of all reviews classif</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/fragility-atlas/e156-submission/">Paper</a>
-        <a href='https://mahmood726-cyber.github.io/fragility-atlas/e156-submission/assets/dashboard_index.html' class='app-link'>App</a>
-        <a href="https://github.com/mahmood726-cyber/fragility-atlas" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/fragility-atlas/e156-submission/assets/figure1_robustness_distribution.png" alt="The Fragility Atlas: Multiverse Analysis" class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
+        <h3><a href="https://mahmood726-cyber.github.io/fragility-atlas/e156-submission/">The Fragility Atlas: Multiverse Analysis of 403 Cochrane Meta-Analyses Reveals 5</a></h3>
+        <p class="card-question">How robust are Cochrane meta-analysis conclusions when analysts make different but equally reasonabl</p>
+        <p class="card-result">The mean robustness score was 66.4 percent (median 66.7 percent, IQR 56.5 to 87.2 percent), with 58 percent of all reviews classif</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/fragility-atlas/e156-submission/">Paper</a>
+          <a href='https://mahmood726-cyber.github.io/fragility-atlas/e156-submission/assets/dashboard_index.html' class='app-link' rel='noopener'>App</a>
+          <a href="https://github.com/mahmood726-cyber/fragility-atlas" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="Browser App">
-      <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
-      <h3><a href="https://mahmood726-cyber.github.io/dta-pro-v2/e156-submission/">DTA Meta-Analysis Pro: A Browser-Based Tool for Diagnostic Test Accuracy Evidenc</a></h3>
-      <p class="card-result">Validation against the R mada package version 0.5.12 produced 27 of 27 parity tests passing at 100 percent concordance, with 45 ex</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/dta-pro-v2/e156-submission/">Paper</a>
-        <a href='https://mahmood726-cyber.github.io/dta-pro-v2/e156-submission/assets/dta-pro-v3.7.html' class='app-link'>App</a>
-        <a href="https://github.com/mahmood726-cyber/dta-pro-v2" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/dta-pro-v2/e156-submission/assets/figure01_overview_fullpage.png" alt="DTA Meta-Analysis Pro: A Browser-Based T" class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
+        <h3><a href="https://mahmood726-cyber.github.io/dta-pro-v2/e156-submission/">DTA Meta-Analysis Pro: A Browser-Based Tool for Diagnostic Test Accuracy Evidenc</a></h3>
+        <p class="card-question">How can systematic reviewers synthesize diagnostic accuracy data using hierarchical models without s</p>
+        <p class="card-result">Validation against the R mada package version 0.5.12 produced 27 of 27 parity tests passing at 100 percent concordance, with 45 ex</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/dta-pro-v2/e156-submission/">Paper</a>
+          <a href='https://mahmood726-cyber.github.io/dta-pro-v2/e156-submission/assets/dta-pro-v3.7.html' class='app-link' rel='noopener'>App</a>
+          <a href="https://github.com/mahmood726-cyber/dta-pro-v2" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="Browser App">
-      <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
-      <h3><a href="https://mahmood726-cyber.github.io/hta-artifact-standard-v2/e156-submission/">HTA Artifact Standard: An Open-Source Platform with 41 Analytical Engines for He</a></h3>
-      <p class="card-result">The validation suite comprises 3,337 automated tests across unit, integration, property-based, stress, and performance categories,</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/hta-artifact-standard-v2/e156-submission/">Paper</a>
-        <a href='https://mahmood726-cyber.github.io/hta-artifact-standard-v2/e156-submission/assets/dist_index.html' class='app-link'>App</a>
-        <a href="https://github.com/mahmood726-cyber/hta-artifact-standard-v2" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/hta-artifact-standard-v2/e156-submission/assets/figure01_overview_fullpage.png" alt="HTA Artifact Standard: An Open-Source Pl" class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
+        <h3><a href="https://mahmood726-cyber.github.io/hta-artifact-standard-v2/e156-submission/">HTA Artifact Standard: An Open-Source Platform with 41 Analytical Engines for He</a></h3>
+        <p class="card-question">How can health technology assessment analysts unify economic modeling, evidence synthesis, and uncer</p>
+        <p class="card-result">The validation suite comprises 3,337 automated tests across unit, integration, property-based, stress, and performance categories,</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/hta-artifact-standard-v2/e156-submission/">Paper</a>
+          <a href='https://mahmood726-cyber.github.io/hta-artifact-standard-v2/e156-submission/assets/dist_index.html' class='app-link' rel='noopener'>App</a>
+          <a href="https://github.com/mahmood726-cyber/hta-artifact-standard-v2" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="Browser App">
-      <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
-      <h3><a href="https://mahmood726-cyber.github.io/ipd-meta-pro/e156-submission/">IPD Meta-Analysis Pro: A Browser-Based Platform for Individual Participant Data </a></h3>
-      <p class="card-result">A release pipeline comprising 56 automated regression tests achieved a 100 percent pass rate, with R parity gates confirming agree</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/ipd-meta-pro/e156-submission/">Paper</a>
-        <a href='https://mahmood726-cyber.github.io/ipd-meta-pro/e156-submission/assets/ipd-meta-pro.html' class='app-link'>App</a>
-        <a href="https://github.com/mahmood726-cyber/ipd-meta-pro" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/ipd-meta-pro/e156-submission/assets/figure01_overview_fullpage.png" alt="IPD Meta-Analysis Pro: A Browser-Based P" class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
+        <h3><a href="https://mahmood726-cyber.github.io/ipd-meta-pro/e156-submission/">IPD Meta-Analysis Pro: A Browser-Based Platform for Individual Participant Data </a></h3>
+        <p class="card-question">How can researchers conduct individual participant data meta-analysis reproducibly without fragmenti</p>
+        <p class="card-result">A release pipeline comprising 56 automated regression tests achieved a 100 percent pass rate, with R parity gates confirming agree</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/ipd-meta-pro/e156-submission/">Paper</a>
+          <a href='https://mahmood726-cyber.github.io/ipd-meta-pro/e156-submission/assets/ipd-meta-pro.html' class='app-link' rel='noopener'>App</a>
+          <a href="https://github.com/mahmood726-cyber/ipd-meta-pro" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="Browser App">
-      <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
-      <h3><a href="https://mahmood726-cyber.github.io/truthcert-pairwisepro-v2/e156-submission/">TruthCert-PairwisePro: A Browser-Based Pairwise Meta-Analysis Engine with Seven </a></h3>
-      <p class="card-result">Across 108 validation checks against R version 4.5.2, the tool achieved a 96.4 percent concordance rate, with OR and SMD pooling m</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/truthcert-pairwisepro-v2/e156-submission/">Paper</a>
-        <a href='https://mahmood726-cyber.github.io/truthcert-pairwisepro-v2/e156-submission/assets/Main screen.html' class='app-link'>App</a>
-        <a href="https://github.com/mahmood726-cyber/truthcert-pairwisepro-v2" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/truthcert-pairwisepro-v2/e156-submission/assets/figure01_overview_fullpage.png" alt="TruthCert-PairwisePro: A Browser-Based P" class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
+        <h3><a href="https://mahmood726-cyber.github.io/truthcert-pairwisepro-v2/e156-submission/">TruthCert-PairwisePro: A Browser-Based Pairwise Meta-Analysis Engine with Seven </a></h3>
+        <p class="card-question">How can clinicians perform rigorous pairwise meta-analysis entirely within a web browser, without in</p>
+        <p class="card-result">Across 108 validation checks against R version 4.5.2, the tool achieved a 96.4 percent concordance rate, with OR and SMD pooling m</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/truthcert-pairwisepro-v2/e156-submission/">Paper</a>
+          <a href='https://mahmood726-cyber.github.io/truthcert-pairwisepro-v2/e156-submission/assets/Main screen.html' class='app-link' rel='noopener'>App</a>
+          <a href="https://github.com/mahmood726-cyber/truthcert-pairwisepro-v2" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article></div>
 </section>
@@ -225,207 +267,296 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:
     <div class="section-label">Then came the tools</div>
     <div class="section-count">30 validated instruments</div>
   </div>
-  <p style="font-family:var(--serif);color:var(--text2);max-width:60ch;margin-bottom:1.5rem;font-size:.95rem">A finding without a tool is a claim. A tool without validation is a promise. These projects are both — tested against R, validated on real data, open for anyone to challenge.</p>
+  <p class="section-intro">A finding without a tool is a claim. A tool without validation is a promise. These projects are both — tested against R, validated on real data, open for anyone to challenge.</p>
   <div class="grid-flag"><article class="card card-flag" data-cat="Browser App">
-      <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
-      <h3><a href="https://mahmood726-cyber.github.io/dosehtml/e156-submission/">Dose Response Pro: Browser-Based Dose-Response Meta-Analysis Matching R Accuracy</a></h3>
-      <p class="card-result">Strict benchmarking against the R dosresmeta package showed exact parity on 120 of 120 comparable datasets with a median runtime s</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/dosehtml/e156-submission/">Paper</a>
-        <a href='https://mahmood726-cyber.github.io/dosehtml/e156-submission/assets/dose-response-pro-v18.1-ultimate.html' class='app-link'>App</a>
-        <a href="https://github.com/mahmood726-cyber/dosehtml" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/dosehtml/e156-submission/assets/Figure 1.png" alt="Dose Response Pro: Browser-Based Dose-Re" class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
+        <h3><a href="https://mahmood726-cyber.github.io/dosehtml/e156-submission/">Dose Response Pro: Browser-Based Dose-Response Meta-Analysis Matching R Accuracy</a></h3>
+        <p class="card-question">Can browser-based dose-response meta-analysis match the numerical accuracy of established R packages</p>
+        <p class="card-result">Strict benchmarking against the R dosresmeta package showed exact parity on 120 of 120 comparable datasets with a median runtime s</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/dosehtml/e156-submission/">Paper</a>
+          <a href='https://mahmood726-cyber.github.io/dosehtml/e156-submission/assets/dose-response-pro-v18.1-ultimate.html' class='app-link' rel='noopener'>App</a>
+          <a href="https://github.com/mahmood726-cyber/dosehtml" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="Browser App">
-      <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
-      <h3><a href="https://mahmood726-cyber.github.io/living-meta/e156-submission/">Living Meta-Analysis: A CT.gov-Native Browser Application for Continuously Updat</a></h3>
-      <p class="card-result">All core statistical methods passed validation with tau-squared matching within 0.0001 and prediction intervals using correct degr</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/living-meta/e156-submission/">Paper</a>
-        <a href='https://mahmood726-cyber.github.io/living-meta/e156-submission/assets/living-meta-complete.html' class='app-link'>App</a>
-        <a href="https://github.com/mahmood726-cyber/living-meta" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/living-meta/e156-submission/assets/figure01_overview_fullpage.png" alt="Living Meta-Analysis: A CT.gov-Native Br" class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
+        <h3><a href="https://mahmood726-cyber.github.io/living-meta/e156-submission/">Living Meta-Analysis: A CT.gov-Native Browser Application for Continuously Updat</a></h3>
+        <p class="card-question">Can a browser application automate the surveillance and analytic refresh cycles required for living </p>
+        <p class="card-result">All core statistical methods passed validation with tau-squared matching within 0.0001 and prediction intervals using correct degr</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/living-meta/e156-submission/">Paper</a>
+          <a href='https://mahmood726-cyber.github.io/living-meta/e156-submission/assets/living-meta-complete.html' class='app-link' rel='noopener'>App</a>
+          <a href="https://github.com/mahmood726-cyber/living-meta" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="Browser App">
-      <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
-      <h3><a href="https://mahmood726-cyber.github.io/nma-dose-response-app/e156-submission/">NMA Dose-Response Studio: Browser-Based Network Meta-Analysis with Dose-Response</a></h3>
-      <p class="card-result">All heterogeneity estimates, pooled effects, and ranking probabilities matched reference R packages within pre-specified tolerance</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/nma-dose-response-app/e156-submission/">Paper</a>
-        <a href='https://mahmood726-cyber.github.io/nma-dose-response-app/e156-submission/assets/index.prod.html' class='app-link'>App</a>
-        <a href="https://github.com/mahmood726-cyber/nma-dose-response-app" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/nma-dose-response-app/e156-submission/assets/figure01_overview_fullpage.png" alt="NMA Dose-Response Studio: Browser-Based " class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
+        <h3><a href="https://mahmood726-cyber.github.io/nma-dose-response-app/e156-submission/">NMA Dose-Response Studio: Browser-Based Network Meta-Analysis with Dose-Response</a></h3>
+        <p class="card-question">Can network meta-analysis be combined with dose-response modeling in a single browser environment ac</p>
+        <p class="card-result">All heterogeneity estimates, pooled effects, and ranking probabilities matched reference R packages within pre-specified tolerance</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/nma-dose-response-app/e156-submission/">Paper</a>
+          <a href='https://mahmood726-cyber.github.io/nma-dose-response-app/e156-submission/assets/index.prod.html' class='app-link' rel='noopener'>App</a>
+          <a href="https://github.com/mahmood726-cyber/nma-dose-response-app" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="Browser App">
-      <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
-      <h3><a href="https://mahmood726-cyber.github.io/nma-pro-v2/e156-submission/">NMA Pro: A Browser-Based Network Meta-Analysis Platform with Integrated Rapid Re</a></h3>
-      <p class="card-result">All six validation scenarios passed with maximum absolute error of 0.000649 (95% CI 0.000082 to 0.001216) for pooled effects and 0</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/nma-pro-v2/e156-submission/">Paper</a>
-        <a href='https://mahmood726-cyber.github.io/nma-pro-v2/e156-submission/assets/nma-pro-v6.2-optimized.html' class='app-link'>App</a>
-        <a href="https://github.com/mahmood726-cyber/nma-pro-v2" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/nma-pro-v2/e156-submission/assets/figure01_overview_fullpage.png" alt="NMA Pro: A Browser-Based Network Meta-An" class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
+        <h3><a href="https://mahmood726-cyber.github.io/nma-pro-v2/e156-submission/">NMA Pro: A Browser-Based Network Meta-Analysis Platform with Integrated Rapid Re</a></h3>
+        <p class="card-question">Can a single browser file replace the multi-tool workflow of network meta-analysis, from literature </p>
+        <p class="card-result">All six validation scenarios passed with maximum absolute error of 0.000649 (95% CI 0.000082 to 0.001216) for pooled effects and 0</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/nma-pro-v2/e156-submission/">Paper</a>
+          <a href='https://mahmood726-cyber.github.io/nma-pro-v2/e156-submission/assets/nma-pro-v6.2-optimized.html' class='app-link' rel='noopener'>App</a>
+          <a href="https://github.com/mahmood726-cyber/nma-pro-v2" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="Browser App">
-      <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
-      <h3><a href="https://mahmood726-cyber.github.io/truthcert1/e156-submission/">TruthCert-MA: A Cross-Platform JavaScript Meta-Analysis Engine Validated Against</a></h3>
-      <p class="card-result">All pooled estimates matched R metafor within 0.001 for point estimates and 0.01 for confidence interval bounds across the full be</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/truthcert1/e156-submission/">Paper</a>
-        <a href='https://mahmood726-cyber.github.io/truthcert1/e156-submission/assets/Main screen.html' class='app-link'>App</a>
-        <a href="https://github.com/mahmood726-cyber/truthcert1" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/truthcert1/e156-submission/assets/figure01_overview_fullpage.png" alt="TruthCert-MA: A Cross-Platform JavaScrip" class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
+        <h3><a href="https://mahmood726-cyber.github.io/truthcert1/e156-submission/">TruthCert-MA: A Cross-Platform JavaScript Meta-Analysis Engine Validated Against</a></h3>
+        <p class="card-question">Can a single JavaScript library provide a complete meta-analysis engine validated for both browser a</p>
+        <p class="card-result">All pooled estimates matched R metafor within 0.001 for point estimates and 0.01 for confidence interval bounds across the full be</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/truthcert1/e156-submission/">Paper</a>
+          <a href='https://mahmood726-cyber.github.io/truthcert1/e156-submission/assets/Main screen.html' class='app-link' rel='noopener'>App</a>
+          <a href="https://github.com/mahmood726-cyber/truthcert1" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="Browser App">
-      <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
-      <h3><a href="https://mahmood726-cyber.github.io/metareproducer/e156-submission/">MetaReproducer: Reproducibility Capsule for Cochrane Reproduction Audits</a></h3>
-      <p class="card-result">Across the inventory, the repository yields a documentation proportion of 0.24, with file-count range 1-16 across core surfaces, w</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/metareproducer/e156-submission/">Paper</a>
-        <a href='https://mahmood726-cyber.github.io/metareproducer/e156-submission/assets/dashboard_index.html' class='app-link'>App</a>
-        <a href="https://github.com/mahmood726-cyber/metareproducer" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/metareproducer/e156-submission/assets/figure1_oa_coverage.png" alt="MetaReproducer: Reproducibility Capsule " class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
+        <h3><a href="https://mahmood726-cyber.github.io/metareproducer/e156-submission/">MetaReproducer: Reproducibility Capsule for Cochrane Reproduction Audits</a></h3>
+        <p class="card-question">Can a reproducibility capsule turn an evidence-synthesis repository into a reviewer-auditable submis</p>
+        <p class="card-result">Across the inventory, the repository yields a documentation proportion of 0.24, with file-count range 1-16 across core surfaces, w</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/metareproducer/e156-submission/">Paper</a>
+          <a href='https://mahmood726-cyber.github.io/metareproducer/e156-submission/assets/dashboard_index.html' class='app-link' rel='noopener'>App</a>
+          <a href="https://github.com/mahmood726-cyber/metareproducer" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="R Package">
-      <div class="card-eyebrow"><span class="cat-dot r-package"></span>R Package</div>
-      <h3><a href="https://mahmood726-cyber.github.io/fatiha/e156-submission/">SYNTHESIS: A 7-Layer Verification Framework for Detecting Fragile Meta-Analyses</a></h3>
-      <p class="card-result">Under publication bias, the median OR bias was 0.051 versus 0.463 for REML, with 95% CI coverage of 95.2 percent versus 0 percent </p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/fatiha/e156-submission/">Paper</a>
-        
-        <a href="https://github.com/mahmood726-cyber/fatiha" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/fatiha/e156-submission/assets/Fig2_Simulation_Results.png" alt="SYNTHESIS: A 7-Layer Verification Framew" class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot r-package"></span>R Package</div>
+        <h3><a href="https://mahmood726-cyber.github.io/fatiha/e156-submission/">SYNTHESIS: A 7-Layer Verification Framework for Detecting Fragile Meta-Analyses</a></h3>
+        <p class="card-question">Can a multi-layered verification framework detect fragile meta-analytic estimates that standard rand</p>
+        <p class="card-result">Under publication bias, the median OR bias was 0.051 versus 0.463 for REML, with 95% CI coverage of 95.2 percent versus 0 percent </p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/fatiha/e156-submission/">Paper</a>
+          
+          <a href="https://github.com/mahmood726-cyber/fatiha" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="R Package">
-      <div class="card-eyebrow"><span class="cat-dot r-package"></span>R Package</div>
-      <h3><a href="https://mahmood726-cyber.github.io/grma/e156-submission/">Grey Relational Meta-Analysis: A Robust Pooling Method with Redescending Effect </a></h3>
-      <p class="card-result">GRMA reduced median absolute bias of the pooled RR by up to 66 percent in four of five outlier scenarios, with bootstrap 95% CI co</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/grma/e156-submission/">Paper</a>
-        
-        <a href="https://github.com/mahmood726-cyber/grma" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/grma/e156-submission/assets/Fig1_bias_rmse_by_scenario.png" alt="Grey Relational Meta-Analysis: A Robust " class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot r-package"></span>R Package</div>
+        <h3><a href="https://mahmood726-cyber.github.io/grma/e156-submission/">Grey Relational Meta-Analysis: A Robust Pooling Method with Redescending Effect </a></h3>
+        <p class="card-question">Can grey relational analysis provide a transparent and robust alternative to inverse-variance meta-a</p>
+        <p class="card-result">GRMA reduced median absolute bias of the pooled RR by up to 66 percent in four of five outlier scenarios, with bootstrap 95% CI co</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/grma/e156-submission/">Paper</a>
+          
+          <a href="https://github.com/mahmood726-cyber/grma" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="R Package">
-      <div class="card-eyebrow"><span class="cat-dot r-package"></span>R Package</div>
-      <h3><a href="https://mahmood726-cyber.github.io/gwam/e156-submission/">GWAM: Ghost-Weighted Aggregate Meta-Analysis for Registry-Based Publication Bias</a></h3>
-      <p class="card-result">For escitalopram in depression, the adjusted OR on the log scale fell to 0.025 (95% CI negative 0.041 to 0.087) versus the publish</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/gwam/e156-submission/">Paper</a>
-        
-        <a href="https://github.com/mahmood726-cyber/gwam" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/gwam/e156-submission/assets/fig1_pipeline.png" alt="GWAM: Ghost-Weighted Aggregate Meta-Anal" class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot r-package"></span>R Package</div>
+        <h3><a href="https://mahmood726-cyber.github.io/gwam/e156-submission/">GWAM: Ghost-Weighted Aggregate Meta-Analysis for Registry-Based Publication Bias</a></h3>
+        <p class="card-question">Can trial registry data provide a quantitative sensitivity framework for publication bias in meta-an</p>
+        <p class="card-result">For escitalopram in depression, the adjusted OR on the log scale fell to 0.025 (95% CI negative 0.041 to 0.087) versus the publish</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/gwam/e156-submission/">Paper</a>
+          
+          <a href="https://github.com/mahmood726-cyber/gwam" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="Browser App">
-      <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
-      <h3><a href="https://mahmood726-cyber.github.io/hta-evidence-integrity/e156-submission/">Evidence Integrity Suite for Multi-Layered Health Technology Assessment of Cochr</a></h3>
-      <p class="card-result">Only 36.4 percent of 492 meta-analyses met adequate information thresholds, while 26.1 percent exhibited directional fragility and</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/hta-evidence-integrity/e156-submission/">Paper</a>
-        <a href='https://mahmood726-cyber.github.io/hta-evidence-integrity/e156-submission/assets/HTA_Dashboard.html' class='app-link'>App</a>
-        <a href="https://github.com/mahmood726-cyber/hta-evidence-integrity" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/hta-evidence-integrity/e156-submission/assets/v4_bias_rmse_scatter.png" alt="Evidence Integrity Suite for Multi-Layer" class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
+        <h3><a href="https://mahmood726-cyber.github.io/hta-evidence-integrity/e156-submission/">Evidence Integrity Suite for Multi-Layered Health Technology Assessment of Cochr</a></h3>
+        <p class="card-question">Can automated information adequacy, fragility, and publication bias assessment improve health techno</p>
+        <p class="card-result">Only 36.4 percent of 492 meta-analyses met adequate information thresholds, while 26.1 percent exhibited directional fragility and</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/hta-evidence-integrity/e156-submission/">Paper</a>
+          <a href='https://mahmood726-cyber.github.io/hta-evidence-integrity/e156-submission/assets/HTA_Dashboard.html' class='app-link' rel='noopener'>App</a>
+          <a href="https://github.com/mahmood726-cyber/hta-evidence-integrity" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="Browser App">
-      <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
-      <h3><a href="https://mahmood726-cyber.github.io/hta-unified-intelligence/e156-submission/">HTA Unified Intelligence System: Self-Correcting Evidence Synthesis with Triple-</a></h3>
-      <p class="card-result">The mean OR-scale divergence across technologies was 39.9 percent with 95% CI 28 to 52, and the guard rail classified 75 percent a</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/hta-unified-intelligence/e156-submission/">Paper</a>
-        <a href='https://mahmood726-cyber.github.io/hta-unified-intelligence/e156-submission/assets/Unified_HTA_Dashboard.html' class='app-link'>App</a>
-        <a href="https://github.com/mahmood726-cyber/hta-unified-intelligence" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/hta-unified-intelligence/e156-submission/assets/figure1_tiered_truth.png" alt="HTA Unified Intelligence System: Self-Co" class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
+        <h3><a href="https://mahmood726-cyber.github.io/hta-unified-intelligence/e156-submission/">HTA Unified Intelligence System: Self-Correcting Evidence Synthesis with Triple-</a></h3>
+        <p class="card-question">Can a unified framework synthesize multiple evidence dimensions into a single Health Technology Asse</p>
+        <p class="card-result">The mean OR-scale divergence across technologies was 39.9 percent with 95% CI 28 to 52, and the guard rail classified 75 percent a</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/hta-unified-intelligence/e156-submission/">Paper</a>
+          <a href='https://mahmood726-cyber.github.io/hta-unified-intelligence/e156-submission/assets/Unified_HTA_Dashboard.html' class='app-link' rel='noopener'>App</a>
+          <a href="https://github.com/mahmood726-cyber/hta-unified-intelligence" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="R Package">
-      <div class="card-eyebrow"><span class="cat-dot r-package"></span>R Package</div>
-      <h3><a href="https://mahmood726-cyber.github.io/ipd-qma/e156-submission/">IPD-QMA: Detecting Heterogeneous Treatment Effects via Quantile Meta-Analysis of</a></h3>
-      <p class="card-result">Under pure scale shift with variance ratio at least 2.0, IPD-QMA detected the mean difference with 100 percent power and valid 95%</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/ipd-qma/e156-submission/">Paper</a>
-        
-        <a href="https://github.com/mahmood726-cyber/ipd-qma" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/ipd-qma/e156-submission/assets/fig1_nhanes_qte_profile.png" alt="IPD-QMA: Detecting Heterogeneous Treatme" class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot r-package"></span>R Package</div>
+        <h3><a href="https://mahmood726-cyber.github.io/ipd-qma/e156-submission/">IPD-QMA: Detecting Heterogeneous Treatment Effects via Quantile Meta-Analysis of</a></h3>
+        <p class="card-question">Can quantile meta-analysis of individual participant data detect treatment effect heterogeneity that</p>
+        <p class="card-result">Under pure scale shift with variance ratio at least 2.0, IPD-QMA detected the mean difference with 100 percent power and valid 95%</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/ipd-qma/e156-submission/">Paper</a>
+          
+          <a href="https://github.com/mahmood726-cyber/ipd-qma" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="Method">
-      <div class="card-eyebrow"><span class="cat-dot method"></span>Method</div>
-      <h3><a href="https://mahmood726-cyber.github.io/mem-ecosystem-model/e156-submission/">The Meta-Analysis Ecosystem Model: Evidence Velocity, Effect Decay, and a Future</a></h3>
-      <p class="card-result">Among 2,817 analyses, the median decay ratio was 0.66 (IQR 0.32 to 1.23), with 67.3 percent showing shrinkage and 25.1 percent exh</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/mem-ecosystem-model/e156-submission/">Paper</a>
-        
-        <a href="https://github.com/mahmood726-cyber/mem-ecosystem-model" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/mem-ecosystem-model/e156-submission/assets/Fig1_FPI_distribution.png" alt="The Meta-Analysis Ecosystem Model: Evide" class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot method"></span>Method</div>
+        <h3><a href="https://mahmood726-cyber.github.io/mem-ecosystem-model/e156-submission/">The Meta-Analysis Ecosystem Model: Evidence Velocity, Effect Decay, and a Future</a></h3>
+        <p class="card-question">Does the magnitude of early meta-analytic effects systematically decay as new evidence accumulates a</p>
+        <p class="card-result">Among 2,817 analyses, the median decay ratio was 0.66 (IQR 0.32 to 1.23), with 67.3 percent showing shrinkage and 25.1 percent exh</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/mem-ecosystem-model/e156-submission/">Paper</a>
+          
+          <a href="https://github.com/mahmood726-cyber/mem-ecosystem-model" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="Browser App">
-      <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
-      <h3><a href="https://mahmood726-cyber.github.io/meta-reproducer/e156-submission/">Computational Reproducibility Audit of 501 Cochrane Meta-Analyses</a></h3>
-      <p class="card-result">Only 1,688 of 14,340 studies had accessible PDFs, yielding an open-access prevalence of 11.8 percent (95% CI 11.3-12.3), leaving m</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/meta-reproducer/e156-submission/">Paper</a>
-        <a href='https://mahmood726-cyber.github.io/meta-reproducer/e156-submission/assets/dashboard_index.html' class='app-link'>App</a>
-        <a href="https://github.com/mahmood726-cyber/meta-reproducer" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/meta-reproducer/e156-submission/assets/figure1_oa_coverage.png" alt="Computational Reproducibility Audit of 5" class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
+        <h3><a href="https://mahmood726-cyber.github.io/meta-reproducer/e156-submission/">Computational Reproducibility Audit of 501 Cochrane Meta-Analyses</a></h3>
+        <p class="card-question">Can Cochrane meta-analyses be computationally reproduced when an automated pipeline re-extracts effe</p>
+        <p class="card-result">Only 1,688 of 14,340 studies had accessible PDFs, yielding an open-access prevalence of 11.8 percent (95% CI 11.3-12.3), leaving m</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/meta-reproducer/e156-submission/">Paper</a>
+          <a href='https://mahmood726-cyber.github.io/meta-reproducer/e156-submission/assets/dashboard_index.html' class='app-link' rel='noopener'>App</a>
+          <a href="https://github.com/mahmood726-cyber/meta-reproducer" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="R Package">
-      <div class="card-eyebrow"><span class="cat-dot r-package"></span>R Package</div>
-      <h3><a href="https://mahmood726-cyber.github.io/heterogeneity-ase/e156-submission/">Adaptive Shrinkage Estimator for Heterogeneity in Small-Sample Meta-Analysis</a></h3>
-      <p class="card-result">Simulation across 24 scenarios showed ASE reduced median tau-squared MSE by 14 to 65 percent at k equals 3 (95% CI coverage 93.8 t</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/heterogeneity-ase/e156-submission/">Paper</a>
-        
-        <a href="https://github.com/mahmood726-cyber/heterogeneity-ase" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/heterogeneity-ase/e156-submission/assets/Figure1_MSE_comparison.png" alt="Adaptive Shrinkage Estimator for Heterog" class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot r-package"></span>R Package</div>
+        <h3><a href="https://mahmood726-cyber.github.io/heterogeneity-ase/e156-submission/">Adaptive Shrinkage Estimator for Heterogeneity in Small-Sample Meta-Analysis</a></h3>
+        <p class="card-question">Can outcome-specific empirical priors from the Cochrane evidence base stabilize heterogeneity estima</p>
+        <p class="card-result">Simulation across 24 scenarios showed ASE reduced median tau-squared MSE by 14 to 65 percent at k equals 3 (95% CI coverage 93.8 t</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/heterogeneity-ase/e156-submission/">Paper</a>
+          
+          <a href="https://github.com/mahmood726-cyber/heterogeneity-ase" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="Browser App">
-      <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
-      <h3><a href="https://mahmood726-cyber.github.io/Pairwise70/e156-submission/">Pairwise70: Standardized Dataset of 501 Cochrane Meta-Analyses</a></h3>
-      <p class="card-result">The fragility index validation across 4,424 meta-analyses yielded a median fragility score of 0.31 (95% CI 0.29-0.33) with classif</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/Pairwise70/e156-submission/">Paper</a>
-        <a href='https://mahmood726-cyber.github.io/Pairwise70/e156-submission/assets/MAFI-Calculator-Complete.html' class='app-link'>App</a>
-        <a href="https://github.com/mahmood726-cyber/Pairwise70" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/Pairwise70/e156-submission/assets/v4_bias_rmse_scatter.png" alt="Pairwise70: Standardized Dataset of 501 " class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
+        <h3><a href="https://mahmood726-cyber.github.io/Pairwise70/e156-submission/">Pairwise70: Standardized Dataset of 501 Cochrane Meta-Analyses</a></h3>
+        <p class="card-question">Can a standardized open dataset of Cochrane meta-analyses enable scalable meta-research without manu</p>
+        <p class="card-result">The fragility index validation across 4,424 meta-analyses yielded a median fragility score of 0.31 (95% CI 0.29-0.33) with classif</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/Pairwise70/e156-submission/">Paper</a>
+          <a href='https://mahmood726-cyber.github.io/Pairwise70/e156-submission/assets/MAFI-Calculator-Complete.html' class='app-link' rel='noopener'>App</a>
+          <a href="https://github.com/mahmood726-cyber/Pairwise70" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="Browser App">
-      <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
-      <h3><a href="https://mahmood726-cyber.github.io/sheaf-nma/e156-submission/">Sheaf-Theoretic Consistency Analysis for Network Meta-Analysis</a></h3>
-      <p class="card-result">On a smoking cessation network with 24 contrasts, the global inconsistency index was 3.41 (95% CI 1.87 to 5.12 via bootstrap), wit</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/sheaf-nma/e156-submission/">Paper</a>
-        <a href='https://mahmood726-cyber.github.io/sheaf-nma/e156-submission/assets/sheaf_nma.html' class='app-link'>App</a>
-        <a href="https://github.com/mahmood726-cyber/sheaf-nma" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/sheaf-nma/e156-submission/assets/figure1_network_heatmap.png" alt="Sheaf-Theoretic Consistency Analysis for" class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
+        <h3><a href="https://mahmood726-cyber.github.io/sheaf-nma/e156-submission/">Sheaf-Theoretic Consistency Analysis for Network Meta-Analysis</a></h3>
+        <p class="card-question">How can analysts detect and localize inconsistency in network meta-analysis using algebraic methods </p>
+        <p class="card-result">On a smoking cessation network with 24 contrasts, the global inconsistency index was 3.41 (95% CI 1.87 to 5.12 via bootstrap), wit</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/sheaf-nma/e156-submission/">Paper</a>
+          <a href='https://mahmood726-cyber.github.io/sheaf-nma/e156-submission/assets/sheaf_nma.html' class='app-link' rel='noopener'>App</a>
+          <a href="https://github.com/mahmood726-cyber/sheaf-nma" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="Browser App">
-      <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
-      <h3><a href="https://mahmood726-cyber.github.io/tda-ma/e156-submission/">Topological Data Analysis for Meta-Analytic Heterogeneity Exploration</a></h3>
-      <p class="card-result">Persistent homology identified 3 connected components with lifetimes exceeding 2.1 standard deviations above the noise floor (boot</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/tda-ma/e156-submission/">Paper</a>
-        <a href='https://mahmood726-cyber.github.io/tda-ma/e156-submission/assets/tda_ma.html' class='app-link'>App</a>
-        <a href="https://github.com/mahmood726-cyber/tda-ma" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/tda-ma/e156-submission/assets/figure1_mapper_graph.png" alt="Topological Data Analysis for Meta-Analy" class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
+        <h3><a href="https://mahmood726-cyber.github.io/tda-ma/e156-submission/">Topological Data Analysis for Meta-Analytic Heterogeneity Exploration</a></h3>
+        <p class="card-question">Can topological data analysis reveal hidden clustering among meta-analytic studies that forest plots</p>
+        <p class="card-result">Persistent homology identified 3 connected components with lifetimes exceeding 2.1 standard deviations above the noise floor (boot</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/tda-ma/e156-submission/">Paper</a>
+          <a href='https://mahmood726-cyber.github.io/tda-ma/e156-submission/assets/tda_ma.html' class='app-link' rel='noopener'>App</a>
+          <a href="https://github.com/mahmood726-cyber/tda-ma" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="Browser App">
-      <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
-      <h3><a href="https://mahmood726-cyber.github.io/truthcert-meta2/e156-submission/">TruthCert Meta2: Governance Overlay for Denominator-First Meta-Analysis</a></h3>
-      <p class="card-result">Across 12 simulated topics with 50 replications, the mean difference between arbitrated and oracle estimates was 0.03 (95% CI 0.01</p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/truthcert-meta2/e156-submission/">Paper</a>
-        
-        <a href="https://github.com/mahmood726-cyber/truthcert-meta2" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/truthcert-meta2/e156-submission/assets/figures_S1_Fig_regret.png" alt="TruthCert Meta2: Governance Overlay for " class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot browser-app"></span>Browser App</div>
+        <h3><a href="https://mahmood726-cyber.github.io/truthcert-meta2/e156-submission/">TruthCert Meta2: Governance Overlay for Denominator-First Meta-Analysis</a></h3>
+        <p class="card-question">Can a governance overlay on denominator-first meta-analysis reduce false reassurance from missing tr</p>
+        <p class="card-result">Across 12 simulated topics with 50 replications, the mean difference between arbitrated and oracle estimates was 0.03 (95% CI 0.01</p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/truthcert-meta2/e156-submission/">Paper</a>
+          
+          <a href="https://github.com/mahmood726-cyber/truthcert-meta2" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article>
 <article class="card card-flag" data-cat="Method">
-      <div class="card-eyebrow"><span class="cat-dot method"></span>Method</div>
-      <h3><a href="https://mahmood726-cyber.github.io/outcome-reporting-bias/e156-submission/">Outcome Reporting Bias Risk in 403 Cochrane Meta-Analyses: An Excess Significanc</a></h3>
-      <p class="card-result">The prevalence of High risk was 16.1% (65 of 403, 95% CI 12.6-20.1%), with mean excess significance of 2.83 and mean I-squared of </p>
-      <div class="card-links">
-        <a href="https://mahmood726-cyber.github.io/outcome-reporting-bias/e156-submission/">Paper</a>
-        
-        <a href="https://github.com/mahmood726-cyber/outcome-reporting-bias" class="gh">Code</a>
+      <img src="https://mahmood726-cyber.github.io/outcome-reporting-bias/e156-submission/assets/figure1_classification.png" alt="Outcome Reporting Bias Risk in 403 Cochr" class="card-fig" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <div class="card-eyebrow"><span class="cat-dot method"></span>Method</div>
+        <h3><a href="https://mahmood726-cyber.github.io/outcome-reporting-bias/e156-submission/">Outcome Reporting Bias Risk in 403 Cochrane Meta-Analyses: An Excess Significanc</a></h3>
+        <p class="card-question">What is the prevalence of statistical patterns consistent with outcome reporting bias across Cochran</p>
+        <p class="card-result">The prevalence of High risk was 16.1% (65 of 403, 95% CI 12.6-20.1%), with mean excess significance of 2.83 and mean I-squared of </p>
+        <div class="card-links">
+          <a href="https://mahmood726-cyber.github.io/outcome-reporting-bias/e156-submission/">Paper</a>
+          
+          <a href="https://github.com/mahmood726-cyber/outcome-reporting-bias" class="gh" rel="noopener">Code</a>
+        </div>
       </div>
     </article></div>
+</section>
+
+<hr class="section-rule">
+
+<section class="about">
+  <h2>Why 156 words?</h2>
+  <p>Because a paragraph is the smallest unit that can carry a complete argument. Seven sentences. One question, one dataset, one method, one result, one robustness check, one interpretation, one limitation. Nothing hidden. Nothing inflated.</p>
+  <p>I am a cardiologist. I read meta-analyses that change how we treat patients. Most of them are buried in papers so long that the finding — the actual number that matters — is lost somewhere on page twelve. I wanted something different: a format where every word is load-bearing, where the limitation is mandatory, and where a reader can evaluate the entire claim in ninety seconds.</p>
+  <p>That is what you are looking at. 158 projects. Each one distilled to its essential truth. The apps work. The code is open. The numbers are verifiable. This is not a finished body of work — it is a body of work that refuses to wait for permission to be visible.</p>
 </section>
 
 <hr class="section-rule">
@@ -437,7 +568,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:
   </div>
 
   <div class="cat-nav" id="catNav">
-    <button class="cat-btn active" data-cat="all">All <span class="cat-count">114</span></button>
+    <button class="cat-btn active" data-cat="all" aria-pressed="true">All <span class="cat-count">114</span></button>
     <button class="cat-btn" data-cat="Browser App"><span class="cat-dot browser-app"></span>Browser App <span class="cat-count">82</span></button>
 <button class="cat-btn" data-cat="R Package"><span class="cat-dot r-package"></span>R Package <span class="cat-count">26</span></button>
 <button class="cat-btn" data-cat="Method"><span class="cat-dot method"></span>Method <span class="cat-count">39</span></button>
@@ -1025,18 +1156,9 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:
   </div>
 </section>
 
-<hr class="section-rule">
-
-<section class="about">
-  <h2>Why 156 words?</h2>
-  <p>Because a paragraph is the smallest unit that can carry a complete argument. Seven sentences. One question, one dataset, one method, one result, one robustness check, one interpretation, one limitation. Nothing hidden. Nothing inflated.</p>
-  <p>I am a cardiologist. I read meta-analyses that change how we treat patients. Most of them are buried in papers so long that the finding — the actual number that matters — is lost somewhere on page twelve. I wanted something different: a format where every word is load-bearing, where the limitation is mandatory, and where a reader can evaluate the entire claim in ninety seconds.</p>
-  <p>That is what you are looking at. 158 projects. Each one distilled to its essential truth. The apps work. The code is open. The numbers are verifiable. This is not a finished body of work — it is a body of work that refuses to wait for permission to be visible.</p>
-</section>
-
 <footer class="footer">
   <div>&copy; 2026 Mahmood Ahmad &middot; Tahir Heart Institute &middot; <a href="https://github.com/mahmood726-cyber">GitHub</a></div>
-  <div style="font-family:var(--serif);font-style:italic">Every conclusion in medicine can be verified in ninety seconds. &middot; March 2026</div>
+  <div class="footer-closing">Every conclusion in medicine can be verified in ninety seconds. &middot; March 2026</div>
 </footer>
 
 <script>
@@ -1058,8 +1180,8 @@ function filter(){
 search.addEventListener("input",filter);
 catBtns.forEach(btn=>{
   btn.addEventListener("click",()=>{
-    catBtns.forEach(b=>b.classList.remove("active"));
-    btn.classList.add("active");
+    catBtns.forEach(b=>{b.classList.remove("active");b.setAttribute("aria-pressed","false")});
+    btn.classList.add("active");btn.setAttribute("aria-pressed","true");
     activeCat=btn.dataset.cat;
     filter();
   });
