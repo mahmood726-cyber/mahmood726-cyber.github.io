@@ -14,12 +14,12 @@ def test_build_cli_writes_index_html(tmp_path):
          "--site", str(REPO_ROOT / "data" / "site.yaml"),
          "--showcase", str(REPO_ROOT / "data" / "showcase.yaml"),
          "--out-html", str(out_dir / "index.html"),
-         "--out-readme", str(out_dir / "README.md")],
+         "--out-readme", str(out_dir / "profile-README.md")],
         capture_output=True, text=True, check=False,
     )
     assert result.returncode == 0, result.stderr
     assert (out_dir / "index.html").exists()
-    assert (out_dir / "README.md").exists()
+    assert (out_dir / "profile-README.md").exists()
 
 
 def test_build_cli_index_contains_all_15_card_titles(tmp_path):
@@ -31,7 +31,7 @@ def test_build_cli_index_contains_all_15_card_titles(tmp_path):
          "--site", str(REPO_ROOT / "data" / "site.yaml"),
          "--showcase", str(REPO_ROOT / "data" / "showcase.yaml"),
          "--out-html", str(out_dir / "index.html"),
-         "--out-readme", str(out_dir / "README.md")],
+         "--out-readme", str(out_dir / "profile-README.md")],
         check=True,
     )
     html = (out_dir / "index.html").read_text(encoding="utf-8")
@@ -49,7 +49,7 @@ def test_build_cli_validates_yaml_against_schema(tmp_path):
          "--site", str(bad_site),
          "--showcase", str(REPO_ROOT / "data" / "showcase.yaml"),
          "--out-html", str(out_dir / "index.html"),
-         "--out-readme", str(out_dir / "README.md")],
+         "--out-readme", str(out_dir / "profile-README.md")],
         capture_output=True, text=True, check=False,
     )
     assert result.returncode != 0
