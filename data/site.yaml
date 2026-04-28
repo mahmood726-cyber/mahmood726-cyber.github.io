@@ -1,0 +1,24 @@
+name: Mahmood Ahmad
+byline_lines:
+  - Tahir Heart Institute
+  - "Royal Free Hospital, London"
+hero_oneliner: >-
+  Evidence-synthesis tools, courses, and methods atlases — built with and for
+  clinicians and students in the Global South.
+about: >-
+  Cardiology specialist at the Royal Free Hospital, London, with a research
+  home at the Tahir Heart Institute. I build evidence-synthesis tools, run a
+  weekly micro-paper course at Makerere, and lead methods atlases on
+  prediction-interval calibration, reproduction floors, and African
+  representation in Cochrane reviews.
+stats:
+  - label: COURSES
+    value: "26"
+  - label: ACTIVE STUDENTS
+    value: "380"
+  - label: LIVE TOOLS
+    value: "15"
+footer:
+  orcid: "0000-0000-0000-0000"
+  email: "mahmood726@gmail.com"
+  license: "MIT"

@@ -61,3 +61,9 @@ def test_showcase_schema_caps_at_15_cards():
     ]}
     with pytest.raises(ValidationError):
         validate(instance=too_many, schema=schema)
+
+
+def test_production_site_passes_schema():
+    schema = load_schema("site")
+    data = load_yaml(REPO_ROOT / "data" / "site.yaml")
+    validate(instance=data, schema=schema)
