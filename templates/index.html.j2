@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ site.name }} — Evidence Synthesis</title>
+<meta property="og:title" content="{{ site.name }} — Evidence Synthesis">
+<meta property="og:description" content="{{ site.hero_oneliner }}">
+<link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+<main class="page">
+
+  <header class="hero">
+    <h1 class="hero-name">{{ site.name }}</h1>
+    <div class="hero-byline">
+      {% for line in site.byline_lines %}<span>{{ line }}</span>{% if not loop.last %} · {% endif %}{% endfor %}
+    </div>
+    <p class="hero-oneliner">{{ site.hero_oneliner }}</p>
+    <div class="stats">
+      {% for stat in site.stats %}
+      <div class="stat-chip">
+        <div class="stat-value">{{ stat.value }}</div>
+        <div class="stat-label">{{ stat.label }}</div>
+      </div>
+      {% endfor %}
+    </div>
+    <p class="about">{{ site.about }}</p>
+  </header>
+
+  {% set section_titles = {"teaching": "Teaching & Capacity", "atlases": "Methods Atlases", "clinical": "Clinical Tools"} %}
+  {% for section_id in ["teaching", "atlases", "clinical"] %}
+  {% set section_cards = showcase.cards | selectattr("section", "equalto", section_id) | list %}
+  {% if section_cards %}
+  <section class="cards-section" id="section-{{ section_id }}">
+    <h2>{{ section_titles[section_id] }}</h2>
+    <div class="card-grid">
+      {% for card in section_cards %}
+      <article class="card" data-status="{{ card.status }}">
+        <header class="card-head">
+          <h3 class="card-title">{{ card.title }}</h3>
+          <span class="status-badge status-{{ card.status }}">{{ card.status }}</span>
+        </header>
+        <p class="card-oneliner">{{ card.one_liner }}</p>
+        <footer class="card-foot">
+          <a href="{{ card.demo_url }}" class="card-link demo-link">demo</a>
+          <a href="{{ card.repo_url }}" class="card-link repo-link">source</a>
+          {% if card.africa_thread %}<span class="thread-badge africa">africa thread</span>{% endif %}
+        </footer>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+  {% endfor %}
+
+  <section class="browse-all">
+    <a href="all/" class="browse-all-link">Browse all repositories →</a>
+  </section>
+
+  <footer class="page-foot">
+    {% if site.footer %}
+    <div class="foot-meta">
+      {% if site.footer.orcid %}<span>ORCID: {{ site.footer.orcid }}</span>{% endif %}
+      {% if site.footer.email %}<span>{{ site.footer.email }}</span>{% endif %}
+      {% if site.footer.license %}<span>License: {{ site.footer.license }}</span>{% endif %}
+    </div>
+    {% endif %}
+    <div class="built-at">Built {{ build_timestamp }}</div>
+  </footer>
+
+</main>
+</body>
+</html>
