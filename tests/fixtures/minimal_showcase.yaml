@@ -1,0 +1,17 @@
+cards:
+  - id: alpha
+    title: Alpha Card
+    one_liner: First card for testing.
+    status: live
+    section: teaching
+    demo_url: https://example.org/alpha/
+    repo_url: https://github.com/example/alpha
+    africa_thread: true
+  - id: beta
+    title: Beta Card
+    one_liner: Second card with cross-listing.
+    status: preprint
+    section: atlases
+    cross_listed: [teaching]
+    demo_url: https://example.org/beta/
+    repo_url: https://github.com/example/beta

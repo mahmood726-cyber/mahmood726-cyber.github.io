@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["cards"],
+  "additionalProperties": false,
+  "properties": {
+    "cards": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 15,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "one_liner", "status", "section", "demo_url", "repo_url"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9-]+$", "maxLength": 40},
+          "title": {"type": "string", "minLength": 1, "maxLength": 80},
+          "one_liner": {"type": "string", "minLength": 1, "maxLength": 200},
+          "status": {"enum": ["live", "preprint", "in-review", "submitted", "shipped", "draft"]},
+          "section": {"enum": ["teaching", "atlases", "clinical"]},
+          "cross_listed": {
+            "type": "array",
+            "items": {"enum": ["teaching", "atlases", "clinical"]},
+            "uniqueItems": true,
+            "maxItems": 2
+          },
+          "demo_url": {"type": "string", "format": "uri"},
+          "repo_url": {"type": "string", "format": "uri"},
+          "africa_thread": {"type": "boolean", "default": false}
+        }
+      }
+    }
+  }
+}

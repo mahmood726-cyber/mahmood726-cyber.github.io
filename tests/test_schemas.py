@@ -24,3 +24,40 @@ def test_site_schema_rejects_missing_hero():
     bad = {"name": "X", "byline_lines": ["Y"], "about": "Z", "stats": []}
     with pytest.raises(ValidationError):
         validate(instance=bad, schema=schema)
+
+
+def test_minimal_showcase_passes_schema():
+    schema = load_schema("showcase")
+    data = load_yaml(REPO_ROOT / "tests" / "fixtures" / "minimal_showcase.yaml")
+    validate(instance=data, schema=schema)
+
+def test_showcase_schema_rejects_unknown_section():
+    schema = load_schema("showcase")
+    bad = {"cards": [{
+        "id": "x",
+        "title": "X",
+        "one_liner": "y",
+        "status": "live",
+        "section": "ufology",  # not in enum
+        "demo_url": "https://example.org",
+        "repo_url": "https://example.org"
+    }]}
+    with pytest.raises(ValidationError):
+        validate(instance=bad, schema=schema)
+
+def test_showcase_schema_caps_at_15_cards():
+    schema = load_schema("showcase")
+    too_many = {"cards": [
+        {
+            "id": f"c{i}",
+            "title": "T",
+            "one_liner": "L",
+            "status": "live",
+            "section": "teaching",
+            "demo_url": "https://example.org",
+            "repo_url": "https://example.org",
+        }
+        for i in range(16)
+    ]}
+    with pytest.raises(ValidationError):
+        validate(instance=too_many, schema=schema)
