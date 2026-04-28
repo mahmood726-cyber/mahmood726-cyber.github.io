@@ -1,0 +1,29 @@
+# {{ site.name }}
+
+{% for line in site.byline_lines %}*{{ line }}*{% if not loop.last %} · {% endif %}{% endfor %}
+
+> {{ site.hero_oneliner }}
+
+{{ site.about }}
+
+**Full portfolio with live demos:** [mahmood726-cyber.github.io](https://mahmood726-cyber.github.io/)
+
+---
+
+{% set section_titles = {"teaching": "Teaching & Capacity", "atlases": "Methods Atlases", "clinical": "Clinical Tools"} %}
+{% for section_id in ["teaching", "atlases", "clinical"] %}
+{% set section_cards = showcase.cards | selectattr("section", "equalto", section_id) | list %}
+{% if section_cards %}
+## {{ section_titles[section_id] }}
+
+{% for card in section_cards %}
+- [**{{ card.title }}**]({{ card.demo_url }}) — {{ card.one_liner }} *({{ card.status }}{% if card.africa_thread %} · africa thread{% endif %})* · [source]({{ card.repo_url }})
+{% endfor %}
+
+{% endif %}
+{% endfor %}
+---
+
+{% if site.footer %}
+{% if site.footer.orcid %}ORCID: `{{ site.footer.orcid }}` · {% endif %}{% if site.footer.email %}{{ site.footer.email }} · {% endif %}{% if site.footer.license %}License: {{ site.footer.license }}{% endif %}
+{% endif %}

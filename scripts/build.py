@@ -21,3 +21,10 @@ def render_index(site: dict, showcase: dict, build_timestamp: str | None = None)
     template = env.get_template("index.html.j2")
     ts = build_timestamp or datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%d %H:%M UTC")
     return template.render(site=site, showcase=showcase, build_timestamp=ts)
+
+
+def render_readme(site: dict, showcase: dict) -> str:
+    env = _env()
+    env.autoescape = False
+    template = env.get_template("README.md.j2")
+    return template.render(site=site, showcase=showcase)
