@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["name", "byline_lines", "hero_oneliner", "about", "stats"],
+  "additionalProperties": false,
+  "properties": {
+    "name": {"type": "string", "minLength": 1, "maxLength": 60},
+    "byline_lines": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1, "maxLength": 80},
+      "minItems": 1,
+      "maxItems": 3
+    },
+    "hero_oneliner": {"type": "string", "minLength": 1, "maxLength": 200},
+    "about": {"type": "string", "minLength": 1, "maxLength": 500},
+    "stats": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["label", "value"],
+        "additionalProperties": false,
+        "properties": {
+          "label": {"type": "string", "minLength": 1, "maxLength": 30},
+          "value": {"type": "string", "minLength": 1, "maxLength": 12}
+        }
+      }
+    },
+    "footer": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "orcid": {"type": "string"},
+        "email": {"type": "string", "format": "email"},
+        "license": {"type": "string"}
+      }
+    }
+  }
+}

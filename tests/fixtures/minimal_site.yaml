@@ -1,0 +1,8 @@
+name: Test Person
+byline_lines:
+  - Test Institution
+hero_oneliner: A one-line mission for testing.
+about: A short paragraph used only by tests.
+stats:
+  - label: TESTS
+    value: "42"
