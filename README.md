@@ -11,6 +11,7 @@ Source for **[mahmood726-cyber.github.io](https://mahmood726-cyber.github.io/)**
 - `scripts/build.py` — renders both outputs from the YAML.
 - `.github/workflows/build.yml` — GitHub Actions runs the build on every push to `master`, commits `index.html`, and pushes the profile README.
 - `all/` — the legacy flat-table dashboard, preserved.
+- The hero **"Claim a paper"** CTA points at `https://mahmood726-cyber.github.io/e156/students.html`, which is served by the **separate** repo `github.com/mahmood726-cyber/e156` (project Pages share the username domain via path). `students.html`, `claims.json`, and the generator scripts all live there — nothing in this repo needs to know how that page is built.
 
 ## Local build
 

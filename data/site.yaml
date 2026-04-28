@@ -11,6 +11,10 @@ about: >-
   weekly micro-paper course at Makerere, and lead methods atlases on
   prediction-interval calibration, reproduction floors, and African
   representation in Cochrane reviews.
+# CTA target lives in a SEPARATE repo: github.com/mahmood726-cyber/e156.
+# That repo serves its own Pages at https://mahmood726-cyber.github.io/e156/ (project
+# Pages share the username domain via path). students.html and claims.json are owned
+# there — do NOT look for them in this repo.
 cta:
   label: "Claim a paper"
   url: https://mahmood726-cyber.github.io/e156/students.html
