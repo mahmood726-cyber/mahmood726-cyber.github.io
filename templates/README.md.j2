@@ -4,6 +4,10 @@
 
 > {{ site.hero_oneliner }}
 
+{% if site.cta %}
+**[{{ site.cta.label }} →]({{ site.cta.url }}){% if site.cta.subtext %}** — {{ site.cta.subtext }}{% else %}**{% endif %}
+
+{% endif %}
 {{ site.about }}
 
 **Full portfolio with live demos:** [mahmood726-cyber.github.io](https://mahmood726-cyber.github.io/)

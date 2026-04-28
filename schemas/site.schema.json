@@ -27,6 +27,16 @@
         }
       }
     },
+    "cta": {
+      "type": "object",
+      "required": ["label", "url"],
+      "additionalProperties": false,
+      "properties": {
+        "label": {"type": "string", "minLength": 1, "maxLength": 40},
+        "url": {"type": "string", "format": "uri"},
+        "subtext": {"type": "string", "maxLength": 120}
+      }
+    },
     "footer": {
       "type": "object",
       "additionalProperties": false,

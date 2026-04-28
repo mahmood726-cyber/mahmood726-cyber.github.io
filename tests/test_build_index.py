@@ -72,3 +72,29 @@ def test_render_index_no_marketing_words():
     banned = ["Quantum", "Grand Unified", "Comprehensive Global"]
     for word in banned:
         assert word not in html
+
+
+def test_render_index_renders_cta_when_present():
+    site = _load("minimal_site.yaml")
+    site["cta"] = {"label": "Claim a paper", "url": "https://example.org/claim/", "subtext": "test sub"}
+    showcase = _load("minimal_showcase.yaml")
+    html = render_index(site, showcase)
+    assert "Claim a paper" in html
+    assert "https://example.org/claim/" in html
+    assert "test sub" in html
+
+
+def test_render_index_omits_cta_when_absent():
+    site = _load("minimal_site.yaml")
+    site.pop("cta", None)
+    showcase = _load("minimal_showcase.yaml")
+    html = render_index(site, showcase)
+    assert "cta-button" not in html
+
+
+def test_production_site_includes_cta_to_e156():
+    import yaml
+    with (REPO_ROOT / "data" / "site.yaml").open(encoding="utf-8") as f:
+        prod = yaml.safe_load(f)
+    assert prod.get("cta") is not None
+    assert "e156/students.html" in prod["cta"]["url"]

@@ -10,6 +10,10 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#fafafa;color:#1a
 .stat-value{font-size:1.5rem;font-weight:700;color:#2E6B8A}
 .stat-label{font-size:.65rem;color:#888;text-transform:uppercase;letter-spacing:.1em}
 .about{max-width:680px;margin:1.4rem auto 0;color:#444;font-size:.95rem}
+.hero-cta{margin:1.6rem auto .4rem;display:flex;flex-direction:column;align-items:center;gap:.45rem}
+.cta-button{display:inline-block;background:#2E6B8A;color:#fff;padding:.7rem 1.5rem;border-radius:6px;text-decoration:none;font-weight:600;font-size:.95rem;letter-spacing:.01em;transition:background .15s}
+.cta-button:hover{background:#1f4a63}
+.cta-subtext{font-size:.78rem;color:#777;max-width:560px;text-align:center}
 .cards-section{margin-bottom:2.5rem}
 .cards-section h2{font-family:Georgia,serif;font-size:1.4rem;margin-bottom:1rem;border-bottom:1px solid #eee;padding-bottom:.4rem}
 .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1rem}

@@ -11,6 +11,10 @@ about: >-
   weekly micro-paper course at Makerere, and lead methods atlases on
   prediction-interval calibration, reproduction floors, and African
   representation in Cochrane reviews.
+cta:
+  label: "Claim a paper"
+  url: https://mahmood726-cyber.github.io/e156/students.html
+  subtext: "588 E156 micro-papers open to student co-authorship · target journal Synthēsis"
 stats:
   - label: COURSES
     value: "26"

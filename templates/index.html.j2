@@ -17,6 +17,12 @@
       {% for line in site.byline_lines %}<span>{{ line }}</span>{% if not loop.last %} · {% endif %}{% endfor %}
     </div>
     <p class="hero-oneliner">{{ site.hero_oneliner }}</p>
+    {% if site.cta %}
+    <div class="hero-cta">
+      <a href="{{ site.cta.url }}" class="cta-button">{{ site.cta.label }} →</a>
+      {% if site.cta.subtext %}<div class="cta-subtext">{{ site.cta.subtext }}</div>{% endif %}
+    </div>
+    {% endif %}
     <div class="stats">
       {% for stat in site.stats %}
       <div class="stat-chip">
