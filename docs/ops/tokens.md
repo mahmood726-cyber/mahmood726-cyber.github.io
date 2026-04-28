@@ -11,7 +11,7 @@
 - **Resource owner:** `mahmood726-cyber`
 - **Repository access:** Only select `mahmood726-cyber/mahmood726-cyber`
 - **Repository permissions:** `Contents` = Read and write. Nothing else.
-- **Expiration:** 90 days. Calendar reminder lives in `C:\Users\user\.claude\projects\C--Users-user\memory\` (project memory entry).
+- **Expiration:** 90 days. Set a calendar reminder for rotation; the GitHub UI also surfaces an expiration warning two weeks ahead.
 
 **To create:** https://github.com/settings/personal-access-tokens/new
 
