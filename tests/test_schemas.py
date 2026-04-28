@@ -67,3 +67,25 @@ def test_production_site_passes_schema():
     schema = load_schema("site")
     data = load_yaml(REPO_ROOT / "data" / "site.yaml")
     validate(instance=data, schema=schema)
+
+
+def test_production_showcase_passes_schema():
+    schema = load_schema("showcase")
+    data = load_yaml(REPO_ROOT / "data" / "showcase.yaml")
+    validate(instance=data, schema=schema)
+
+def test_production_showcase_has_15_cards():
+    data = load_yaml(REPO_ROOT / "data" / "showcase.yaml")
+    assert len(data["cards"]) == 15
+
+def test_production_showcase_has_5_per_section():
+    data = load_yaml(REPO_ROOT / "data" / "showcase.yaml")
+    counts = {"teaching": 0, "atlases": 0, "clinical": 0}
+    for card in data["cards"]:
+        counts[card["section"]] += 1
+    assert counts == {"teaching": 5, "atlases": 5, "clinical": 5}
+
+def test_production_showcase_africa_thread_at_least_3():
+    data = load_yaml(REPO_ROOT / "data" / "showcase.yaml")
+    africa = [c for c in data["cards"] if c.get("africa_thread")]
+    assert len(africa) >= 3, f"Africa thread on only {len(africa)} cards"

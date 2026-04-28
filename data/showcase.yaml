@@ -1,0 +1,143 @@
+# data/showcase.yaml
+# 15 hand-curated showcase cards. Edit by hand only.
+# Close-call cards marked with `# CLOSE CALL` — confirm before first push.
+
+cards:
+  # ─── §A Teaching & Capacity ───────────────────────────────
+  - id: synthesis-courses
+    title: Synthesis Courses
+    one_liner: 26 interactive evidence-synthesis courses in 12 languages, browser-only.
+    status: live
+    section: teaching
+    demo_url: https://mahmood726-cyber.github.io/synthesis-courses/
+    repo_url: https://github.com/mahmood726-cyber/synthesis-courses
+    africa_thread: true
+
+  - id: arac
+    title: ARAC — African Representation Atlas of Cochrane
+    one_liner: Quantifies African trial and author representation across Cochrane reviews; Makerere PhD-cohort flagship.
+    status: shipped
+    section: teaching
+    cross_listed: [atlases]
+    demo_url: https://github.com/mahmood726-cyber/arac
+    repo_url: https://github.com/mahmood726-cyber/arac
+    africa_thread: true
+
+  - id: saarc-e156-students
+    title: SAARC E156 Student Cohort
+    one_liner: 190-paper South-Asian trial-equity cohort using the E156 micro-paper format.
+    status: live
+    section: teaching
+    demo_url: https://github.com/mahmood726-cyber/saarc-e156-students
+    repo_url: https://github.com/mahmood726-cyber/saarc-e156-students
+    africa_thread: false
+
+  - id: rapidmeta-finerenone
+    title: RapidMeta — Finerenone (worked example)
+    one_liner: Browser-based living meta-analysis platform validated against R metafor and 15 published MAs.
+    status: live
+    section: teaching
+    demo_url: https://mahmood726-cyber.github.io/rapidmeta-finerenone/
+    repo_url: https://github.com/mahmood726-cyber/rapidmeta-finerenone
+    africa_thread: false
+
+  - id: e156-ecosystem-starter
+    title: E156 Ecosystem Starter
+    one_liner: One-shot installer for the E156 micro-paper toolchain on a student's machine.
+    status: live
+    section: teaching
+    demo_url: https://github.com/mahmood726-cyber/e156-ecosystem-starter
+    repo_url: https://github.com/mahmood726-cyber/e156-ecosystem-starter
+    africa_thread: false
+
+  # ─── §B Methods Atlases ───────────────────────────────────
+  - id: pi-atlas
+    title: PI Atlas
+    one_liner: Year-long prediction-interval calibration study on 595 Pairwise70 reviews; pre-registration v1.0.0 tagged.
+    status: in-review
+    section: atlases
+    demo_url: https://github.com/mahmood726-cyber/pi-atlas
+    repo_url: https://github.com/mahmood726-cyber/pi-atlas
+    africa_thread: false
+
+  - id: repro-floor-atlas
+    title: Reproduction-Floor Atlas
+    one_liner: 7,545 MAs across 595 Cochrane reviews; 14.3% non-reproducible at |Δ|>0.005.
+    status: preprint
+    section: atlases
+    demo_url: https://mahmood726-cyber.github.io/repro-floor-atlas/
+    repo_url: https://github.com/mahmood726-cyber/repro-floor-atlas
+    africa_thread: false
+
+  - id: responder-floor-atlas
+    title: Responder-Floor Atlas
+    one_liner: Empirical implied MIDs exceed canonical by 1.28× to 3.81× (clustered bootstrap 95% CI; 2013 trial-arms).
+    status: preprint
+    section: atlases
+    demo_url: https://mahmood726-cyber.github.io/responder-floor-atlas/
+    repo_url: https://github.com/mahmood726-cyber/responder-floor-atlas
+    africa_thread: false
+
+  - id: cochrane-modern-re
+    title: cochrane-modern-re
+    one_liner: DL→REML+HKSJ+PI flip-rate analysis on 6,386 Pairwise70 MAs; Tier-1 significance flip 8.2%.
+    status: preprint
+    section: atlases
+    demo_url: https://mahmood726-cyber.github.io/cochrane-modern-re/
+    repo_url: https://github.com/mahmood726-cyber/cochrane-modern-re
+    africa_thread: false
+
+  - id: impossible-ma  # CLOSE CALL — atlases vs omit
+    title: ImpossibleMA
+    one_liner: Possibility-envelope primitive for k=1, missing-SE, and adversarial pooling cases.
+    status: shipped
+    section: atlases
+    demo_url: https://mahmood726-cyber.github.io/impossible-ma/
+    repo_url: https://github.com/mahmood726-cyber/impossible-ma
+    africa_thread: false
+
+  # ─── §C Clinical Tools ────────────────────────────────────
+  - id: cardiosynth
+    title: CardioSynth — Living MA Portfolio
+    one_liner: 57 living cardiology meta-analyses, browser-only, refreshed against the AACT mirror.
+    status: live
+    section: clinical
+    demo_url: https://mahmood726-cyber.github.io/cardiosynth/
+    repo_url: https://github.com/mahmood726-cyber/cardiosynth
+    africa_thread: false
+
+  - id: nur-pce  # CLOSE CALL — clinical vs atlases
+    title: NUR-PCE — Patient-Conditional Counterfactual Posterior
+    one_liner: Replaces pooled trial-level effect with per-patient counterfactual + evidence-tier badges (finerenone POC).
+    status: live
+    section: clinical
+    demo_url: https://mahmood726-cyber.github.io/nur-cardiorenal-poc/
+    repo_url: https://github.com/mahmood726-cyber/nur-cardiorenal-poc
+    africa_thread: false
+
+  - id: ma-workbench  # CLOSE CALL — clinical vs teaching
+    title: ma-workbench
+    one_liner: Browser-native meta-analysis suite — 14 tools, shared data bus, HMAC-signed validation against R metafor.
+    status: live
+    section: clinical
+    demo_url: https://mahmood726-cyber.github.io/ma-workbench/
+    repo_url: https://github.com/mahmood726-cyber/ma-workbench
+    africa_thread: false
+
+  - id: trial-transportability-atlas
+    title: Trial Transportability Atlas
+    one_liner: Links AACT trials to IHME + WHO + WB country-year context; bridges the African evidence gap by carry-forward joins.
+    status: live
+    section: clinical
+    demo_url: https://github.com/mahmood726-cyber/trial-transportability-atlas-d-drive
+    repo_url: https://github.com/mahmood726-cyber/trial-transportability-atlas-d-drive
+    africa_thread: true
+
+  - id: dossiergap  # CLOSE CALL — clinical vs atlases
+    title: DossierGap
+    one_liner: Turner-2008 antidepressant-publication-gap replication for cardiology NMEs (FDA + EMA dossier layer).
+    status: shipped
+    section: clinical
+    demo_url: https://github.com/mahmood726-cyber/dossiergap
+    repo_url: https://github.com/mahmood726-cyber/dossiergap
+    africa_thread: false
