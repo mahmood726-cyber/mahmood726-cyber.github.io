@@ -1303,10 +1303,10 @@
     </header>
 
 
-    <input id="review-import-input" type="file" accept=".json,application/json" class="hidden" onchange="RapidMeta.importReviewPack(event)">
+    <input id="review-import-input" type="file" accept=".json,application/json" class="hidden" onchange="RapidMeta.importReviewPack(event)" aria-label="Review import input">
 
 
-    <input id="ctgov-history-import-input" type="file" accept=".json,application/json" class="hidden" onchange="RapidMeta.importCTGovHistoryPack(event)">
+    <input id="ctgov-history-import-input" type="file" accept=".json,application/json" class="hidden" onchange="RapidMeta.importCTGovHistoryPack(event)" aria-label="Ctgov history import input">
 
 
 
@@ -1450,22 +1450,22 @@
                     <table class="w-full text-left text-xs"><tbody class="divide-y divide-slate-800/50">
 
 
-                        <tr><td class="p-4 w-1/4 font-bold text-blue-400 bg-blue-400/5">Population</td><td class="p-4"><input id="p-pop" class="w-full bg-transparent outline-none font-medium text-slate-200" value="Adults with ASCVD (statin-intolerant or statin-treated)"></td></tr>
+                        <tr><td class="p-4 w-1/4 font-bold text-blue-400 bg-blue-400/5">Population</td><td class="p-4"><input id="p-pop" class="w-full bg-transparent outline-none font-medium text-slate-200" value="Adults with ASCVD (statin-intolerant or statin-treated)" aria-label="P pop"></td></tr>
 
 
-                        <tr><td class="p-4 font-bold text-emerald-400 bg-emerald-400/5">Intervention</td><td class="p-4"><input id="p-int" class="w-full bg-transparent outline-none font-medium text-slate-200" value="Bempedoic acid"></td></tr>
+                        <tr><td class="p-4 font-bold text-emerald-400 bg-emerald-400/5">Intervention</td><td class="p-4"><input id="p-int" class="w-full bg-transparent outline-none font-medium text-slate-200" value="Bempedoic acid" aria-label="P int"></td></tr>
 
 
-                        <tr><td class="p-4 font-bold text-rose-400 bg-rose-400/5">Comparator</td><td class="p-4"><input id="p-comp" class="w-full bg-transparent outline-none font-medium text-slate-200" value="Placebo"></td></tr>
+                        <tr><td class="p-4 font-bold text-rose-400 bg-rose-400/5">Comparator</td><td class="p-4"><input id="p-comp" class="w-full bg-transparent outline-none font-medium text-slate-200" value="Placebo" aria-label="P comp"></td></tr>
 
 
-                        <tr><td class="p-4 font-bold text-amber-400 bg-amber-400/5">Primary Outcome</td><td class="p-4"><input id="p-out" class="w-full bg-transparent outline-none font-medium text-slate-200" value="MACE-4 composite"></td></tr>
+                        <tr><td class="p-4 font-bold text-amber-400 bg-amber-400/5">Primary Outcome</td><td class="p-4"><input id="p-out" class="w-full bg-transparent outline-none font-medium text-slate-200" value="MACE-4 composite" aria-label="P out"></td></tr>
 
 
                         <tr><td class="p-4 font-bold text-purple-400 bg-purple-400/5">Secondary Outcomes</td><td class="p-4 text-slate-300">All-cause mortality; renal composite (eGFR decline, ESKD, renal death); individual MACE components; hyperkalemia</td></tr>
 
 
-                        <tr><td class="p-4 font-bold text-cyan-400 bg-cyan-400/5">Subgroup Plan</td><td class="p-4"><input id="p-subgroup" class="w-full bg-transparent outline-none font-medium text-slate-200" value="Statin status, baseline LDL-C, ASCVD history"></td></tr>
+                        <tr><td class="p-4 font-bold text-cyan-400 bg-cyan-400/5">Subgroup Plan</td><td class="p-4"><input id="p-subgroup" class="w-full bg-transparent outline-none font-medium text-slate-200" value="Statin status, baseline LDL-C, ASCVD history" aria-label="P subgroup"></td></tr>
 
 
                     </tbody></table>
@@ -2299,31 +2299,31 @@
                         <div class="manual-form-grid">
 
 
-                            <div><label>Study Name *</label><input id="mf-name" type="text" placeholder="e.g. NCT12345678"></div>
+                            <div><label>Study Name *</label><input id="mf-name" type="text" placeholder="e.g. NCT12345678" aria-label="Study Name *"></div>
 
 
-                            <div><label>Year</label><input id="mf-year" type="number" placeholder="2024" min="1990" max="2030"></div>
+                            <div><label>Year</label><input id="mf-year" type="number" placeholder="2024" min="1990" max="2030" aria-label="Year"></div>
 
 
-                            <div><label>Phase</label><select id="mf-phase"><option value="III">Phase III</option><option value="IV">Phase IV</option></select></div>
+                            <div><label>Phase</label><select id="mf-phase" aria-label="Phase"><option value="III">Phase III</option><option value="IV">Phase IV</option></select></div>
 
 
-                            <div><label>Indication</label><select id="mf-indication"><option value="CKD">CKD</option><option value="Heart Failure">Heart Failure</option><option value="Other">Other</option></select></div>
+                            <div><label>Indication</label><select id="mf-indication" aria-label="Indication"><option value="CKD">CKD</option><option value="Heart Failure">Heart Failure</option><option value="Other">Other</option></select></div>
 
 
-                            <div><label>Events (Tx) *</label><input id="mf-te" type="number" min="0" placeholder="0"></div>
+                            <div><label>Events (Tx) *</label><input id="mf-te" type="number" min="0" placeholder="0" aria-label="Events (Tx) *"></div>
 
 
-                            <div><label>N (Tx) *</label><input id="mf-tn" type="number" min="1" placeholder="0"></div>
+                            <div><label>N (Tx) *</label><input id="mf-tn" type="number" min="1" placeholder="0" aria-label="N (Tx) *"></div>
 
 
-                            <div><label>Events (Ctrl) *</label><input id="mf-ce" type="number" min="0" placeholder="0"></div>
+                            <div><label>Events (Ctrl) *</label><input id="mf-ce" type="number" min="0" placeholder="0" aria-label="Events (Ctrl) *"></div>
 
 
-                            <div><label>N (Ctrl) *</label><input id="mf-cn" type="number" min="1" placeholder="0"></div>
+                            <div><label>N (Ctrl) *</label><input id="mf-cn" type="number" min="1" placeholder="0" aria-label="N (Ctrl) *"></div>
 
 
-                            <div class="col-span-full"><label>Source / Reference</label><input id="mf-source" type="text" placeholder="e.g. NEJM 2024;391:1234-45"></div>
+                            <div class="col-span-full"><label>Source / Reference</label><input id="mf-source" type="text" placeholder="e.g. NEJM 2024;391:1234-45" aria-label="Source / Reference"></div>
 
 
                         </div>
@@ -2551,7 +2551,7 @@
                         <span class="text-[9px] font-bold uppercase tracking-widest text-slate-500">Meta-Regression:</span>
 
 
-                        <select id="metareg-covariate" onchange="AnalysisEngine.run()" class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1 text-[10px] font-bold text-slate-300 outline-none">
+                        <select id="metareg-covariate" onchange="AnalysisEngine.run()" class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1 text-[10px] font-bold text-slate-300 outline-none" aria-label="Metareg covariate">
 
 
                             <option value="year">Year</option>
@@ -17131,7 +17131,7 @@ const ContinuousMDEngine = {
                         <div class="text-xs">${reviewState}</div>
 
 
-                        <textarea rows="2" oninput="ScreenEngine.setScreenReviewNote(this.value)" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-slate-200 outline-none" placeholder="Add screening rationale note (shared with second reviewer)">${escapeHtml(String(sr.note ?? ''))}</textarea>
+                        <textarea rows="2" oninput="ScreenEngine.setScreenReviewNote(this.value)" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-slate-200 outline-none" placeholder="Add screening rationale note (shared with second reviewer)" aria-label="Add screening rationale note (shared with second reviewer)">${escapeHtml(String(sr.note ?? ''))}</textarea>
 
 
                         <div class="flex flex-wrap gap-2">
@@ -24394,7 +24394,7 @@ const ContinuousMDEngine = {
                             <div class="grid md:grid-cols-2 gap-2">
 
 
-                                <select onchange="ExtractEngine.setReviewerEndpoint('${trialIdArg}', this.value)" class="bg-slate-950 border border-slate-700 rounded-lg px-2 py-2 text-xs text-slate-200">
+                                <select onchange="ExtractEngine.setReviewerEndpoint('${trialIdArg}', this.value)" class="bg-slate-950 border border-slate-700 rounded-lg px-2 py-2 text-xs text-slate-200" aria-label="Bg slate 950">
 
 
                                     ${endpointOpts.html}
@@ -24406,7 +24406,7 @@ const ContinuousMDEngine = {
                                 <label class="text-[11px] text-slate-300 flex items-center gap-2 px-2 py-2 border border-slate-700 rounded-lg">
 
 
-                                    <input type="checkbox" ${d?.reviewerSourceChecked ? 'checked' : ''} onchange="ExtractEngine.setReviewerSourceChecked('${trialIdArg}', this.checked)">
+                                    <input type="checkbox" ${d?.reviewerSourceChecked ? 'checked' : ''} onchange="ExtractEngine.setReviewerSourceChecked('${trialIdArg}', this.checked)" aria-label="Input">
 
 
                                     I verified this row in the source table
@@ -24433,7 +24433,7 @@ const ContinuousMDEngine = {
                             <label class="text-[11px] text-slate-300 flex items-center gap-2 mb-2">
 
 
-                                <input type="checkbox" ${d?.reconcileConfirmed ? 'checked' : ''} onchange="ExtractEngine.setReconcileConfirmed('${trialIdArg}', this.checked)">
+                                <input type="checkbox" ${d?.reconcileConfirmed ? 'checked' : ''} onchange="ExtractEngine.setReconcileConfirmed('${trialIdArg}', this.checked)" aria-label="Input">
 
 
                                 I reviewed and accept this denominator difference for the selected endpoint
@@ -24442,7 +24442,7 @@ const ContinuousMDEngine = {
                             </label>
 
 
-                            <textarea rows="2" oninput="ExtractEngine.setReconcileNotes('${trialIdArg}', this.value)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-2 text-xs text-slate-200" placeholder="Add reconciliation note (required)">${escapeHtml(String(d?.reconcileNotes ?? ''))}</textarea>
+                            <textarea rows="2" oninput="ExtractEngine.setReconcileNotes('${trialIdArg}', this.value)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-2 text-xs text-slate-200" placeholder="Add reconciliation note (required)" aria-label="Add reconciliation note (required)">${escapeHtml(String(d?.reconcileNotes ?? ''))}</textarea>
 
 
                         </div>` : '';
@@ -24472,7 +24472,7 @@ const ContinuousMDEngine = {
                             <div class="text-[10px] text-slate-500 mb-2">Seal 1: <span class="font-mono">${escapeHtml(signSeal1 || '--')}</span> &middot; Seal 2: <span class="font-mono">${escapeHtml(signSeal2 || '--')}</span></div>
 
 
-                            <textarea rows="2" oninput="ExtractEngine.setReviewerSignoffNote('${trialIdArg}', this.value)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-2 text-xs text-slate-200" placeholder="Shared sign-off note required before confirmation">${escapeHtml(signoffNote)}</textarea>
+                            <textarea rows="2" oninput="ExtractEngine.setReviewerSignoffNote('${trialIdArg}', this.value)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-2 text-xs text-slate-200" placeholder="Shared sign-off note required before confirmation" aria-label="Shared sign off note required before confirmation">${escapeHtml(signoffNote)}</textarea>
 
 
                             ${!signoffNoteDone ? '<div class="text-[10px] text-amber-300 mt-1"><i class="fa-solid fa-pen mr-1"></i>Add sign-off note to enable confirmation.</div>' : ''}
@@ -24601,7 +24601,7 @@ const ContinuousMDEngine = {
                                             <label class="text-[9px] uppercase tracking-widest text-slate-500 font-bold">Events${this._provDotHtml(t, 'tE')}</label>
 
 
-                                            <input type="number" onchange="ExtractEngine.upd('${trialIdArg}', 'tE', this.value)" value="${d?.tE ?? 0}" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-lg text-emerald-400 font-bold outline-none font-mono mt-1">
+                                            <input type="number" onchange="ExtractEngine.upd('${trialIdArg}', 'tE', this.value)" value="${d?.tE ?? 0}" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-lg text-emerald-400 font-bold outline-none font-mono mt-1" aria-label="Events${this._provDotHtml(t, &#x27;tE&#x27;)}">
 
 
                                         </div>
@@ -24616,7 +24616,7 @@ const ContinuousMDEngine = {
                                             <label class="text-[9px] uppercase tracking-widest text-slate-500 font-bold">Total N${this._provDotHtml(t, 'tN')}</label>
 
 
-                                            <input type="number" onchange="ExtractEngine.upd('${trialIdArg}', 'tN', this.value)" value="${d?.tN ?? 0}" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-lg text-slate-300 outline-none font-mono mt-1">
+                                            <input type="number" onchange="ExtractEngine.upd('${trialIdArg}', 'tN', this.value)" value="${d?.tN ?? 0}" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-lg text-slate-300 outline-none font-mono mt-1" aria-label="Total N${this._provDotHtml(t, &#x27;tN&#x27;)}">
 
 
                                         </div>
@@ -24646,7 +24646,7 @@ const ContinuousMDEngine = {
                                             <label class="text-[9px] uppercase tracking-widest text-slate-500 font-bold">Events${this._provDotHtml(t, 'cE')}</label>
 
 
-                                            <input type="number" onchange="ExtractEngine.upd('${trialIdArg}', 'cE', this.value)" value="${d?.cE ?? 0}" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-lg text-rose-400 font-bold outline-none font-mono mt-1">
+                                            <input type="number" onchange="ExtractEngine.upd('${trialIdArg}', 'cE', this.value)" value="${d?.cE ?? 0}" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-lg text-rose-400 font-bold outline-none font-mono mt-1" aria-label="Events${this._provDotHtml(t, &#x27;cE&#x27;)}">
 
 
                                         </div>
@@ -24661,7 +24661,7 @@ const ContinuousMDEngine = {
                                             <label class="text-[9px] uppercase tracking-widest text-slate-500 font-bold">Total N${this._provDotHtml(t, 'cN')}</label>
 
 
-                                            <input type="number" onchange="ExtractEngine.upd('${trialIdArg}', 'cN', this.value)" value="${d?.cN ?? 0}" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-lg text-slate-300 outline-none font-mono mt-1">
+                                            <input type="number" onchange="ExtractEngine.upd('${trialIdArg}', 'cN', this.value)" value="${d?.cN ?? 0}" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-lg text-slate-300 outline-none font-mono mt-1" aria-label="Total N${this._provDotHtml(t, &#x27;cN&#x27;)}">
 
 
                                         </div>
